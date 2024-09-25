@@ -1,6 +1,16 @@
 Introduction by Praktik
 
-Skills(Developer/Designer 4-5 Years Experience): System Design, Software Design, Design Patterns, Layer Management, IPC, CUDA Parallel Programming/ Processing, YOCTO, Media Management, Test Framework, Jenkins
+Skills(Developer/Designer 4-5 Years Experience): 
+- System Design
+- Software Design
+- Design Patterns
+- Layer Management
+- IPC
+- CUDA Parallel Programming/ Processing
+- YOCTO
+- Media Management
+- Testing Framework
+- Jenkins
 -------
 - Head Unit
 	- Gear Change, Ambient Lighting and Music Integration
