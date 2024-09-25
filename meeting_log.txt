@@ -9,7 +9,7 @@ Special Remarks: no
 ----------------------------------------
 Name: Kiruthika
 What have you done?
-- REsearch VSOME/IP 
+- Research VSOME/IP 
 What will you do?
 - Trying to Understand VSOME/IP concepts
 Special Remarks: No
@@ -25,7 +25,7 @@ Name: Sihun
 What have you done?
 - Studying about Yocto lecture, keep studying
 What will you do?
-- VSOME/IP learn more about the gneral project
+- VSOME/IP learn more about the general project
 Special Remarks: No
 ----------------------------------------
 Name: Freddie

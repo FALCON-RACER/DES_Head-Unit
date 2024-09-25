@@ -27,10 +27,8 @@ def save_log_entries(entries):
 def main():
 	# Get the date
 	date = get_current_date()
-
 	# Initialize the log entries string
 	log_entries = f"Date: {date}\n{'='*40}\n"
-
 	# Loop to prompt for 5 team members
 	for i in range(5):
 		name = input(f"\nEnter name for team member {i+1}: ")
