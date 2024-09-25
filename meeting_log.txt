@@ -1,0 +1,37 @@
+Date: 2024-09-25
+========================================
+Name: Allison
+What have you done?
+- I have created this "daily meetings" script and researched about Yocto
+What will you do?
+- I will research about VSOME IP and Creating a better UI
+Special Remarks: no
+----------------------------------------
+Name: Kiruthika
+What have you done?
+- REsearch VSOME/IP 
+What will you do?
+- Trying to Understand VSOME/IP concepts
+Special Remarks: No
+----------------------------------------
+Name: Wonjeong
+What have you done?
+- Study about Yocto, try to understand the project
+What will you do?
+- Learn more in depth about projects
+Special Remarks: No
+----------------------------------------
+Name: Sihun
+What have you done?
+- Studying about Yocto lecture, keep studying
+What will you do?
+- VSOME/IP learn more about the gneral project
+Special Remarks: No
+----------------------------------------
+Name: Freddie
+What have you done?
+- /
+What will you do?
+- /
+Special Remarks: no
+----------------------------------------
