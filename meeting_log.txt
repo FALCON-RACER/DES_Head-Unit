@@ -35,3 +35,40 @@ What will you do?
 - /
 Special Remarks: no
 ----------------------------------------
+Date: 2024-10-02
+========================================
+Name: Allison
+What have you done?
+- I have rsearched about Yocto and about vsome ip
+What will you do?
+- I will try to run small program on vsome and get yocto basics
+Special Remarks: 
+----------------------------------------
+Name: Kiruthika
+What have you done?
+- I ran the example programs on vsome and understood vsome
+What will you do?
+- Configure commonapi which used someip bindings
+Special Remarks: 
+----------------------------------------
+Name: Sihun
+What have you done?
+- Studying yocto
+What will you do?
+- Creating simple OS for Rpi and preparing presentation
+Special Remarks: 
+----------------------------------------
+Name: Freddie
+What have you done?
+- Currently building image 
+What will you do?
+- continue studdyingand get used to it
+Special Remarks: 
+----------------------------------------
+Name: Wonjeung
+What have you done?
+- She moved
+What will you do?
+- Keep studying
+Special Remarks: 
+----------------------------------------
