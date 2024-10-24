@@ -13,7 +13,7 @@ if (!INSTALL_DIR)
 endif()
 
 # Set Depend Library
-set(stub_list "Battery")
+set(stub_list "battery")
 set(proxy_list)
 
 
@@ -40,8 +40,8 @@ if (BUILD_EXE)
     include_directories(
         src
         ${COMMONAPI_INCLUDE_DIRS}
-        ${PYTHON_INCLUDE_DIRS})
-
+        ${CMAKE_SOURCE_DIR}/src-gen/core/common/battery/v1/commonapi
+    )
     # Build Execution
     add_executable(${PROJECT_NAME}
         src/vehiclebattery.cpp
@@ -52,8 +52,7 @@ if (BUILD_EXE)
         ${PYTHON_LIBRARIES}
         CommonAPI
         vsomeip3
-        batterysomeipproxy
-        batterysomeipstub)
+        )
 
     # Install Execution
     install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}
