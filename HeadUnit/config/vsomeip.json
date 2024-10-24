@@ -1,0 +1,29 @@
+{
+    "unicast" : "192.168.1.100",
+    "logging" :
+    {
+        "level" : "verbose",
+        "console" : "false",
+        "file" : { "enable" : "true", "path" : "./commonapi.log" },
+        "dlt" : "true"
+    },
+
+    "routing" : "InstrumentCluster_Speed_Proxy",
+
+    "services" :
+    [
+        {
+            "service" : "4662",
+            "instance" : "22138",
+            "reliable" : "30562"
+        }
+    ],
+
+    "service-discovery" :
+    {
+        "enable" : "true",
+        "multicast" : "224.244.224.245",
+        "port" : "30490",
+        "protocol" : "udp"
+    }
+}
