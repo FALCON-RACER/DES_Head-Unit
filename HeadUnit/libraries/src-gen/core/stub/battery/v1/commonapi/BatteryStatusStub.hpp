@@ -14,6 +14,8 @@
 #include <sstream>
 
 
+
+
 #include </home/kiku/Head_Unit/battery/src-gen/core/common/battery/v1/commonapi/BatteryStatus.hpp>
 
 #if !defined (COMMONAPI_INTERNAL_COMPILATION)
@@ -45,7 +47,7 @@ class BatteryStatusStubAdapter
       public virtual BatteryStatus {
  public:
     ///Notifies all remote listeners about a change of value of the attribute Battery.
-    virtual void fireBatteryAttributeChanged(const uint8_t &Battery) = 0;
+    virtual void fireBatteryAttributeChanged(const float &Battery) = 0;
 
 
     virtual void deactivateManagedInstances() = 0;
@@ -85,7 +87,7 @@ public:
     virtual ~BatteryStatusStubRemoteEvent() { }
 
     /// Verification callback for remote set requests on the attribute Battery
-    virtual bool onRemoteSetBatteryAttribute(const std::shared_ptr<CommonAPI::ClientId> _client, uint8_t _value) = 0;
+    virtual bool onRemoteSetBatteryAttribute(const std::shared_ptr<CommonAPI::ClientId> _client, float _value) = 0;
     /// Action callback for remote set requests on the attribute Battery
     virtual void onRemoteBatteryAttributeChanged() = 0;
 };
@@ -109,9 +111,9 @@ public:
     virtual const CommonAPI::Version& getInterfaceVersion(std::shared_ptr<CommonAPI::ClientId> _client) = 0;
 
     /// Provides getter access to the attribute Battery
-    virtual const uint8_t &getBatteryAttribute(const std::shared_ptr<CommonAPI::ClientId> _client) = 0;
+    virtual const float &getBatteryAttribute(const std::shared_ptr<CommonAPI::ClientId> _client) = 0;
     /// sets attribute with the given value and propagates it to the adapter
-    virtual void fireBatteryAttributeChanged(uint8_t _value) {
+    virtual void fireBatteryAttributeChanged(float _value) {
     auto stubAdapter = CommonAPI::Stub<BatteryStatusStubAdapter, BatteryStatusStubRemoteEvent>::stubAdapter_.lock();
     if (stubAdapter)
         stubAdapter->fireBatteryAttributeChanged(_value);
