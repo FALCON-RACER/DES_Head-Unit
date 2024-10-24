@@ -34,7 +34,7 @@ namespace commonapi {
 class BatteryStatusProxyBase
     : virtual public CommonAPI::Proxy {
 public:
-    typedef CommonAPI::ObservableAttribute<uint8_t> BatteryAttribute;
+    typedef CommonAPI::ObservableAttribute<float> BatteryAttribute;
 
 
     virtual BatteryAttribute& getBatteryAttribute() = 0;

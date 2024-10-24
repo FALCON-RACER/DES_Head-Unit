@@ -13,7 +13,7 @@
 
 #include <CommonAPI/Export.hpp>
 
-#include </home/kiku/Head_Unit/battery/src-gen/core/stub/battery/v1/commonapi/BatteryStatusStub.hpp>
+#include <v1/commonapi/BatteryStatusStub.hpp>
 #include <cassert>
 #include <sstream>
 
@@ -60,27 +60,27 @@ public:
         return &remoteEventHandler_;
     }
 
-    COMMONAPI_EXPORT virtual const uint8_t &getBatteryAttribute() {
+    COMMONAPI_EXPORT virtual const float &getBatteryAttribute() {
         return batteryAttributeValue_;
     }
-    COMMONAPI_EXPORT virtual const uint8_t &getBatteryAttribute(const std::shared_ptr<CommonAPI::ClientId> _client) {
+    COMMONAPI_EXPORT virtual const float &getBatteryAttribute(const std::shared_ptr<CommonAPI::ClientId> _client) {
         (void)_client;
         return getBatteryAttribute();
     }
-    COMMONAPI_EXPORT virtual void setBatteryAttribute(uint8_t _value) {
+    COMMONAPI_EXPORT virtual void setBatteryAttribute(float _value) {
         const bool valueChanged = trySetBatteryAttribute(std::move(_value));
         if (valueChanged) {
             fireBatteryAttributeChanged(batteryAttributeValue_);
         }
     }
-    COMMONAPI_EXPORT virtual void setBatteryAttribute(const std::shared_ptr<CommonAPI::ClientId> _client, uint8_t _value) {
+    COMMONAPI_EXPORT virtual void setBatteryAttribute(const std::shared_ptr<CommonAPI::ClientId> _client, float _value) {
         (void)_client;
         setBatteryAttribute(_value);
     }
 
 
 protected:
-    COMMONAPI_EXPORT virtual bool trySetBatteryAttribute(uint8_t _value) {
+    COMMONAPI_EXPORT virtual bool trySetBatteryAttribute(float _value) {
         if (!validateBatteryAttributeRequestedValue(_value))
             return false;
 
@@ -98,7 +98,7 @@ protected:
 
        return valueChanged;
     }
-    COMMONAPI_EXPORT virtual bool validateBatteryAttributeRequestedValue(const uint8_t &_value) {
+    COMMONAPI_EXPORT virtual bool validateBatteryAttributeRequestedValue(const float &_value) {
         (void)_value;
         return true;
     }
@@ -117,12 +117,12 @@ protected:
             defaultStub_->onRemoteBatteryAttributeChanged();
         }
 
-        COMMONAPI_EXPORT virtual bool onRemoteSetBatteryAttribute(uint8_t _value) {
+        COMMONAPI_EXPORT virtual bool onRemoteSetBatteryAttribute(float _value) {
             assert(defaultStub_ !=NULL);
             return defaultStub_->trySetBatteryAttribute(std::move(_value));
         }
 
-        COMMONAPI_EXPORT virtual bool onRemoteSetBatteryAttribute(const std::shared_ptr<CommonAPI::ClientId> _client, uint8_t _value) {
+        COMMONAPI_EXPORT virtual bool onRemoteSetBatteryAttribute(const std::shared_ptr<CommonAPI::ClientId> _client, float _value) {
             (void)_client;
             return onRemoteSetBatteryAttribute(_value);
         }
@@ -135,7 +135,7 @@ protected:
 
 private:
 
-    uint8_t batteryAttributeValue_ {};
+    float batteryAttributeValue_ {};
 
     CommonAPI::Version interfaceVersion_;
 };
