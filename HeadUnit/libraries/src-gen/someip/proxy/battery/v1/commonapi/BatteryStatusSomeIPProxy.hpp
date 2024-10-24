@@ -61,7 +61,7 @@ public:
     virtual std::future<void> getCompletionFuture();
 
 private:
-    CommonAPI::SomeIP::ObservableAttribute<CommonAPI::SomeIP::Attribute<BatteryAttribute, CommonAPI::SomeIP::IntegerDeployment<uint8_t>>> battery_;
+    CommonAPI::SomeIP::ObservableAttribute<CommonAPI::SomeIP::Attribute<BatteryAttribute>> battery_;
 
 };
 

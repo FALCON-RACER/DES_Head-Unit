@@ -46,7 +46,7 @@ public:
         BatteryStatusSomeIPStubAdapterHelper::deinit();
     }
 
-    void fireBatteryAttributeChanged(const uint8_t &_value);
+    void fireBatteryAttributeChanged(const float &_value);
     
     void deactivateManagedInstances() {}
     
@@ -57,14 +57,12 @@ public:
 
     CommonAPI::SomeIP::GetAttributeStubDispatcher<
         ::v1::commonapi::BatteryStatusStub,
-        uint8_t,
-        CommonAPI::SomeIP::IntegerDeployment<uint8_t>
+        float
     > getBatteryAttributeStubDispatcher;
     
     CommonAPI::SomeIP::SetObservableAttributeStubDispatcher<
         ::v1::commonapi::BatteryStatusStub,
-        uint8_t,
-        CommonAPI::SomeIP::IntegerDeployment<uint8_t>
+        float
     > setBatteryAttributeStubDispatcher;
     
     BatteryStatusSomeIPStubAdapterInternal(
@@ -112,20 +110,16 @@ public:
 };
 
 template <typename _Stub, typename... _Stubs>
-void BatteryStatusSomeIPStubAdapterInternal<_Stub, _Stubs...>::fireBatteryAttributeChanged(const uint8_t &_value) {
-    CommonAPI::Deployable< uint8_t, CommonAPI::SomeIP::IntegerDeployment<uint8_t>> deployedValue(_value, static_cast< CommonAPI::SomeIP::IntegerDeployment<uint8_t>* >(nullptr));
+void BatteryStatusSomeIPStubAdapterInternal<_Stub, _Stubs...>::fireBatteryAttributeChanged(const float &_value) {
     CommonAPI::SomeIP::StubEventHelper<
         CommonAPI::SomeIP::SerializableArguments<
-            CommonAPI::Deployable<
-                uint8_t,
-                CommonAPI::SomeIP::IntegerDeployment<uint8_t>
-            >
+            float
             >
     >::sendEvent(
         *this,
         CommonAPI::SomeIP::event_id_t(0x811a),
         false,
-        deployedValue
+        _value
     );
 }
 

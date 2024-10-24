@@ -47,7 +47,7 @@ BatteryStatusSomeIPProxy::BatteryStatusSomeIPProxy(
     const CommonAPI::SomeIP::Address &_address,
     const std::shared_ptr<CommonAPI::SomeIP::ProxyConnection> &_connection)
         : CommonAPI::SomeIP::Proxy(_address, _connection),
-          battery_(*this, CommonAPI::SomeIP::eventgroup_id_t(0x811a), CommonAPI::SomeIP::event_id_t(0x811a), CommonAPI::SomeIP::method_id_t(0x1388), true, CommonAPI::SomeIP::reliability_type_e::RT_RELIABLE, false, CommonAPI::SomeIP::method_id_t(0x1389), true, static_cast< CommonAPI::SomeIP::IntegerDeployment<uint8_t>* >(nullptr))
+          battery_(*this, CommonAPI::SomeIP::eventgroup_id_t(0x811a), CommonAPI::SomeIP::event_id_t(0x811a), CommonAPI::SomeIP::method_id_t(0x1388), true, CommonAPI::SomeIP::reliability_type_e::RT_RELIABLE, false, CommonAPI::SomeIP::method_id_t(0x1389), true, static_cast< CommonAPI::EmptyDeployment* >(nullptr))
 {
 }
 
