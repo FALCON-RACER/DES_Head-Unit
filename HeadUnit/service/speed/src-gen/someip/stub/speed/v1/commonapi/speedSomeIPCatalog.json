@@ -1,0 +1,8 @@
+{
+    "commonapi.speed" : {
+        "service_id": 4661,
+        "instances" : {
+            "speed": 22137
+        }
+    }
+}
