@@ -14,7 +14,7 @@ if (NOT INSTALL_DIR)
 endif()
 
 # Define the list of interfaces for which to build proxy and stub libraries
-set(proxy_stub_list "battery")
+set(proxy_stub_list "battery" "speed")
 
 # Build Library
 if (BUILD_LIB)
