@@ -1,5 +1,4 @@
 #include "BatteryStatusStubImpl.hpp"
-
 #include <iostream>
 #include <cstdint>
 #include <thread>
@@ -11,7 +10,7 @@ class Battery {
 public:
     Battery();
     ~Battery();
-    void setBatteryVoltage(uint8_t voltage);
+    void setBatteryVoltage(float percent);
 
 private:
     std::shared_ptr<CommonAPI::Runtime> runtime;

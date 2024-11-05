@@ -6,63 +6,63 @@
 #include <sys/ioctl.h>
 #include <linux/i2c-dev.h>
 
-VehicleBattery::VehicleBattery() : file(-1) {
-    if (!initI2C()) {
-        std::cout << "Failed to initialize I2C interface.";
-    }
-}
+// VehicleBattery::VehicleBattery() : file(-1) {
+//     if (!initI2C()) {
+//         std::cout << "Failed to initialize I2C interface.";
+//     }
+// }
 
-// Destructor: Cleans up the resources (closes the I2C file descriptor)
-VehicleBattery::~VehicleBattery() {
-    if (file >= 0) {
-        close(file); // Close the I2C device file
-        file = -1;   // Reset file descriptor to indicate it's closed
-    }
-}
+// // Destructor: Cleans up the resources (closes the I2C file descriptor)
+// VehicleBattery::~VehicleBattery() {
+//     if (file >= 0) {
+//         close(file); // Close the I2C device file
+//         file = -1;   // Reset file descriptor to indicate it's closed
+//     }
+// }
 
-bool VehicleBattery::initI2C() {
-    // Open the I2C bus
-    if ((file = open(device, O_RDWR)) < 0) {
-        std::cout << "Failed to open the I2C bus";
-        return false;
-    }
+// bool VehicleBattery::initI2C() {
+//     // Open the I2C bus
+//     if ((file = open(device, O_RDWR)) < 0) {
+//         std::cout << "Failed to open the I2C bus";
+//         return false;
+//     }
 
-    // Set the I2C address for the slave device
-    if (ioctl(file, I2C_SLAVE, addr) < 0) {
-        std::cout << "Failed to acquire bus access and/or talk to slave.";
-        close(file);
-        return false;
-    }
+//     // Set the I2C address for the slave device
+//     if (ioctl(file, I2C_SLAVE, addr) < 0) {
+//         std::cout << "Failed to acquire bus access and/or talk to slave.";
+//         close(file);
+//         return false;
+//     }
 
-    return true;
-}
+//     return true;
+// }
 
-uint16_t VehicleBattery::readRegister() {
-    char buf[2];
-    buf[0] = reg;
+// uint16_t VehicleBattery::readRegister() {
+//     char buf[2];
+//     buf[0] = reg;
 
-    if (file < 0) {
-        std::cout << "I2C file is not initialized.";
-        return -1;
-    }
+//     if (file < 0) {
+//         std::cout << "I2C file is not initialized.";
+//         return -1;
+//     }
 
-    // Write the register address to the I2C bus
-    if (write(file, buf, 1) != 1) {
-        std::cout << "Failed to write to the I2C bus.";
-        std::cout << "Error still exists";
-        return -1;
-    }
-    usleep(1000); // Time delay to read back from I2C
+//     // Write the register address to the I2C bus
+//     if (write(file, buf, 1) != 1) {
+//         std::cout << "Failed to write to the I2C bus.";
+//         std::cout << "Error still exists";
+//         return -1;
+//     }
+//     usleep(1000); // Time delay to read back from I2C
 
-    // Read the data from the I2C bus
-    if (read(file, buf, 2) != 2) {
-        std::cout << "Failed to read from the I2C bus.";
-        return -1;
-    }
+//     // Read the data from the I2C bus
+//     if (read(file, buf, 2) != 2) {
+//         std::cout << "Failed to read from the I2C bus.";
+//         return -1;
+//     }
 
-    uint16_t readValue = (buf[0] << 8) + buf[1];
-    return readValue;
-}
+//     uint16_t readValue = (buf[0] << 8) + buf[1];
+//     return readValue;
+// }
 
 /**
  * @Battery Percentage calculation details
@@ -79,8 +79,9 @@ uint16_t VehicleBattery::readRegister() {
 
 uint8_t VehicleBattery::getBatteryVoltage() {
     // The battery voltage is stored in register 0x02
-    uint16_t voltageRaw = readRegister();
-    uint8_t voltage = ((voltageRaw>>3)*4.0)/1000;
-    std::cout << "Battery Voltage: " << voltage;
+    // uint16_t voltageRaw = readRegister();
+    int voltage = 11;
+    // uint8_t voltage = ((voltageRaw>>3)*4.0)/1000;
+    std::cout << "Battery Voltage: " << voltage << std::endl;
     return voltage;
 }
