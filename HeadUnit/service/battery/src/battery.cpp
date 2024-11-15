@@ -19,6 +19,6 @@ void Battery::batteryServiceInit() {
     std::cout << "Successfully Registered Battery Service!" << std::endl;
 }
 
-void Battery::setBatteryVoltage(uint8_t voltage) {
-    batteryService->setBatteryAttribute(voltage);
+void Battery::setBatteryVoltage(float percent) {
+    batteryService->setBatteryAttribute(percent);
 }
