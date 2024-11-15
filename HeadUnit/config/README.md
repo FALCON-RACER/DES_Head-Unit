@@ -19,3 +19,6 @@
 - routing manager
 - multicast address, port and protocol(tcp/udp) for service discovery
 
+## Reference 
+- [vsomeip in 10 minutes](https://github.com/COVESA/vsomeip/wiki/vsomeip-in-10-minutes)
+- [CommonAPI C SomeIP in 10 minutes](https://github.com/COVESA/capicxx-someip-tools/wiki/CommonAPI-C---SomeIP-in-10-minutes)
