@@ -78,6 +78,7 @@ target_wrapper.*
 
 # QtCreator CMake
 CMakeLists.txt.user*
+CMakeCache.txt
 
 # QtCreator 4.8< compilation database
 compile_commands.json
@@ -167,3 +168,7 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/macos,windows,visualstudiocode,qtcreator,qt
 
 HeadUnit/build/*
+HeadUnit/.qt*
+HeadUnit/CMakeFiles
+HeadUnit/cmake_install.cmake
+*.app
