@@ -1,5 +1,7 @@
 # **DES Project - Head Unit**
 
+![brief software architecture](images/brief-software-architecture.png)
+
 - [**DES Project - Head Unit**](#des-project---head-unit)
   - [Introduction](#introduction)
   - [Background Information](#background-information)
