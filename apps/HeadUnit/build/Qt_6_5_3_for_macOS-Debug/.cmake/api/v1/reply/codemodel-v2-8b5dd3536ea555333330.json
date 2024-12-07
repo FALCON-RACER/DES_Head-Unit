@@ -1,0 +1,88 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-a60b034983838275c4d4.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "HeadUnit",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "HeadUnit::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-HeadUnit-Debug-35ffe99ef6b8c0507e9d.json",
+					"name" : "HeadUnit",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "HeadUnit_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-HeadUnit_autogen-Debug-74a2356abdcf889573d1.json",
+					"name" : "HeadUnit_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "HeadUnit_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-HeadUnit_autogen_timestamp_deps-Debug-ede78cf30f869fb8e79b.json",
+					"name" : "HeadUnit_autogen_timestamp_deps",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "HeadUnit_qmlimportscan::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-HeadUnit_qmlimportscan-Debug-71e05c1149eff20abba9.json",
+					"name" : "HeadUnit_qmlimportscan",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/jincpark/DES_Head-Unit/HeadUnit/build/Qt_6_5_3_for_macOS-Debug",
+		"source" : "/Users/jincpark/DES_Head-Unit/HeadUnit"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

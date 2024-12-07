@@ -1,0 +1,9 @@
+-rootPath
+/Users/jincpark/DES_Head-Unit/HeadUnit
+-cmake-output
+-output-file
+/Users/jincpark/DES_Head-Unit/HeadUnit/.qt_plugins/Qt6_QmlPlugins_Imports_HeadUnit.cmake
+-importPath
+/Users/jincpark/DES_Head-Unit/HeadUnit
+-importPath
+/Users/jincpark/Qt/6.5.3/macos/./qml

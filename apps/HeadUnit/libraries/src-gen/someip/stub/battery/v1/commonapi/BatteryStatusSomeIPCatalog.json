@@ -1,0 +1,8 @@
+{
+    "commonapi.BatteryStatus" : {
+        "service_id": 4662,
+        "instances" : {
+            "BatteryStatus": 22138
+        }
+    }
+}

@@ -1,0 +1,5 @@
+# Hashes of file build rules.
+7f42b1faff7b8de34ff46941455eb357 .qt_plugins/Qt6_QmlPlugins_Imports_HeadUnit.cmake
+d69174115e5841ae1c3b7180c2195cb7 CMakeFiles/HeadUnit_autogen
+d69174115e5841ae1c3b7180c2195cb7 CMakeFiles/HeadUnit_qmlimportscan
+81c73ea8401861b645788399eac8d23d HeadUnit_autogen/timestamp
