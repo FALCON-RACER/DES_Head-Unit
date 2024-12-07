@@ -167,8 +167,8 @@ $RECYCLE.BIN/
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,windows,visualstudiocode,qtcreator,qt
 
-HeadUnit/build/*
-HeadUnit/.qt*
-HeadUnit/CMakeFiles
-HeadUnit/cmake_install.cmake
+apps/*/build/*
+apps/*/.qt*
+apps/*/CMakeFiles
+apps/*/cmake_install.cmake
 *.app
