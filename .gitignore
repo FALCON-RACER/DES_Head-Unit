@@ -170,4 +170,5 @@ $RECYCLE.BIN/
 .qt*
 build/
 CMakeFiles/
+cmake_install.cmake
 *.app
