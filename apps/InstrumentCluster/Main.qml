@@ -4,6 +4,7 @@ Window {
     width: 1280
     height: 400
     visible: true
+	visibility: "FullScreen"
     title: qsTr("Instrument Cluster")
 
     Text {
