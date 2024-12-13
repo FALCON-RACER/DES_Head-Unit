@@ -148,6 +148,27 @@ Window {
                        font.pixelSize: 18
                    }
                 }
+
+                // Menu
+                Rectangle {
+                    Layout.preferredWidth: parent.width
+                    Layout.fillHeight: true
+                    color: "transparent"
+
+                    Image {
+                        source: "qrc:/icons/menu"
+                        width: 50
+                        height: 50
+                        anchors.centerIn: parent
+                    }
+
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            console.log("Icon Button clicked")
+                        }
+                    }
+                }
             }
 
             // Contents Area
@@ -163,97 +184,6 @@ Window {
                 }
             }
 
-        }
-
-        // Bottom Bar
-        RowLayout {
-        Layout.fillWidth: true
-        spacing: 10
-        height: Screen.height * 0.05
-
-            // First Button
-            Rectangle {
-               Layout.fillWidth: true
-               Layout.preferredHeight: parent.height
-               color: "blue"
-               radius: 10
-               border.color: "black"
-               border.width: 2
-
-               MouseArea {
-                   anchors.fill: parent
-                   onClicked: {
-                       console.log("Home clicked")
-                       contentLoader.source = "FirstContent.qml"
-                   }
-
-                   onPressed: parent.color = "lightblue"
-                   onReleased: parent.color = "blue"
-               }
-
-               Text {
-                   anchors.centerIn: parent
-                   text: "Home"
-                   color: "white"
-                   font.pixelSize: 18
-               }
-            }
-
-            // Second Button
-            Rectangle {
-               Layout.fillWidth: true
-               Layout.preferredHeight: parent.height
-               color: "green"
-               radius: 10
-               border.color: "black"
-               border.width: 2
-
-               MouseArea {
-                   anchors.fill: parent
-                   onClicked: {
-                       console.log("Menu clicked")
-                       contentLoader.source = "SecondContent.qml"
-                   }
-
-                   onPressed: parent.color = "lightgreen"
-                   onReleased: parent.color = "green"
-               }
-
-               Text {
-                   anchors.centerIn: parent
-                   text: "Menu"
-                   color: "white"
-                   font.pixelSize: 18
-               }
-            }
-
-            // Third Button
-            Rectangle {
-               Layout.fillWidth: true
-               Layout.preferredHeight: parent.height
-               color: "red"
-               radius: 10
-               border.color: "black"
-               border.width: 2
-
-               MouseArea {
-                   anchors.fill: parent
-                   onClicked: {
-                       console.log("Settings clicked")
-                       contentLoader.source = "ThirdContent.qml"
-                   }
-
-                   onPressed: parent.color = "lightcoral"
-                   onReleased: parent.color = "red"
-               }
-
-               Text {
-                   anchors.centerIn: parent
-                   text: "Settings"
-                   color: "white"
-                   font.pixelSize: 18
-               }
-            }
         }
     }
 }
