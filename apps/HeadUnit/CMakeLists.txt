@@ -4,7 +4,7 @@ project(HeadUnit VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 6.5 REQUIRED COMPONENTS Quick)
+find_package(Qt6 6.5 REQUIRED COMPONENTS Quick Qml)
 
 qt_standard_project_setup(REQUIRES 6.5)
 
@@ -16,7 +16,10 @@ qt_add_qml_module(head-unit
     URI HeadUnit
     VERSION 1.0
     QML_FILES
-        Main.qml
+        resources/qml/Main.qml
+        resources/qml/FirstContent.qml
+        resources/qml/SecondContent.qml
+        resources/qml/ThirdContent.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
