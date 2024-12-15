@@ -13,6 +13,8 @@ qt_standard_project_setup(REQUIRES 6.5)
 qt_add_executable(head-unit
     main.cpp
     resources.qrc
+    src/envmanager.h
+    src/envmanager.cpp
 )
 
 qt_add_qml_module(head-unit
