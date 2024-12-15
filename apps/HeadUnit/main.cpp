@@ -11,6 +11,8 @@ int main(int argc, char *argv[])
     EnvManager::instance().loadEnvFile("/Users/LWJ/subject/sea-me/DES_Head-Unit/apps/HeadUnit/.env");
 
     QQmlApplicationEngine engine;
+    engine.load(QUrl(QStringLiteral("qrc:/resources/qml/Main.qml")));
+
     QObject::connect(
         &engine,
         &QQmlApplicationEngine::objectCreationFailed,

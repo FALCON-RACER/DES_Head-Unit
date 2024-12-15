@@ -22,7 +22,9 @@ qt_add_qml_module(head-unit
     VERSION 1.0
     QML_FILES
         resources/qml/Main.qml
-        resources/qml/FirstContent.qml
+        resources/qml/Home.qml
+        resources/qml/Menu.qml
+        resources/qml/Spotify.qml
         resources/qml/SecondContent.qml
         resources/qml/ThirdContent.qml
 )

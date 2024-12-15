@@ -156,16 +156,19 @@ Window {
                     color: "transparent"
 
                     Image {
-                        source: "qrc:/icons/menu"
+                        source: "qrc:/icons/menus"
                         width: 50
                         height: 50
                         anchors.centerIn: parent
+
                     }
 
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {
-                            console.log("Icon Button clicked")
+                            contentLoader.source = "Menu.qml"
+
+                            console.log("menu clicked")
                         }
                     }
                 }
@@ -180,7 +183,7 @@ Window {
                 Loader {
                     id: contentLoader
                     anchors.fill: parent
-                    source: "FirstContent.qml"  // Default Screen
+                    source: "Home.qml"
                 }
             }
 
