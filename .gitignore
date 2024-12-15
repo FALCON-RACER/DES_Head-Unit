@@ -172,3 +172,5 @@ build/
 CMakeFiles/
 cmake_install.cmake
 *.app
+
+config.ini
