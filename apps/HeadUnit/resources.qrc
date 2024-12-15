@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/icons">
         <file alias="menu">resources/icons/menu_icon.png</file>
+        <file alias="menus">resources/icons/menu_icon.svg</file>
+        <file alias="spotify_logo">resources/icons/spotify_logo_icon.svg</file>
     </qresource>
 </RCC>
