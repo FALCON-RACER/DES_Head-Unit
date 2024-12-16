@@ -19,6 +19,8 @@ qt_add_executable(head-unit
     src/envmanager.cpp
     src/spotify.h
     src/spotify.cpp
+    src/utils.h
+    src/utils.cpp
 )
 
 qt_add_qml_module(head-unit
