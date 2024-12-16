@@ -1,6 +1,8 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QDebug>
+
+#include "src/spotify.h"
 #include "src/envmanager.h"
 
 int main(int argc, char *argv[])
@@ -9,6 +11,10 @@ int main(int argc, char *argv[])
 
     // todo fix the location
     EnvManager::instance().loadEnvFile("/Users/LWJ/subject/sea-me/DES_Head-Unit/apps/HeadUnit/.env");
+
+
+    // Register the Spotify class to be used in QML
+    qmlRegisterType<Spotify>("com.spotify", 1, 0, "Spotify");
 
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/resources/qml/Main.qml")));
