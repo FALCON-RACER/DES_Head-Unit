@@ -8,13 +8,15 @@ EnvManager& EnvManager::instance() {
     return instance;
 }
 
-void EnvManager::loadEnvFile(const QString &filePath) {
+void EnvManager::loadEnvFile(const QString &envFilePath) {
 
-    QFile file(filePath);
+    QFile file(envFilePath);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qWarning() << "Failed to open .env file.";
         return;
     }
+
+    filePath = envFilePath;
 
     QTextStream in(&file);
     while (!in.atEnd()) {
@@ -35,10 +37,26 @@ void EnvManager::loadEnvFile(const QString &filePath) {
     }
 }
 
+void EnvManager::saveEnvFile() {
+    QFile file(filePath);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        qWarning() << "Failed to open .env file for writing.";
+        return;
+    }
+
+    QTextStream out(&file);
+
+    for (const QString &key : env.keys()) {
+        out << key << "=" << env.value(key) << "\n";
+    }
+}
+
+
 QString EnvManager::get(const QString &key, const QString &defaultValue) const {
     return env.value(key, defaultValue);
 }
 
 void EnvManager::set(const QString &key, const QString &value) {
     env.insert(key, value);
+    saveEnvFile();
 }
