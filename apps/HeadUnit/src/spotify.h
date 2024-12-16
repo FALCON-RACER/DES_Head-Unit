@@ -12,8 +12,7 @@
 #include <QUrlQuery>
 #include <QStandardPaths>
 
-class Spotify : public QObject
-{
+class Spotify : public QObject {
     Q_OBJECT
     Q_PROPERTY(bool isLoggedIn READ isLoggedIn NOTIFY isLoggedInChanged)
 
@@ -21,12 +20,15 @@ public:
     explicit Spotify(QObject *parent = nullptr);
     ~Spotify();
 
-    Q_INVOKABLE void login();
+    Q_INVOKABLE void getAndSaveAccessToken(QString autorizationCode);
     Q_INVOKABLE void refreshAccessToken();
 
-    bool isLoggedIn() const { return !accessToken.isEmpty(); }
+    Q_INVOKABLE bool isLoggedIn();
+    Q_INVOKABLE QUrl getLoginURL();
 
 signals:
+
+    Q_SIGNAL void loginFinished(bool success);
     void isLoggedInChanged();
     void playlistsFetched(const QString &playlists);
     void musicSearchResult(const QString &results);
@@ -40,7 +42,7 @@ private:
     QString refreshToken;
 
     bool loginStatus;
-    void updateAccessToken(QString newAccessToken, QString newRefreshToken);
+    void saveAccessToken(QString newAccessToken, QString newRefreshToken);
     void loadConfig();
 
     bool alreadyLogin();
