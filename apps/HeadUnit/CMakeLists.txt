@@ -31,9 +31,9 @@ qt_add_qml_module(head-unit
         resources/qml/Main.qml
         resources/qml/Home.qml
         resources/qml/Menu.qml
-        resources/qml/Spotify.qml
-        resources/qml/SecondContent.qml
-        resources/qml/ThirdContent.qml
+        resources/qml/SpotifyMain.qml
+        resources/qml/SpotifyNowPlaying.qml
+        # resources/qml/SpotifyPlaylists.qml
 
     SOURCES
         src/spotify.h src/spotify.cpp

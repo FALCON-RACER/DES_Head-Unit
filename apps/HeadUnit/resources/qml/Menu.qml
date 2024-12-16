@@ -30,7 +30,7 @@ Item {
                 anchors.fill: parent
                 onClicked: {
                     console.log("Spotify clicked")
-                    contentLoader.source = "Spotify.qml"
+                    contentLoader.source = "SpotifyMain.qml"
                 }
             }
         }
