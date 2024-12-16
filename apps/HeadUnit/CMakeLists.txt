@@ -11,15 +11,20 @@ find_package(Qt6 6.5 REQUIRED COMPONENTS Quick Qml)
 qt_standard_project_setup(REQUIRES 6.5)
 
 qt_add_executable(head-unit
-    main.cpp
+
     resources.qrc
+
+    main.cpp
     src/envmanager.h
     src/envmanager.cpp
+    src/spotify.h
+    src/spotify.cpp
 )
 
 qt_add_qml_module(head-unit
     URI HeadUnit
     VERSION 1.0
+
     QML_FILES
         resources/qml/Main.qml
         resources/qml/Home.qml
@@ -27,7 +32,16 @@ qt_add_qml_module(head-unit
         resources/qml/Spotify.qml
         resources/qml/SecondContent.qml
         resources/qml/ThirdContent.qml
+
+    SOURCES
+        src/spotify.h src/spotify.cpp
+        src/envmanager.h src/envmanager.cpp
 )
+
+
+# WebEngineWidgets
+find_package(Qt6 REQUIRED COMPONENTS WebEngineWidgets Quick Qml)
+target_link_libraries(head-unit PRIVATE Qt6::WebEngineWidgets Qt6::Quick Qt6::Qml)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
