@@ -5,10 +5,11 @@ Item {
     Rectangle {
         color: "lightblue"
         anchors.fill: parent
+        // color: "transparent"
 
         Text {
             anchors.centerIn: parent
-            text: "Home.qml"
+            text: "home.qml"
             font.pixelSize: 20
         }
     }

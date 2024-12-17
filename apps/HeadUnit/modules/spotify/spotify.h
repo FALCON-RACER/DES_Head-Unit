@@ -22,7 +22,6 @@ public:
 
     Q_INVOKABLE void getAndSaveAccessToken(QString autorizationCode);
     Q_INVOKABLE void refreshAccessToken();
-
     Q_INVOKABLE bool isLoggedIn();
     Q_INVOKABLE QUrl getLoginURL();
 

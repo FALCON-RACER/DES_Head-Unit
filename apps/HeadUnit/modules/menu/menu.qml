@@ -23,16 +23,16 @@ Item {
                 width: 50
                 height: 50
                 anchors.centerIn: parent
-
-            }
-
-            MouseArea {
-                anchors.fill: parent
-                onClicked: {
-                    console.log("Spotify clicked")
-                    contentLoader.source = "SpotifyMain.qml"
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        console.log("Spotify clicked")
+                        contentLoader.source = "modules/spotify/spotify_main.qml"
+                    }
                 }
+
             }
+
         }
     }
 

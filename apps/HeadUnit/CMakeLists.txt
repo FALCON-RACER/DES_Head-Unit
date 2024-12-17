@@ -12,15 +12,18 @@ qt_standard_project_setup(REQUIRES 6.5)
 
 qt_add_executable(head-unit
 
+    main.cpp
     resources.qrc
 
-    main.cpp
-    src/envmanager.h
-    src/envmanager.cpp
-    src/spotify.h
-    src/spotify.cpp
-    src/utils.h
-    src/utils.cpp
+    shared/utils/configloader.h
+    shared/utils/configloader.cpp
+    shared/utils/envmanager.h
+    shared/utils/envmanager.cpp
+    shared/utils/utils.h
+    shared/utils/utils.cpp
+
+    modules/spotify/spotify.h
+    modules/spotify/spotify.cpp
 )
 
 qt_add_qml_module(head-unit
@@ -28,16 +31,18 @@ qt_add_qml_module(head-unit
     VERSION 1.0
 
     QML_FILES
-        resources/qml/Main.qml
-        resources/qml/Home.qml
-        resources/qml/Menu.qml
-        resources/qml/SpotifyMain.qml
-        resources/qml/SpotifyNowPlaying.qml
-        # resources/qml/SpotifyPlaylists.qml
+        main.qml
+        home.qml
+        modules/menu/menu.qml
+        modules/spotify/spotify_main.qml
+        modules/spotify/spotify_player.qml
+        modules/spotify/spotify_playlists.qml
 
     SOURCES
-        src/spotify.h src/spotify.cpp
-        src/envmanager.h src/envmanager.cpp
+        modules/spotify/spotify.h
+        modules/spotify/spotify.cpp
+        shared/utils/envmanager.h
+        shared/utils/envmanager.cpp
 )
 
 

@@ -3,11 +3,12 @@
 #include <QDebug>
 #include <QQmlContext>
 
-#include "src/spotify.h"
-#include "src/envmanager.h"
+#include "modules/spotify/spotify.h"
+#include "shared/utils/envmanager.h"
 
 int main(int argc, char *argv[])
 {
+    QCoreApplication::setAttribute(Qt::AA_UseSoftwareOpenGL);
     QGuiApplication app(argc, argv);
 
     // todo fix the location
@@ -19,7 +20,6 @@ int main(int argc, char *argv[])
 
 
     QQmlApplicationEngine engine;
-    engine.load(QUrl(QStringLiteral("qrc:/resources/qml/Main.qml")));
 
     Spotify spotify;
     engine.rootContext()->setContextProperty("spotify", &spotify);
@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
         &app,
         []() { QCoreApplication::exit(-1); },
         Qt::QueuedConnection);
-    engine.loadFromModule("HeadUnit", "Main");
+    engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
 
     qDebug() << "Head Unit launched";
 

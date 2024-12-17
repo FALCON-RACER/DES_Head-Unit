@@ -5,8 +5,8 @@
 #include <QDebug>
 #include <QByteArray>
 #include "spotify.h"
-#include "envmanager.h"
-#include "utils.h"
+#include "../../shared/utils/envmanager.h"
+#include "../../shared/utils/utils.h"
 
 Spotify::Spotify(QObject *parent) : QObject(parent), networkManager(new QNetworkAccessManager(this)) {
 

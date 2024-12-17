@@ -4,11 +4,12 @@ import QtQuick 2.15
 Rectangle {
 
     anchors.fill: parent
+    color: "transparent"
 
-    color: "blue"
+    // color: "blue"
     Text {
        anchors.centerIn: parent
-       text: "now playing qml"
+       text: "player qml"
        font.pixelSize: 20
    }
 

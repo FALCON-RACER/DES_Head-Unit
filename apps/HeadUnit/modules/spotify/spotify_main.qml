@@ -1,20 +1,24 @@
 import QtQuick 2.15
-import QtQuick.Controls 2.15
 import QtWebEngine 1.15
 
-Rectangle {
+Item {
     anchors.fill: parent
+
+    Loader {
+        id: componentLoader
+        anchors.fill: parent
+        active: false
+    }
 
     Component.onCompleted: {
         if (spotify.isLoggedIn) {
-            Qt.createComponent("SpotifyNowPlaying.qml").createObject(parent);
+            componentLoader.source = "spotify_player.qml";
+            componentLoader.active = true;
         } else {
-
-            webView.visible = true
+            webView.visible = true;
             webView.url = spotify.getLoginURL();
         }
     }
-
 
     WebEngineView {
         id: webView
@@ -24,7 +28,6 @@ Rectangle {
 
         onUrlChanged: {
             if (webView.url.toString().startsWith("http://localhost")) {
-
                 var url = webView.url;
                 var regex = /code=([^&]+)/;
                 var match = url.toString().match(regex);
@@ -34,22 +37,17 @@ Rectangle {
                     spotify.getAndSaveAccessToken(authorizationCode);
 
                     spotify.loginFinished.connect(function(success) {
-
                         if (success) {
+                            webView.visible = false;
 
-                            webView.destroy();
+                            componentLoader.source = "spotify_playlists.qml";
+                            componentLoader.active = true;
 
-                            var component = Qt.createComponent("SpotifyNowPlaying.qml");
-                            if (component.status === Component.Ready)
-                                component.createObject(parent);
-                            else
-                                console.error("[Qml] Failed to load SpotifyNowPlaying.qml");
                         } else {
                             console.log("[Qml] Spotify failed to login, go back to the login page.");
                             webView.url = spotify.getLoginURL();
                         }
                     });
-
                 }
             }
         }
