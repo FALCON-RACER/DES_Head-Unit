@@ -183,11 +183,6 @@ Window {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 Layout.rightMargin: 10
-                Text {
-                    id: name
-                    text: qsTr("text")
-                }
-
 
                 color: "transparent"
                 Loader {

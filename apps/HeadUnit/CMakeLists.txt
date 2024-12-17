@@ -15,8 +15,6 @@ qt_add_executable(head-unit
     main.cpp
     resources.qrc
 
-    shared/utils/configloader.h
-    shared/utils/configloader.cpp
     shared/utils/envmanager.h
     shared/utils/envmanager.cpp
     shared/utils/utils.h
