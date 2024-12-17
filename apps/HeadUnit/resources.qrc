@@ -1,5 +1,14 @@
 <RCC>
     <qresource prefix="/icons">
-        <file alias="menu">resources/icons/menu_icon.png</file>
+        <file alias="menu">modules/menu/images/menu_icon.svg</file>
+        <file alias="spotify_logo">modules/menu/images/spotify_logo_icon.svg</file>
+    </qresource>
+    <qresource prefix="/qml">
+        <file>main.qml</file>
+        <file>home.qml</file>
+        <file>modules/menu/menu.qml</file>
+        <file>modules/spotify/spotify_main.qml</file>
+        <file>modules/spotify/spotify_player.qml</file>
+        <file>modules/spotify/spotify_playlists.qml</file>
     </qresource>
 </RCC>
