@@ -8,21 +8,32 @@ find_package(Qt6 6.5 REQUIRED COMPONENTS Quick)
 
 qt_standard_project_setup(REQUIRES 6.5)
 
-qt_add_executable(instrument-cluster
+qt_add_executable(appInstrumentCluster
     main.cpp
 )
 
-qt_add_qml_module(instrument-cluster
+qt_add_qml_module(appInstrumentCluster
     URI InstrumentCluster
     VERSION 1.0
     QML_FILES
-        qml/main.qml
+        Main.qml
+        QML_FILES Speedometer.qml
+        QML_FILES Time.qml
+        QML_FILES Battery.qml
+        QML_FILES Gear.qml
+)
+
+qt_add_resources(appInstrumentCluster "resources"
+    PREFIX /
+    FILES
+        images/background.png
+        images/lightning.png
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
 # explicit, fixed bundle identifier manually though.
-set_target_properties(instrument-cluster PROPERTIES
+set_target_properties(appInstrumentCluster PROPERTIES
 #    MACOSX_BUNDLE_GUI_IDENTIFIER com.example.appInstrumentCluster
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
@@ -30,12 +41,12 @@ set_target_properties(instrument-cluster PROPERTIES
     WIN32_EXECUTABLE TRUE
 )
 
-target_link_libraries(instrument-cluster
+target_link_libraries(appInstrumentCluster
     PRIVATE Qt6::Quick
 )
 
 include(GNUInstallDirs)
-install(TARGETS instrument-cluster
+install(TARGETS appInstrumentCluster
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
