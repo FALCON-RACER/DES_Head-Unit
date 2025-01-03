@@ -2,6 +2,7 @@
     <qresource prefix="/icons">
         <file alias="menu">modules/menu/images/menu_icon.svg</file>
         <file alias="spotify">modules/spotify/images/spotify-logo.svg</file>
+        <file alias="youtube">modules/youtube/images/youtube-logo.svg</file>
     </qresource>
     <qresource prefix="/qml">
         <file>main.qml</file>
@@ -10,8 +11,11 @@
         <file alias="spotify/main">modules/spotify/spotify_main.qml</file>
         <file alias="spotify/player">modules/spotify/spotify_player.qml</file>
         <file alias="spotify/playlists">modules/spotify/spotify_playlists.qml</file>
+        <file alias="youtube/main">modules/youtube/youtube_main.qml</file>
+        <file alias="youtube/test">modules/youtube/youtube_test.qml</file>
     </qresource>
     <qresource prefix="/html">
         <file alias="spotify-player">modules/spotify/index.html</file>
+        <file alias="youtube/test">modules/youtube/index.html</file>
     </qresource>
 </RCC>
