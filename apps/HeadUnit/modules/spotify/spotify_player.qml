@@ -1,16 +1,15 @@
 import QtQuick 2.15
-// import QtQuick.Controls 2.15
+import QtWebEngine 1.15
+import QtWebChannel
 
-Rectangle {
+Item {
 
     anchors.fill: parent
-    color: "transparent"
 
-    // color: "blue"
-    Text {
-       anchors.centerIn: parent
-       text: "player qml"
-       font.pixelSize: 20
-   }
-
+    WebEngineView {
+        id: webEngine
+        anchors.fill: parent
+        url: "qrc:/html/spotify-player"
+        webChannel: webChannel
+    }
 }

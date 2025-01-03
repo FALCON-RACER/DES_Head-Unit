@@ -1,6 +1,5 @@
 import QtQuick 2.15
-import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.15
+import QtQuick.Layouts
 
 Item {
 
@@ -9,17 +8,16 @@ Item {
 
 
     GridLayout {
-        columns: 4
-        anchors.fill: parent
+        columns: 5
+        anchors.centerIn: parent
 
-        // Spotify
         Rectangle {
-            Layout.preferredWidth: parent.width
-            Layout.fillHeight: true
+            width: 50
+            height: 50
             color: "transparent"
 
             Image {
-                source: "qrc:/icons/spotify_logo"
+                source: "qrc:/icons/spotify"
                 width: 50
                 height: 50
                 anchors.centerIn: parent
@@ -27,13 +25,10 @@ Item {
                     anchors.fill: parent
                     onClicked: {
                         console.log("Spotify clicked")
-                        contentLoader.source = "modules/spotify/spotify_main.qml"
+                        contentLoader.source = "qrc:qml/spotify/main"
                     }
                 }
-
             }
-
         }
     }
-
 }

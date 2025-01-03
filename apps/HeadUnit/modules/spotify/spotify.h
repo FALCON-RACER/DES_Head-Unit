@@ -24,6 +24,10 @@ public:
     Q_INVOKABLE void refreshAccessToken();
     Q_INVOKABLE bool isLoggedIn();
     Q_INVOKABLE QUrl getLoginURL();
+    Q_INVOKABLE void getPlaylists();
+    Q_INVOKABLE void playPlaylist(const QString playlistId);
+    Q_INVOKABLE void pausePlayback();
+    Q_INVOKABLE void setVolume(int volume);
 
 signals:
 
