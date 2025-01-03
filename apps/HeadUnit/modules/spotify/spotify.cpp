@@ -158,8 +158,78 @@ QUrl Spotify::getLoginURL() {
                             .arg(clientId)
                             .arg("code")
                             .arg("http://localhost")
-                            .arg("user-read-private user-read-email playlist-read-private");
+                            .arg("streaming playlist-modify-private user-read-private user-read-email playlist-read-private user-read-playback-state user-modify-playback-state user-read-currently-playing");
 
     QUrl url(urlString);
     return url;
+}
+
+void Spotify::getPlaylists() {
+    QUrl url("https://api.spotify.com/v1/me/playlists");
+    QNetworkRequest request(url);
+    request.setRawHeader("Authorization", "Bearer " + accessToken.toUtf8());
+
+    QNetworkReply *reply = networkManager->get(request);
+
+    connect(reply, &QNetworkReply::finished, this, [=]() {
+        if (reply->error() == QNetworkReply::NoError) {
+            QJsonDocument json = QJsonDocument::fromJson(reply->readAll());
+            QJsonArray playlists = json.object()["items"].toArray();
+
+            // todo 값을 구조체에 저장해야 함.
+            for (const QJsonValue &playlist : playlists) {
+                QString name = playlist.toObject()["name"].toString();
+                QString id = playlist.toObject()["id"].toString();
+                qDebug() << "Playlist:" << name << ", ID:" << id;
+            }
+        } else {
+            qDebug() << "Error fetching playlists:" << reply->errorString();
+        }
+        reply->deleteLater();
+    });
+    // todo 토큰 유효성 검사. 빠꾸 나오면 다시 이 함수 실행해야 돼.ㅡ 함수를 기능별로 분리해야할듯
+
+}
+
+void Spotify::playPlaylist(QString playlistId) {
+
+    playlistId = "1h3rqwj2jSzSs7OoETi5Yy";
+
+    QUrl url(QString("https://api.spotify.com/v1/me/player/play"));
+    QNetworkRequest request(url);
+
+    request.setRawHeader("Authorization", "Bearer " + accessToken.toUtf8());
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+
+    QJsonObject body;
+    body["context_uri"] = QString("spotify:playlist:%1").arg(playlistId);
+
+    QNetworkReply *reply = networkManager->put(request, QJsonDocument(body).toJson());
+
+    connect(reply, &QNetworkReply::finished, this, [=]() {
+        if (reply->error() == QNetworkReply::NoError) {
+            qDebug() << "Playlist started playing.";
+        } else {
+            qDebug() << "Error playing playlist:" << reply->errorString();
+        }
+        reply->deleteLater();
+    });
+}
+
+void Spotify::pausePlayback() {
+    QUrl url("https://api.spotify.com/v1/me/player/pause");
+    QNetworkRequest request(url);
+    request.setRawHeader("Authorization", "Bearer " + accessToken.toUtf8());
+
+    QNetworkReply *reply = networkManager->put(request, QByteArray());
+    connect(reply, &QNetworkReply::finished, reply, &QNetworkReply::deleteLater);
+}
+
+void Spotify::setVolume(int volume) {
+    QUrl url(QString("https://api.spotify.com/v1/me/player/volume?volume_percent=%1").arg(volume));
+    QNetworkRequest request(url);
+    request.setRawHeader("Authorization", "Bearer " + accessToken.toUtf8());
+
+    QNetworkReply *reply = networkManager->put(request, QByteArray());
+    connect(reply, &QNetworkReply::finished, reply, &QNetworkReply::deleteLater);
 }
