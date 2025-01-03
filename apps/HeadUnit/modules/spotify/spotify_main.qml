@@ -12,7 +12,7 @@ Item {
 
     Component.onCompleted: {
         if (spotify.isLoggedIn) {
-            componentLoader.source = "spotify_player.qml";
+            componentLoader.source = "player";
             componentLoader.active = true;
         } else {
             webView.visible = true;
@@ -40,7 +40,7 @@ Item {
                         if (success) {
                             webView.visible = false;
 
-                            componentLoader.source = "spotify_playlists.qml";
+                            componentLoader.source = "player";
                             componentLoader.active = true;
 
                         } else {
