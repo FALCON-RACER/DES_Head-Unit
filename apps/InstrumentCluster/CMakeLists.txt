@@ -21,7 +21,7 @@ qt_add_qml_module(appInstrumentCluster
         QML_FILES Time.qml
         QML_FILES Battery.qml
         QML_FILES Gear.qml
-        QML_FILES ColorManager.qml
+        QML_FILES
         SOURCES instrumentclustercontroller.h instrumentclustercontroller.cpp
 )
 
