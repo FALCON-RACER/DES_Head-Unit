@@ -1,4 +1,5 @@
 import QtQuick
+import Qt5Compat.GraphicalEffects
 
 Window {
     id: mainWindow
@@ -17,8 +18,16 @@ Window {
     }
 
     Image {
+        id: backgroundImage
         anchors.fill: parent
         source: "qrc:/images/background.png"
+    }
+
+    ColorOverlay {
+          anchors.fill: backgroundImage
+          source: backgroundImage
+          color: instrumentClusterController.ambientLighting
+          opacity: 0.8
     }
 
     Speedometer {
