@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
         gearIndex = (gearIndex + 1) % gears.size();
 
         static int speed = 0;
-        speed = (speed + 10) % 300;
+        speed = (speed + 10) % 310;
         controller.setSpeed(speed);
 
         static int batteryPercentage = 100;
@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
         chargingState = !chargingState;
         controller.setChargingState(chargingState);
 
-        static QStringList colors = {"#000000", "#550000", "#005500", "#000055"};
+        static QStringList colors = {"#4deeea", "#74ee15", "#ffe700", "#f000ff", "#001eff"};
         static int colorIndex = 0;
         controller.setAmbientLighting(colors[colorIndex]);
         colorIndex = (colorIndex + 1) % colors.size();
