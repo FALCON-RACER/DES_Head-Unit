@@ -16,7 +16,7 @@ Item {
             text: modelData
             font.pixelSize: modelData === currentGear ? 70 : 50
             font.bold: true
-            color: "white"
+            color: instrumentClusterController.ambientLighting
             anchors.verticalCenter: parent.verticalCenter
 
             x: gearIndicator.width / 2 - font.pixelSize / 4 + (index - gearStates.indexOf(currentGear)) * 70

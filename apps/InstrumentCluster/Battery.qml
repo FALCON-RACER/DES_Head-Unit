@@ -2,8 +2,8 @@ import QtQuick 2.15
 
 Item {
     id: batteryIndicator
-    property bool isCharging: false
-    property real batteryPercentage: 0
+    property bool isCharging: instrumentClusterController.chargingState
+    property real batteryPercentage: instrumentClusterController.batteryPercentage
     width: 100
     height: 30
 
@@ -50,7 +50,7 @@ Item {
         anchors.left: parent.right
         anchors.verticalCenter: parent.verticalCenter
         text: batteryPercentage + '%'
-        color: "white"
+        color: instrumentClusterController.ambientLighting
         font.bold: true
         font.pixelSize: 30
     }
