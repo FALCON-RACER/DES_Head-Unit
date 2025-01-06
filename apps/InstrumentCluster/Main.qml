@@ -6,7 +6,7 @@ Window {
     width: 1280
     height: 400
     title: qsTr("Instrument Cluster")
-    color: instrumentClusterController.ambientLighting
+    color: "#000000"
 
     Component.onCompleted: {
         if (Screen.width > width && Screen.height > height) {
@@ -25,7 +25,6 @@ Window {
         id: speedometer
         anchors.centerIn: parent
         anchors.verticalCenterOffset: 100
-        speed: instrumentClusterController.speed
     }
 
     Time {
@@ -41,8 +40,6 @@ Window {
         anchors.left: parent.left
         anchors.bottomMargin: 20
         anchors.leftMargin: 90
-        isCharging: instrumentClusterController.chargingState
-        batteryPercentage: instrumentClusterController.batteryPercentage
     }
 
     Gear {

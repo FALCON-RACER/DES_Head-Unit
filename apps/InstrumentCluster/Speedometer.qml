@@ -7,15 +7,22 @@ Item {
     width: 600
     height: 600
 
-    property real speed: 0
+    property real speed: instrumentClusterController.speed
     property real animatedSpeed: 0
     property var gradient: null
-
+    property string colorTheme: instrumentClusterController.ambientLighting
+    property bool canvasReady: false
     readonly property real gaugeStartAngle: 165
 
     onSpeedChanged: {
         speedAnimation.to = speed;
         speedAnimation.start();
+    }
+
+    onColorThemeChanged: {
+        if (canvasReady) {
+            updateGradient();
+        }
     }
 
     NumberAnimation {
@@ -24,6 +31,7 @@ Item {
         property: "animatedSpeed"
         duration: 100 // ms
         easing.type: Easing.InOutQuad
+
         onRunningChanged: {
             if (running) {
                 updateTimer.start();
@@ -45,6 +53,7 @@ Item {
     Canvas {
         id: backgroundCanvas
         anchors.fill: parent
+
         onPaint: {
             let ctx = getContext("2d");
             ctx.reset();
@@ -58,18 +67,14 @@ Item {
     Canvas {
         id: foregroundCanvas
         anchors.fill: parent
+
         onAvailableChanged: {
             if (available) {
-                let ctx = getContext("2d");
-
-                gradient = ctx.createRadialGradient(0, 0, 220, 0, 0, 240);
-                gradient.addColorStop(0, "rgba(50, 50, 50, 1)");
-                gradient.addColorStop(0.5, "white");
-                gradient.addColorStop(1, "rgba(50, 50, 50, 0.7)");
-
+                canvasReady = true;
                 requestPaint();
             }
         }
+
         onPaint: {
             let ctx = getContext("2d");
             ctx.reset();
@@ -77,6 +82,44 @@ Item {
 
             drawSpeedGauge(ctx);
         }
+    }
+
+    Text {
+        id: speedText
+        text: Math.round(animatedSpeed).toString()
+        font.pixelSize: 70
+        font.bold: true
+        font.italic: true
+        color: colorTheme
+        anchors.centerIn: parent
+    }
+
+    Text {
+        id: unitText
+        text: "cm/s"
+        font.pixelSize: 30
+        font.italic: true
+        font.bold: true
+        color: colorTheme
+        anchors.left: speedText.right
+        anchors.bottom: speedText.bottom
+        anchors.leftMargin: 3
+        anchors.bottomMargin: 10
+    }
+
+    function updateGradient() {
+        function hexToRgba(hex, alpha = 1) {
+            let r = parseInt(hex.slice(1, 3), 16);
+            let g = parseInt(hex.slice(3, 5), 16);
+            let b = parseInt(hex.slice(5, 7), 16);
+            return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+        }
+
+        let ctx = foregroundCanvas.getContext("2d");
+        gradient = ctx.createRadialGradient(0, 0, 220, 0, 0, 240);
+        gradient.addColorStop(0, "rgba(50, 50, 50, 1)");
+        gradient.addColorStop(0.5, hexToRgba(colorTheme));
+        gradient.addColorStop(1, "rgba(50, 50, 50, 0.7)");
     }
 
     function drawSpeedGauge(ctx) {
@@ -120,28 +163,5 @@ Item {
             }
             ctx.restore();
         }
-    }
-
-    Text {
-        id: speedText
-        text: Math.round(animatedSpeed).toString()
-        font.pixelSize: 70
-        font.bold: true
-        font.italic: true
-        color: "white"
-        anchors.centerIn: parent
-    }
-
-    Text {
-        id: unitText
-        text: "cm/s"
-        font.pixelSize: 30
-        font.italic: true
-        font.bold: true
-        color: "white"
-        anchors.left: speedText.right
-        anchors.bottom: speedText.bottom
-        anchors.leftMargin: 3
-        anchors.bottomMargin: 10
     }
 }
