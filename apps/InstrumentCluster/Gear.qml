@@ -18,7 +18,6 @@ Item {
             font.bold: true
             color: instrumentClusterController.ambientLighting
             anchors.verticalCenter: parent.verticalCenter
-
             x: gearIndicator.width / 2 - font.pixelSize / 4 + (index - gearStates.indexOf(currentGear)) * 70
 
         }
