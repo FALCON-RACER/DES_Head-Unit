@@ -30,7 +30,7 @@ Item {
             id: batteryFill
             width: batteryPercentage / 100 * (parent.width - 6)
             height: parent.height - 6
-            color: batteryPercentage > 20 ? "lime" : "orangered"
+            color: "black"
             anchors.left: parent.left
             anchors.verticalCenter: parent.verticalCenter
             anchors.margins: 3
