@@ -7,12 +7,13 @@ Item {
     width: 600
     height: 600
 
-    property real speed: instrumentClusterController.speed
+    readonly property real speed: instrumentClusterController.speed
     property real animatedSpeed: 0
+    readonly property string colorTheme: instrumentClusterController.ambientLighting
     property var gradient: null
-    property string colorTheme: instrumentClusterController.ambientLighting
-    property bool canvasReady: false
-    readonly property real gaugeStartAngle: 165
+    readonly property real gaugeStartAngle: 162
+    readonly property int gaugeRadius: 200
+    readonly property int gaugeStrokeWith: 30
 
     onSpeedChanged: {
         speedAnimation.to = speed;
@@ -20,9 +21,7 @@ Item {
     }
 
     onColorThemeChanged: {
-        if (canvasReady) {
-            updateGradient();
-        }
+        updateGradient();
     }
 
     NumberAnimation {
@@ -70,7 +69,6 @@ Item {
 
         onAvailableChanged: {
             if (available) {
-                canvasReady = true;
                 requestPaint();
             }
         }
@@ -108,7 +106,7 @@ Item {
     }
 
     function updateGradient() {
-        function hexToRgba(hex, alpha = 1) {
+        function hexToRgba(hex, alpha) {
             let r = parseInt(hex.slice(1, 3), 16);
             let g = parseInt(hex.slice(3, 5), 16);
             let b = parseInt(hex.slice(5, 7), 16);
@@ -116,22 +114,20 @@ Item {
         }
 
         let ctx = foregroundCanvas.getContext("2d");
-        gradient = ctx.createRadialGradient(0, 0, 220, 0, 0, 240);
-        gradient.addColorStop(0, "rgba(50, 50, 50, 1)");
-        gradient.addColorStop(0.5, hexToRgba(colorTheme));
-        gradient.addColorStop(1, "rgba(50, 50, 50, 0.7)");
+        gradient = ctx.createRadialGradient(0, 0, gaugeRadius - gaugeStrokeWith, 0, 0, gaugeRadius + gaugeStrokeWith);
+        gradient.addColorStop(0, hexToRgba(colorTheme, 0));
+        gradient.addColorStop(1, hexToRgba(colorTheme, 1));
     }
 
     function drawSpeedGauge(ctx) {
         if (animatedSpeed > 0) {
-            let gaugeEndAngle = gaugeStartAngle + animatedSpeed * 0.69;
+            let gaugeEndAngle = gaugeStartAngle + animatedSpeed * 0.72;
 
             ctx.strokeStyle = gradient;
-            ctx.lineWidth = 25;
-            ctx.lineCap = "round";
+            ctx.lineWidth = gaugeStrokeWith * 2;
 
             ctx.beginPath();
-            ctx.arc(0, 0, 230, gaugeStartAngle * Math.PI / 180, gaugeEndAngle * Math.PI / 180);
+            ctx.arc(0, 0, gaugeRadius, gaugeStartAngle * Math.PI / 180, gaugeEndAngle * Math.PI / 180);
             ctx.stroke();
         }
     }
