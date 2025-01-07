@@ -46,11 +46,10 @@ qt_add_qml_module(head-unit
 )
 
 
-# WebEngineWidgets
-find_package(Qt6 REQUIRED COMPONENTS Quick Qml)
-target_link_libraries(head-unit PRIVATE  Qt6::Quick Qt6::Qml)
-# WebEngineWidgets
-# Qt6::WebEngineWidgets
+
+find_package(Qt6 REQUIRED COMPONENTS Quick WebEngineWidgets Qml)
+target_link_libraries(head-unit PRIVATE  Qt6::Quick Qt6::WebEngineWidgets Qt6::Qml)
+
 
 # find_package(Qt6 REQUIRED COMPONENTS Bluetooth)
 # target_link_libraries(head-unit PRIVATE Qt6::Bluetooth)
