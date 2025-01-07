@@ -30,8 +30,10 @@ qt_add_qml_module(head-unit
 
     QML_FILES
         main.qml
-        home.qml
         modules/menu/menu.qml
+        modules/home/home.qml
+        modules/settings/settings.qml
+        modules/media/media.qml
         modules/spotify/spotify_main.qml
         modules/spotify/spotify_player.qml
         modules/spotify/spotify_playlists.qml
