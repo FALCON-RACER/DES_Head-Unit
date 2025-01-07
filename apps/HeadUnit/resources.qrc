@@ -16,6 +16,7 @@
         <file alias="youtube/test">modules/youtube/youtube_test.qml</file>
     </qresource>
     <qresource prefix="/html">
+        <file alias="spotify-player">modules/spotify/index.html</file>
         <file alias="youtube/test">modules/youtube/index.html</file>
     </qresource>
     <qresource prefix="/shared/images">
