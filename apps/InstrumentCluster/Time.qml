@@ -6,7 +6,7 @@ Item {
        anchors.centerIn: parent
        font.pixelSize: 35
        font.bold: true
-       color: "white"
+       color: instrumentClusterController.ambientLighting
        text: Qt.formatTime(new Date(), "hh:mm")
     }
 
