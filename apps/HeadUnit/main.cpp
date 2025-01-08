@@ -30,7 +30,9 @@ int main(int argc, char *argv[])
         &app,
         []() { QCoreApplication::exit(-1); },
         Qt::QueuedConnection);
-    engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
+    // engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
+    engine.loadFromModule("HeadUnit", "Main");
+
 
     qDebug() << "Head Unit launched";
 
