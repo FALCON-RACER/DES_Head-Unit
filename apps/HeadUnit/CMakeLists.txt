@@ -29,20 +29,21 @@ qt_add_qml_module(head-unit
     VERSION 1.0
 
     QML_FILES
-        main.qml
-        modules/menu/menu.qml
-        modules/home/home.qml
-        modules/settings/settings.qml
-        modules/media/media.qml
-        modules/spotify/spotify_main.qml
-        modules/spotify/spotify_player.qml
-        modules/spotify/spotify_playlists.qml
+        Main.qml
+        modules/menu/Menu.qml
+        modules/home/Home.qml
+        modules/settings/Settings.qml
+        modules/media/Media.qml
+        modules/spotify/Spotify_main.qml
+        modules/spotify/Spotify_player.qml
+        modules/spotify/Spotify_playlists.qml
 
     SOURCES
         modules/spotify/spotify.h
         modules/spotify/spotify.cpp
         shared/utils/envmanager.h
         shared/utils/envmanager.cpp
+        QML_FILES
 )
 
 
