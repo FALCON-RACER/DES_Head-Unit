@@ -5,8 +5,8 @@ import QtQuick.Controls 2.12
 import QtMultimedia
 
 Item {
+    id: menu
     Rectangle{
-        id: menu
         color: "transparent"
         height:400
         width: 700
@@ -23,7 +23,7 @@ Item {
                 Layout.alignment: Qt.AlignHCenter
                 opacity: 0
                 onClicked: {
-                    contentLoader.source = "modules/home/home.qml"
+                    stackView.push(home)
                 }
             }
 
@@ -34,7 +34,7 @@ Item {
                 Layout.alignment: Qt.AlignHCenter
                 opacity: 0
                 onClicked: {
-                    contentLoader.source = "modules/settings/settings.qml"
+                    stackView.push(settings)
                 }
             }
 
@@ -45,12 +45,12 @@ Item {
                 Layout.alignment: Qt.AlignHCenter
                 opacity: 0
                 onClicked: {
-                    contentLoader.source = "modules/media/media.qml"
+                    stackView.push(media)
                 }
             }
         }
         Image {
-            id: home
+            id: homeicon
             source: "qrc:/shared/images/home"
             anchors.left: parent.left
             anchors.leftMargin: 50
@@ -61,7 +61,7 @@ Item {
             mipmap: true
         }
         Image {
-            id: settings
+            id: settingsicon
             source: "qrc:/shared/images/settings"
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
@@ -71,7 +71,7 @@ Item {
             mipmap: true
         }
         Image {
-            id: media
+            id: mediaicon
             source: "qrc:/shared/images/media"
             anchors.right: parent.right
             anchors.rightMargin: 50
@@ -82,20 +82,20 @@ Item {
             mipmap: true
         }
         ColorOverlay {
-            anchors.fill: home
-            source: home
+            anchors.fill: homeicon
+            source: homeicon
             color: myColor
             smooth: true
         }
         ColorOverlay {
-            anchors.fill: settings
-            source: settings
+            anchors.fill: settingsicon
+            source: settingsicon
             color: myColor
             smooth: true
         }
         ColorOverlay {
-            anchors.fill: media
-            source: media
+            anchors.fill: mediaicon
+            source: mediaicon
             color: myColor
             smooth: true
         }
