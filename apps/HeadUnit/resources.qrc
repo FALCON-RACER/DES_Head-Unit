@@ -4,16 +4,16 @@
         <file alias="youtube">modules/youtube/images/youtube-logo.svg</file>
     </qresource>
     <qresource prefix="/qml">
-        <file>main.qml</file>
-        <file>modules/menu/menu.qml</file>
-        <file>modules/home/home.qml</file>
-        <file>modules/settings/settings.qml</file>
-        <file>modules/media/media.qml</file>
-        <file alias="spotify/main">modules/spotify/spotify_main.qml</file>
-        <file alias="spotify/player">modules/spotify/spotify_player.qml</file>
-        <file alias="spotify/playlists">modules/spotify/spotify_playlists.qml</file>
-        <file alias="youtube/main">modules/youtube/youtube_main.qml</file>
-        <file alias="youtube/test">modules/youtube/youtube_test.qml</file>
+        <file>Main.qml</file>
+        <file>modules/menu/Menu.qml</file>
+        <file>modules/home/Home.qml</file>
+        <file>modules/settings/Settings.qml</file>
+        <file>modules/media/Media.qml</file>
+        <file alias="spotify/main">modules/spotify/Spotify_main.qml</file>
+        <file alias="spotify/player">modules/spotify/Spotify_player.qml</file>
+        <file alias="spotify/playlists">modules/spotify/Spotify_playlists.qml</file>
+        <file alias="youtube/main">modules/youtube/Youtube_main.qml</file>
+        <file alias="youtube/test">modules/youtube/Youtube_test.qml</file>
     </qresource>
     <qresource prefix="/html">
         <file alias="spotify-player">modules/spotify/index.html</file>
