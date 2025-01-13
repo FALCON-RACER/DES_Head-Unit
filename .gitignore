@@ -174,3 +174,4 @@ cmake_install.cmake
 *.app
 
 .env
+.github
