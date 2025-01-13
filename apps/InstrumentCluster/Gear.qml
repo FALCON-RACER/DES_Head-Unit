@@ -16,9 +16,8 @@ Item {
             text: modelData
             font.pixelSize: modelData === currentGear ? 70 : 50
             font.bold: true
-            color: "white"
+            color: instrumentClusterController.ambientLighting
             anchors.verticalCenter: parent.verticalCenter
-
             x: gearIndicator.width / 2 - font.pixelSize / 4 + (index - gearStates.indexOf(currentGear)) * 70
 
         }
@@ -26,12 +25,12 @@ Item {
 
     Rectangle {
         anchors.fill: parent
-
+        radius: 10
         gradient: Gradient {
             orientation: Qt.Horizontal
-            GradientStop { position: 0.0; color: "#101010" } // todo: apply global color variable
-            GradientStop { position: 0.5; color: "transparent" }
-            GradientStop { position: 1.0; color: "#101010" }
+            GradientStop { position: 0.0; color: mainWindow.color }
+            GradientStop { position: 0.5; color: "#00000000" }
+            GradientStop { position: 1.0; color: mainWindow.color }
         }
     }
 

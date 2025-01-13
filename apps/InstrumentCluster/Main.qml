@@ -1,4 +1,5 @@
 import QtQuick
+import Qt5Compat.GraphicalEffects
 
 Window {
     id: mainWindow
@@ -6,6 +7,7 @@ Window {
     width: 1280
     height: 400
     title: qsTr("Instrument Cluster")
+    color: "#000000"
 
     Component.onCompleted: {
         if (Screen.width > width && Screen.height > height) {
@@ -16,15 +18,22 @@ Window {
     }
 
     Image {
+        id: backgroundImage
         anchors.fill: parent
         source: "qrc:/images/background.png"
+    }
+
+    ColorOverlay {
+          anchors.fill: backgroundImage
+          source: backgroundImage
+          color: instrumentClusterController.ambientLighting
+          opacity: 0.8
     }
 
     Speedometer {
         id: speedometer
         anchors.centerIn: parent
         anchors.verticalCenterOffset: 100
-        speed: 183
     }
 
     Time {
@@ -40,8 +49,6 @@ Window {
         anchors.left: parent.left
         anchors.bottomMargin: 20
         anchors.leftMargin: 90
-        isCharging: true
-        batteryPercentage: 10
     }
 
     Gear {
@@ -49,6 +56,6 @@ Window {
         anchors.bottom: parent.bottom
         anchors.right: parent.right
         anchors.rightMargin: 50
-        currentGear: "N"
+        currentGear: instrumentClusterController.currentGear
     }
 }
