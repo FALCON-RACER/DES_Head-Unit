@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     // todo fix the location
-    EnvManager::instance().loadEnvFile("/Users/LWJ/subject/sea-me/DES_Head-Unit/apps/HeadUnit/.env");
+    EnvManager::instance().loadEnvFile("/home/wonjeong/head-unit/apps/HeadUnit/.env");
 
 
     // Register the Spotify class to be used in QML
