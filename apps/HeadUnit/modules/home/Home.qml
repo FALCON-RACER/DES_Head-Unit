@@ -5,6 +5,7 @@ import QtQuick.Controls 2.12
 import QtMultimedia
 
 Item{
+    id:home
     Image {
         id: menuIcon
         source: "qrc:/shared/images/menu"
@@ -19,9 +20,7 @@ Item{
         MouseArea {
             anchors.fill: parent
             onClicked: {
-                // Handle the click event here
-                // console.log("menu");
-                contentLoader.source = "modules/menu/menu.qml"
+                stackView.push(menu)
             }
         }
     }
@@ -32,7 +31,6 @@ Item{
         smooth: true
     }
     Rectangle {
-        id: home
         color: "transparent"
         height: 600
         width: 1000

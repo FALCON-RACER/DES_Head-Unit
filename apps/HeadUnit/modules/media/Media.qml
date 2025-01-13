@@ -5,6 +5,7 @@ import QtQuick.Controls 2.12
 import QtMultimedia
 
 Item{
+    id:media
     Image {
         id: menuIcon
         source: "qrc:/shared/images/menu"
@@ -19,7 +20,7 @@ Item{
         MouseArea {
             anchors.fill: parent
             onClicked: {
-                contentLoader.source = "modules/menu/menu.qml"
+                stackView.push(menu)
             }
         }
     }
