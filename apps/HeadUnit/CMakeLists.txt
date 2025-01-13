@@ -6,9 +6,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-find_package(Qt6 6.5 REQUIRED COMPONENTS Quick Qml)
+find_package(Qt6 6.8 REQUIRED COMPONENTS Quick Qml)
 
-qt_standard_project_setup(REQUIRES 6.5)
+qt_standard_project_setup(REQUIRES 6.8)
 
 qt_add_executable(head-unit
 
@@ -44,7 +44,6 @@ qt_add_qml_module(head-unit
         modules/spotify/spotify.cpp
         shared/utils/envmanager.h
         shared/utils/envmanager.cpp
-        # webenginepage.h webenginepage.cpp
 )
 
 
