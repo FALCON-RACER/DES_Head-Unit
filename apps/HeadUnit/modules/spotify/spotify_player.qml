@@ -9,7 +9,9 @@ Item {
     WebEngineView {
         id: webEngine
         anchors.fill: parent
-        url: "qrc:/html/spotify-player"
+        // url: "qrc:/html/spotify-player"
+        // url: "qrc:/html/test"
+        url: "https://bitmovin.com/demos/drm"
         webChannel: webChannel
     }
 }
