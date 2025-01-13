@@ -18,6 +18,7 @@
     <qresource prefix="/html">
         <file alias="spotify-player">modules/spotify/index.html</file>
         <file alias="youtube/test">modules/youtube/index.html</file>
+        <file alias="test">modules/spotify/test.html</file>
     </qresource>
     <qresource prefix="/shared/images">
         <file alias="settings">modules/menu/images/settings.png</file>
