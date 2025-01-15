@@ -119,19 +119,25 @@ Item {
                 }
             }
 
-//                 height: 50
-//                 anchors.centerIn: parent
-//                 MouseArea {
-//                     anchors.fill: parent
-//                     onClicked: {
-//                         console.log("Spotify clicked")
-//                         contentLoader.source = "modules/spotify/spotify_main.qml"
-//                     }
-//                 }
-//             }
-//         }
-//     }
+            // Spotify
+            Rectangle {
+                width: 100
+                height: 100
+                color: "transparent"
 
-        }
-    }
-}
+                Image {
+                    source: "qrc:/icons/spotify"
+                    width: 130
+                    height: 130
+                    anchors.centerIn: parent
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            console.log("Spotify clicked")
+                            stackView.pop()
+                            stackView.push("qrc:qml/spotify/player")
+                        }
+                    }
+                }
+            }
+
