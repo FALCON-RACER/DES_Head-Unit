@@ -250,7 +250,16 @@ Window {
         smooth: true
         mipmap: true
         z:2
+
+        ColorOverlay {
+            anchors.fill: gearHighlights
+            source: gearHighlights
+            color: myColor
+            smooth: true
+            z:2
+        }
     }
+
     Slider {
         id: volumeSlider
         anchors.right: parent.right
@@ -290,45 +299,7 @@ Window {
             border.color: myColor
         }
     }
-    ColorOverlay {
-        anchors.fill: backgroundLines
-        source: backgroundLines
-        color: myColor
-        opacity: 0.5
-        z:0
-    }
-    ColorOverlay {
-        anchors.fill: gearHighlights
-        source: gearHighlights
-        color: myColor
-        smooth: true
-        z:2
-    }
-    ColorOverlay {
-        anchors.fill: topLine
-        source: topLine
-        color: myColor
-        smooth: true
-        z:1
-    }
-    StackView {
-        id: stackView
-        anchors.fill: parent
-        initialItem: home
-        pushEnter: Transition {
-            ParallelAnimation {
-                PropertyAnimation { property: "opacity"; from: 0; to: 1; duration: 300; easing.type: Easing.InOutQuad }
-                PropertyAnimation { property: "scale"; from: 1.2; to: 1; duration: 300; easing.type: Easing.OutBack }
-            }
-        }
 
-        pushExit: Transition {
-            ParallelAnimation {
-                PropertyAnimation { property: "opacity"; from: 1; to: 0; duration: 100; easing.type: Easing.InOutQuad }
-                PropertyAnimation { property: "scale"; from: 1; to: 0.8; duration: 300; easing.type: Easing.InBack }
-            }
-        }
-    }
     Component{
         id:home
         Home {
@@ -354,181 +325,4 @@ Window {
             }
         }
     }
-
-    // Loader {
-    //     id: contentLoader
-    //     anchors.fill: parent
-    //     source: "modules/settings/settings.qml"
-    // }
-    /*
-    ColumnLayout {
-        anchors.fill: parent
-        spacing: 10
-
-        // Top Bar
-        Rectangle {
-            Layout.fillWidth: true
-            height: Screen.height * 0.03
-            color: "lightblue"
-
-            // todo display temperature, time , date
-            Text {
-                anchors.centerIn: parent
-                text: "Header Area"
-                font.pixelSize: 24
-            }
-        }
-
-
-        RowLayout {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            z: 0
-
-            // Gear
-            ColumnLayout {
-                width: Screen.width * 0.05
-                Layout.fillHeight: true
-                Layout.margins: 10
-                z: 1
-
-
-                // Parking Mode
-                Rectangle {
-                   Layout.fillHeight: true
-                   Layout.preferredWidth: parent.width
-                   color: "blue"
-                   radius: 10
-                   border.color: "black"
-                   border.width: 2
-
-                   MouseArea {
-                       anchors.fill: parent
-                       onClicked: {
-                           console.log("Parking mode clicked")
-                       }
-                       onPressed: parent.color = "lightblue"
-                       onReleased: parent.color = "blue"
-                   }
-
-                   Text {
-                       anchors.centerIn: parent
-                       text: "P"
-                       color: "white"
-                       font.pixelSize: 18
-                   }
-                }
-
-                // Reverse Mode
-                Rectangle {
-                    Layout.fillHeight: true
-                    Layout.preferredWidth: parent.width
-                   color: "green"
-                   radius: 10
-                   border.color: "black"
-                   border.width: 2
-
-                   MouseArea {
-                       anchors.fill: parent
-                       onClicked: {
-                           console.log("Reverse mode clicked")
-                       }
-
-                       onPressed: parent.color = "lightgreen"
-                       onReleased: parent.color = "green"
-                   }
-
-                   Text {
-                       anchors.centerIn: parent
-                       text: "R"
-                       color: "white"
-                       font.pixelSize: 18
-                   }
-                }
-
-                // Neutral Mode
-                Rectangle {
-                    Layout.fillHeight: true
-                    Layout.preferredWidth: parent.width
-                   color: "red"
-                   radius: 10
-                   border.color: "black"
-                   border.width: 2
-
-                   MouseArea {
-                       anchors.fill: parent
-                       onClicked: {
-                           console.log("Neutral mode clicked")
-                       }
-
-                       onPressed: parent.color = "lightcoral"
-                       onReleased: parent.color = "red"
-                   }
-
-                   Text {
-                       anchors.centerIn: parent
-                       text: "N"
-                       color: "white"
-                       font.pixelSize: 18
-                   }
-                }
-
-                // Drive Mode
-                Rectangle {
-                    Layout.fillHeight: true
-                    Layout.preferredWidth: parent.width
-                   color: "red"
-                   radius: 10
-                   border.color: "black"
-                   border.width: 2
-
-                   MouseArea {
-                       anchors.fill: parent
-                       onClicked: {
-                           console.log("Drive mode clicked")
-                       }
-
-                       onPressed: parent.color = "lightcoral"
-                       onReleased: parent.color = "red"
-                   }
-
-                   Text {
-                       anchors.centerIn: parent
-                       text: "D"
-                       color: "white"
-                       font.pixelSize: 18
-                   }
-                }
-
-                // Menu
-                Rectangle {
-                    Layout.preferredWidth: parent.width
-                    Layout.fillHeight: true
-                    color: "transparent"
-
-                    Image {
-                        source: "qrc:/icons/menu"
-                        width: 50
-                        height: 50
-                        anchors.centerIn: parent
-
-                    }
-
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: {
-
-                            contentLoader.source = "modules/menu/menu.qml"
-
-                            console.log("menu clicked")
-                        }
-                    }
-                }
-            }
-
-            // Contents Area
-                }
-            }
-    */
 }
-
