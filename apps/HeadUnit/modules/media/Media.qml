@@ -36,12 +36,10 @@ Item{
         height: 550
         color: "transparent"
         anchors.bottom: parent.bottom
-        // anchors.right: parent.right
         anchors.horizontalCenter: parent.horizontalCenter
 
         Column {
             spacing: 10
-            // anchors.centerIn: parent
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 150
             anchors.horizontalCenter: parent.horizontalCenter
