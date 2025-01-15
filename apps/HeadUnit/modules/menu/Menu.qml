@@ -141,3 +141,25 @@ Item {
                 }
             }
 
+            // Youtube
+            Rectangle {
+                width: 100
+                height: 100
+                color: "white"
+                radius: 10
+                Image {
+                    source: "qrc:/icons/youtube"
+                    width: 70
+                    height: 70
+                    anchors.centerIn: parent
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            console.log("Youtube clicked")
+                            stackView.pop()
+                            stackView.push("qrc:qml/youtube/main")
+                        }
+                    }
+                }
+            }
+

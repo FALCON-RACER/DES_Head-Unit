@@ -37,6 +37,7 @@ qt_add_qml_module(head-unit
         modules/spotify/Spotify_main.qml
         modules/spotify/Spotify_player.qml
         modules/spotify/Spotify_playlists.qml
+        modules/youtube/Youtube_main.qml
 
 
     SOURCES
