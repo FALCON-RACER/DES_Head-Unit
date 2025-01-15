@@ -2,6 +2,7 @@
     <qresource prefix="/icons">
         <file alias="menu">modules/menu/images/menu_icon.svg</file>
         <file alias="youtube">modules/youtube/images/youtube-logo.svg</file>
+        <file alias="spotify">modules/spotify/images/spotify-logo.svg</file>
     </qresource>
     <qresource prefix="/qml">
         <file>Main.qml</file>
