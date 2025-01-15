@@ -6,30 +6,7 @@ import QtMultimedia
 
 Item{
     id:media
-    Image {
-        id: menuIcon
-        source: "qrc:/shared/images/menu"
-        anchors.bottom: parent.bottom
-        anchors.left: parent.left
-        anchors.bottomMargin: 20
-        anchors.leftMargin: 25
-        width: 70
-        height: 70
-        smooth: true
-        mipmap: true
-        MouseArea {
-            anchors.fill: parent
-            onClicked: {
-                stackView.push(menu)
-            }
-        }
-    }
-    ColorOverlay {
-        anchors.fill: menuIcon
-        source: menuIcon
-        color: myColor
-        smooth: true
-    }
+
     Rectangle{
         id: mediawindow
         width: 900
