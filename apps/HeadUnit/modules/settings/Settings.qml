@@ -44,6 +44,7 @@ Item{
             pixelSize: 35
         }
     }
+
     Slider {
         id: colorSlider
         anchors.horizontalCenter: parent.horizontalCenter
@@ -73,6 +74,7 @@ Item{
                 GradientStop { position: 1.0; color: "red" }
             }
         }
+
         handle: Rectangle {
             x: colorSlider.leftPadding + colorSlider.visualPosition * (colorSlider.availableWidth - width)
             y: colorSlider.topPadding + colorSlider.availableHeight / 2 - height / 2
@@ -83,11 +85,13 @@ Item{
             border.color: "white"
         }
     }
+
     Row{
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: parent.top
         anchors.topMargin: 300
         spacing: 20
+
         Text{
             id:bluetooth
             text: "Bluetooth:"
@@ -98,6 +102,7 @@ Item{
                 // italic: true
             }
         }
+
         Switch {
             id: bluetoothswitch
             indicator: Rectangle {

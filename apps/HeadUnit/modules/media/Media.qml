@@ -38,6 +38,7 @@ Item{
         anchors.bottom: parent.bottom
         // anchors.right: parent.right
         anchors.horizontalCenter: parent.horizontalCenter
+
         Column {
             spacing: 10
             // anchors.centerIn: parent
