@@ -6,41 +6,17 @@ import QtMultimedia
 
 Item{
     id:media
-    Image {
-        id: menuIcon
-        source: "qrc:/shared/images/menu"
-        anchors.bottom: parent.bottom
-        anchors.left: parent.left
-        anchors.bottomMargin: 20
-        anchors.leftMargin: 25
-        width: 70
-        height: 70
-        smooth: true
-        mipmap: true
-        MouseArea {
-            anchors.fill: parent
-            onClicked: {
-                stackView.push(menu)
-            }
-        }
-    }
-    ColorOverlay {
-        anchors.fill: menuIcon
-        source: menuIcon
-        color: myColor
-        smooth: true
-    }
+
     Rectangle{
         id: mediawindow
         width: 900
         height: 550
         color: "transparent"
         anchors.bottom: parent.bottom
-        // anchors.right: parent.right
         anchors.horizontalCenter: parent.horizontalCenter
+
         Column {
             spacing: 10
-            // anchors.centerIn: parent
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 150
             anchors.horizontalCenter: parent.horizontalCenter

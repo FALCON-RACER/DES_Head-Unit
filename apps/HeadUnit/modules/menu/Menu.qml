@@ -7,127 +7,159 @@ import QtMultimedia
 Item {
     id: menu
     Rectangle{
-        color: "transparent"
-        height:400
-        width: 700
+        width: parent.width
+        height: parent.height
         anchors.verticalCenter: parent.verticalCenter
         anchors.horizontalCenter: parent.horizontalCenter
-        RowLayout {
+        color: "transparent"
+
+        GridLayout {
             anchors.centerIn: parent
-            spacing:0
+            columns: 3
+            columnSpacing: 20
+            rowSpacing: 20
 
-            Button {
-                text: "Button 1"
-                Layout.preferredWidth: 200
-                Layout.preferredHeight: 200
-                Layout.alignment: Qt.AlignHCenter
-                opacity: 0
-                onClicked: {
-                    stackView.push(home)
+            // Home
+            Rectangle {
+                width: 100
+                height: 100
+                color: "transparent"
+
+                Image {
+                    id: homeicon
+                    source: "qrc:/shared/images/home"
+                    anchors.left: parent.left
+                    width: 100
+                    height: 100
+                    fillMode: Image.PreserveAspectFit
+                    smooth: true
+                    mipmap: true
+
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            console.log("Home button clicked")
+                            stackView.pop()
+                            stackView.push(home)
+                        }
+                    }
+
+                    ColorOverlay {
+                        anchors.fill: homeicon
+                        source: homeicon
+                        color: myColor
+                        smooth: true
+                    }
                 }
             }
 
-            Button {
-                text: "Button 2"
-                Layout.preferredWidth: 200
-                Layout.preferredHeight: 200
-                Layout.alignment: Qt.AlignHCenter
-                opacity: 0
-                onClicked: {
-                    stackView.push(settings)
+            // Settings
+            Rectangle {
+                width: 100
+                height: 100
+                color: "transparent"
+
+                Image {
+                    id: settingsicon
+                    source: "qrc:/shared/images/settings"
+                    width: 100
+                    height: 100
+                    fillMode: Image.PreserveAspectFit
+                    smooth: true
+                    mipmap: true
+
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            console.log("Settings button clicked")
+                            stackView.pop()
+                            stackView.push(settings)
+                        }
+                    }
+
+                    ColorOverlay {
+                        anchors.fill: settingsicon
+                        source: settingsicon
+                        color: myColor
+                        smooth: true
+                    }
                 }
             }
 
-            Button {
-                text: "Button 3"
-                Layout.preferredWidth: 200
-                Layout.preferredHeight: 200
-                Layout.alignment: Qt.AlignHCenter
-                opacity: 0
-                onClicked: {
-                    stackView.push(media)
+            // Media
+            Rectangle {
+                width: 100
+                height: 100
+                color: "transparent"
+
+                Image {
+                    id: mediaicon
+                    source: "qrc:/shared/images/media"
+                    width: 100
+                    height: 100
+                    fillMode: Image.PreserveAspectFit
+                    smooth: true
+                    mipmap: true
+
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            console.log("Media button clicked")
+                            stackView.pop()
+                            stackView.push(media)
+                        }
+                    }
+
+                    ColorOverlay {
+                        anchors.fill: mediaicon
+                        source: mediaicon
+                        color: myColor
+                        smooth: true
+                    }
                 }
             }
-        }
-        Image {
-            id: homeicon
-            source: "qrc:/shared/images/home"
-            anchors.left: parent.left
-            anchors.leftMargin: 50
-            anchors.verticalCenter: parent.verticalCenter
-            width: 170
-            fillMode: Image.PreserveAspectFit
-            smooth: true
-            mipmap: true
-        }
-        Image {
-            id: settingsicon
-            source: "qrc:/shared/images/settings"
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.verticalCenter: parent.verticalCenter
-            width: 170
-            fillMode: Image.PreserveAspectFit
-            smooth: true
-            mipmap: true
-        }
-        Image {
-            id: mediaicon
-            source: "qrc:/shared/images/media"
-            anchors.right: parent.right
-            anchors.rightMargin: 50
-            anchors.verticalCenter: parent.verticalCenter
-            width: 170
-            fillMode: Image.PreserveAspectFit
-            smooth: true
-            mipmap: true
-        }
-        ColorOverlay {
-            anchors.fill: homeicon
-            source: homeicon
-            color: myColor
-            smooth: true
-        }
-        ColorOverlay {
-            anchors.fill: settingsicon
-            source: settingsicon
-            color: myColor
-            smooth: true
-        }
-        ColorOverlay {
-            anchors.fill: mediaicon
-            source: mediaicon
-            color: myColor
-            smooth: true
-        }
-    }
 
-//     width: parent.width
-//     height: parent.height
+            // Spotify
+            Rectangle {
+                width: 100
+                height: 100
+                color: "transparent"
 
+                Image {
+                    source: "qrc:/icons/spotify"
+                    width: 130
+                    height: 130
+                    anchors.centerIn: parent
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            console.log("Spotify clicked")
+                            stackView.pop()
+                            stackView.push("qrc:qml/spotify/player")
+                        }
+                    }
+                }
+            }
 
-//     GridLayout {
-//         columns: 4
-//         anchors.fill: parent
+            // Youtube
+            Rectangle {
+                width: 100
+                height: 100
+                color: "white"
+                radius: 10
+                Image {
+                    source: "qrc:/icons/youtube"
+                    width: 70
+                    height: 70
+                    anchors.centerIn: parent
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            console.log("Youtube clicked")
+                            stackView.pop()
+                            stackView.push("qrc:qml/youtube/main")
+                        }
+                    }
+                }
+            }
 
-//         // Spotify
-//         Rectangle {
-//             Layout.preferredWidth: parent.width
-//             Layout.fillHeight: true
-//             color: "transparent"
-
-//             Image {
-//                 source: "qrc:/icons/spotify_logo"
-//                 width: 50
-//                 height: 50
-//                 anchors.centerIn: parent
-//                 MouseArea {
-//                     anchors.fill: parent
-//                     onClicked: {
-//                         console.log("Spotify clicked")
-//                         contentLoader.source = "modules/spotify/spotify_main.qml"
-//                     }
-//                 }
-//             }
-//         }
-//     }
-}

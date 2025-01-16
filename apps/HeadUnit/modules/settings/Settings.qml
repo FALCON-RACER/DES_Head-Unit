@@ -8,30 +8,6 @@ Item{
     id:settings
     signal colorValueChanged(int value)
 
-    Image {
-        id: menuIcon
-        source: "qrc:/shared/images/menu"
-        anchors.bottom: parent.bottom
-        anchors.left: parent.left
-        anchors.bottomMargin: 20
-        anchors.leftMargin: 25
-        width: 70
-        height: 70
-        smooth: true
-        mipmap: true
-        MouseArea {
-            anchors.fill: parent
-            onClicked: {
-                stackView.push(menu)
-            }
-        }
-    }
-    ColorOverlay {
-        anchors.fill: menuIcon
-        source: menuIcon
-        color: myColor
-        smooth: true
-    }
     Text{
         id:ambientlighting
         anchors.horizontalCenter: parent.horizontalCenter
@@ -44,6 +20,7 @@ Item{
             pixelSize: 35
         }
     }
+
     Slider {
         id: colorSlider
         anchors.horizontalCenter: parent.horizontalCenter
@@ -73,6 +50,7 @@ Item{
                 GradientStop { position: 1.0; color: "red" }
             }
         }
+
         handle: Rectangle {
             x: colorSlider.leftPadding + colorSlider.visualPosition * (colorSlider.availableWidth - width)
             y: colorSlider.topPadding + colorSlider.availableHeight / 2 - height / 2
@@ -83,11 +61,13 @@ Item{
             border.color: "white"
         }
     }
+
     Row{
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: parent.top
         anchors.topMargin: 300
         spacing: 20
+
         Text{
             id:bluetooth
             text: "Bluetooth:"
@@ -98,6 +78,7 @@ Item{
                 // italic: true
             }
         }
+
         Switch {
             id: bluetoothswitch
             indicator: Rectangle {

@@ -6,134 +6,125 @@ import QtMultimedia
 
 Item{
     id:home
-    Image {
-        id: menuIcon
-        source: "qrc:/shared/images/menu"
-        anchors.bottom: parent.bottom
-        anchors.left: parent.left
-        anchors.bottomMargin: 20
-        anchors.leftMargin: 25
-        width: 70
-        height: 70
-        smooth: true
-        mipmap: true
-        MouseArea {
-            anchors.fill: parent
-            onClicked: {
-                stackView.push(menu)
-            }
-        }
-    }
-    ColorOverlay {
-        anchors.fill: menuIcon
-        source: menuIcon
-        color: myColor
-        smooth: true
-    }
+    anchors.fill: parent
+    clip: false
+
     Rectangle {
+        anchors.fill: parent
         color: "transparent"
-        height: 600
-        width: 1000
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: parent.verticalCenter
         Image {
             id: car
             source: "qrc:/shared/images/car"
             anchors.horizontalCenter: parent.horizontalCenter
-            y: 100
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.horizontalCenterOffset: -45
+            anchors.verticalCenterOffset: -30
             width: 600
             fillMode: Image.PreserveAspectFit
             smooth: true
             mipmap: true
         }
-        Text {
-            id: battery
-            anchors.right: parent.right
-            anchors.rightMargin: 635
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 18
-            //get battery data
-            text: "100"
-            color: myColor
-            font {
-                family: "Inter"
-                pixelSize: 40
-                bold: true
-                // italic: true
+    }
+
+    Item {
+        width: parent.width * 0.3
+        height: parent.height * 0.1
+        anchors.bottom:parent.bottom
+        anchors.bottomMargin: 70
+        anchors.left: parent.left
+        anchors.leftMargin: 55
+
+        ColumnLayout {
+            anchors.fill: parent
+            spacing: -10
+
+            // Speed Data
+            RowLayout {
+                Layout.fillWidth: true
+                Layout.alignment: Qt.AlignHCenter
+
+                Text {
+                    id: speed
+                    text: "100"
+                    color: myColor
+                    font {
+                        family: "Inter"
+                        pixelSize: 50
+                        bold: true
+                        italic: true
+                    }
+                }
+
+                Text {
+                    id: cms
+                    text: "cm/s"
+                    color: myColor
+                    font {
+                        family: "Inter"
+                        pixelSize: 30
+                        italic: true
+                    }
+                }
             }
-        }
-        Text {
-            id: percent
-            anchors.right: parent.right
-            anchors.rightMargin: 600
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 22
-            text: "%"
-            color: myColor
-            font {
-                family: "Inter"
-                pixelSize: 30
-                italic: true
-            }
-        }
-        Image {
-            id: batteryicon
-            source: "qrc:/shared/images/battery"
-            anchors.left: parent.left
-            anchors.leftMargin: 210
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 20
-            width: 50
-            fillMode: Image.PreserveAspectFit
-            smooth: true
-            mipmap: true
-        }
-        ColorOverlay {
-            anchors.fill: batteryicon
-            source: batteryicon
-            color: myColor
-            smooth: true
-        }
-        Text {
-            id: speed
-            anchors.left: parent.left
-            anchors.leftMargin: 200
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 65
-            //get speed data
-            text: "100"
-            color: myColor
-            font {
-                family: "Inter"
-                pixelSize: 50
-                bold: true
-                italic: true
-            }
-        }
-        Text {
-            id: cms
-            anchors.right: parent.right
-            anchors.rightMargin: 600
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 70
-            text: "cm/s"
-            color: myColor
-            font {
-                family: "Inter"
-                pixelSize: 30
-                italic: true
+
+            // Battery Data
+            RowLayout {
+                Layout.fillWidth: true
+                Layout.alignment: Qt.AlignHCenter
+
+                Image {
+                    id: batteryicon
+                    source: "qrc:/shared/images/battery"
+                    Layout.preferredWidth: 40
+                    Layout.preferredHeight: 60
+                    Layout.rightMargin: 10
+                    fillMode: Image.PreserveAspectFit
+                    smooth: true
+                    mipmap: true
+                    ColorOverlay {
+                        anchors.fill: parent
+                        source: batteryicon
+                        color: myColor
+                    }
+                }
+
+                Text {
+                    id: battery
+                    text: "100"
+                    color: myColor
+                    Layout.rightMargin: -5
+                    font {
+                        family: "Inter"
+                        pixelSize: 40
+                        bold: true
+                    }
+                    Layout.alignment: Qt.AlignVCenter
+                }
+
+                Text {
+                    id: percent
+                    text: "%"
+                    color: myColor
+                    font {
+                        family: "Inter"
+                        pixelSize: 30
+                        italic: true
+                    }
+                    Layout.alignment: Qt.AlignVCenter
+                }
             }
         }
     }
+
     Rectangle{
         id: mediawindow
         width: 250
         height: 100
         color: "transparent"
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 50
+        anchors.bottomMargin: 40
         anchors.right: parent.right
-        anchors.rightMargin: 100
+        anchors.rightMargin: 90
         Slider {
             id: songtime
             to: mediaPlayer.duration
@@ -190,6 +181,12 @@ Item{
                         console.log("backward");
                     }
                 }
+                ColorOverlay {
+                    anchors.fill: backward
+                    source: backward
+                    color: myColor
+                    smooth: true
+                }
             }
             Image {
                 id: play
@@ -209,6 +206,12 @@ Item{
                             mediaPlayer.play()
                     }
                 }
+                ColorOverlay {
+                    anchors.fill: play
+                    source: play
+                    color: myColor
+                    smooth: true
+                }
             }
             Image {
                 id: forward
@@ -225,24 +228,12 @@ Item{
                         console.log("forward");
                     }
                 }
-            }
-            ColorOverlay {
-                anchors.fill: backward
-                source: backward
-                color: myColor
-                smooth: true
-            }
-            ColorOverlay {
-                anchors.fill: play
-                source: play
-                color: myColor
-                smooth: true
-            }
-            ColorOverlay {
-                anchors.fill: forward
-                source: forward
-                color: myColor
-                smooth: true
+                ColorOverlay {
+                    anchors.fill: forward
+                    source: forward
+                    color: myColor
+                    smooth: true
+                }
             }
         }
     }
