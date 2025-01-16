@@ -39,13 +39,11 @@ qt_add_qml_module(head-unit
         modules/spotify/Spotify_playlists.qml
         modules/youtube/Youtube_main.qml
 
-
     SOURCES
         modules/spotify/spotify.h
         modules/spotify/spotify.cpp
         shared/utils/envmanager.h
         shared/utils/envmanager.cpp
-        QML_FILES
 )
 
 
