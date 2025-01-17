@@ -26,10 +26,7 @@ int main()
         ShanWanGamepadInput input = gamepad.read_data();
 
         float steering = input.analog_stick_left.x;
-        float throttle = input.analog_stick_right.y * 0.5; // limit throtle to 50%
-        float steering = input.analog_stick_left.x * -1;
-        float throttle = input.analog_stick_right.x * 0.7; // limit throtle to 50%
-
+        float throttle = input.analog_stick_right.x * 0.7;
 
         racer.setSteeringPercent(steering);
         racer.setThrottlePercent(throttle);
