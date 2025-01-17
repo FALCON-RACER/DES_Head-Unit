@@ -1,26 +1,27 @@
 #include "ShanwanGamepad.hpp"
 
-ShanWanGamepad::ShanWanGamepad() : Joystick("/dev/input/js0", false)
-{
+ShanWanGamepad::ShanWanGamepad() : Joystick("/dev/input/js0", false) {
 	if (!Joystick::init())
 		std::cerr << "Gamepad not found" << std::endl;
 };
 
-ShanWanGamepad::ShanWanGamepad(const std::string &dev_fn = "/dev/input/js0") : Joystick("/dev/input/js0", false)
-{
+ShanWanGamepad::ShanWanGamepad(const std::string &dev_fn = "/dev/input/js0") : Joystick("/dev/input/js0", false) {
 	if (!Joystick::init())
 		std::cerr << "Gamepad not found" << std::endl;
 };
 
-ShanWanGamepad::ShanWanGamepad(const std::string &dev_fn = "/dev/input/js0", bool non_block = false) : Joystick(dev_fn, non_block)
-{
+ShanWanGamepad::ShanWanGamepad(const std::string &dev_fn = "/dev/input/js0", bool non_block = false) : Joystick(dev_fn, non_block) {
 	if (!Joystick::init())
 		std::cerr << "Gamepad not found" << std::endl;
 }
 
-ShanWanGamepadInput ShanWanGamepad::read_data()
-{
+ShanWanGamepadInput ShanWanGamepad::read_data() {
 	auto [button_name, button_number, button_state, axis_name, axis_number, axis_val] = Joystick::poll();
+
+	if (0 <= button_number)
+		gamepad_input.button = true;
+	if (0 <= axis_number)
+		gamepad_input.analog_stick = ture;
 
 	// Joysticks
 	if (axis_number == 0)

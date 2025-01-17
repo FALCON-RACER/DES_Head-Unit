@@ -13,6 +13,8 @@ public:
 
 class ShanWanGamepadInput {
 public:
+	bool button;
+	bool analog_stick;
 	Vector3f analog_stick_left;
 	Vector3f analog_stick_right;
 	bool button_up, button_down, button_left, button_right;
