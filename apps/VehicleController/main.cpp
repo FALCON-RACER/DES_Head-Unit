@@ -9,13 +9,8 @@
  * Y : PARKING
  */
 
-void cleanup()
-{
-    gpioTerminate();
-}
 int main()
 {
-    atexit(cleanup);
     if (gpioInitialise() < 0)
     {
         std::cerr << "pigpio initialization failed" << std::endl;
