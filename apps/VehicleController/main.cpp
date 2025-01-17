@@ -1,5 +1,6 @@
 #include "PiRacer/PiRacer.hpp"
 #include "Gamepad/ShanwanGamepad.hpp"
+#include <cstdlib>
 
 /**
  * A : DRIVE
@@ -8,8 +9,13 @@
  * Y : PARKING
  */
 
+void cleanup()
+{
+    gpioTerminate();
+}
 int main()
 {
+    atexit(cleanup);
     if (gpioInitialise() < 0)
     {
         std::cerr << "pigpio initialization failed" << std::endl;
