@@ -20,10 +20,10 @@ include_directories (
     ${VSOMEIP_INCLUDE_DIRS}
 )
 
-add_executable(service-manager ../src/main.cpp ../src/service-main.cpp ../src/service-example.cpp ../src/canreceiver.cpp ${EXAMPLE_CONFIG_FILES})
+add_executable(service-manager src/main.cpp src/service-main.cpp src/service-example.cpp src/canreceiver.cpp ${EXAMPLE_CONFIG_FILES})
 target_link_libraries(service-manager vsomeip3 ${Boost_LIBRARIES})
 
-add_executable(client-example ../src/client-main.cpp ../src/client-example.cpp ${EXAMPLE_CONFIG_FILES})
+add_executable(client-example src/client-main.cpp src/client-example.cpp ${EXAMPLE_CONFIG_FILES})
 target_link_libraries(client-example vsomeip3 ${Boost_LIBRARIES})
 
 
