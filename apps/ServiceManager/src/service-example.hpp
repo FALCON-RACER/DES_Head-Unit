@@ -12,6 +12,7 @@
 #include <mutex>
 #include <csignal>
 #include "sample-ids.hpp"
+#include "canreceiver.hpp"
 
 #define SPEED 1
 #define BATTERY 2
