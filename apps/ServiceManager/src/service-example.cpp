@@ -215,37 +215,37 @@ void service_sample::canDataReceive() {
     float filtered_speed = 0.0f;
     float weight = 0.6;
 
-    // CANReceiver canreceiver = CANReceiver("can0");
-
-    // while (running_) {
-    //     std::unique_lock<std::mutex> its_lock(can_mutex_);
-    //     while (!is_offered_ && running_) 
-    //         CAN_condition_.wait(its_lock);
-    //     while (is_offered_ && running_ && canreceiver.canRead()) 
-    //         {
-    //             {
-    //                 filtered_speed = (1 - weight) * filtered_speed + weight * canreceiver.getSpeed();
-    //                 this->speedData = filtered_speed;
-    //             }
-    //             std::this_thread::sleep_for(std::chrono::milliseconds(7));
-
-    //         }
-    // }
+    CANReceiver canreceiver = CANReceiver("can0");
 
     while (running_) {
         std::unique_lock<std::mutex> its_lock(can_mutex_);
         while (!is_offered_ && running_) 
             CAN_condition_.wait(its_lock);
-        while (is_offered_ && running_) 
+        while (is_offered_ && running_ && canreceiver.canRead()) 
             {
                 {
-                    filtered_speed += 0.1;
+                    filtered_speed = (1 - weight) * filtered_speed + weight * canreceiver.getSpeed();
                     this->speedData = filtered_speed;
                 }
                 std::this_thread::sleep_for(std::chrono::milliseconds(7));
 
             }
     }
+
+    // while (running_) {
+    //     std::unique_lock<std::mutex> its_lock(can_mutex_);
+    //     while (!is_offered_ && running_) 
+    //         CAN_condition_.wait(its_lock);
+    //     while (is_offered_ && running_) 
+    //         {
+    //             {
+    //                 filtered_speed += 0.1;
+    //                 this->speedData = filtered_speed;
+    //             }
+    //             std::this_thread::sleep_for(std::chrono::milliseconds(7));
+
+    //         }
+    // }
 }
 
 void service_sample::getBatteryVoltage() {
