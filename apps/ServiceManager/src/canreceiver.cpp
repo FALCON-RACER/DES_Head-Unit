@@ -76,6 +76,7 @@ float CANReceiver::getSpeed() {
 float CANReceiver::calculateSpeed(const struct can_frame* frame) {
     //Interpret speed as a signed 16-bit integer
     float speed = static_cast<float>((frame->data[0] << 8) | frame->data[1]);
+    std::cout << "data[0]: " << frame->data[0] << " data[1]: " << frame->data[1] << std::endl;
     std::cout << "Speed: " << speed << std::endl << std::flush;
     return speed;
 }
