@@ -3,12 +3,12 @@ cmake_minimum_required (VERSION 3.13)
 set (CMAKE_CXX_FLAGS "-g -std=c++0x")
 
 set(EXAMPLE_CONFIG_FILES
-    "../config/vsomeip.json"
-    "../config/vsomeip-local.json"
-    "../config/vsomeip-tcp-client.json"
-    "../config/vsomeip-tcp-service.json"
-    "../config/vsomeip-udp-client.json"
-    "../config/vsomeip-udp-service.json"
+    "config/vsomeip.json"
+    "config/vsomeip-local.json"
+    "config/vsomeip-tcp-client.json"
+    "config/vsomeip-tcp-service.json"
+    "config/vsomeip-udp-client.json"
+    "config/vsomeip-udp-service.json"
 )
 
 
