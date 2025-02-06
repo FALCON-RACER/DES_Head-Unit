@@ -1,0 +1,22 @@
+{
+  "unicast": "127.0.0.1",
+  "logging": {
+    "level": "info"
+  },
+  "applications": 
+  [
+    {
+      "name": "server",
+      "id": "0x1235",
+      "services": [
+        {
+          "service": "0x1234",
+          "instance": "0x5678",
+          "reliable": { "port" : "30509" },
+          "eventgroups": ["0x4465"]
+        }
+      ]
+    }
+  ],
+  "routing": "service-example"
+}
