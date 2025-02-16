@@ -4,6 +4,8 @@
 #include <memory>
 
 
+// 기어 처리 파트는 request, response 구조로 되어있기에,
+// 클라이언트가 서버에 request를 보내는 구조로 되어있다.
 std::shared_ptr<vsomeip::application> app;
 
 void on_request(const std::shared_ptr<vsomeip::message> request) {
