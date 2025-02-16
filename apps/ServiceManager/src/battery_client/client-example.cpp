@@ -1,4 +1,4 @@
-#include "client-example.hpp"
+#include "./client-example.hpp"
 #include <iostream>
 #include <iomanip>
 #include <sstream>
@@ -53,12 +53,14 @@ bool client_sample::init() {
     // 이벤트 구독
     std::set<vsomeip::eventgroup_t> its_groups;
     its_groups.insert(VEHICLE_EVENTGROUP_ID);
+    
     app_->request_event(
             VEHICLE_SERVICE_ID,
             BATTERY_INSTANCE_ID,
             BATTERY_EVENT_ID,
             its_groups,
             vsomeip::event_type_e::ET_FIELD);
+    
     app_->subscribe(VEHICLE_SERVICE_ID, BATTERY_INSTANCE_ID, VEHICLE_EVENTGROUP_ID);
 
     return true;
@@ -104,6 +106,4 @@ void client_sample::on_message(const std::shared_ptr<vsomeip::message>& _respons
     } else {
         std::cerr << "Invalid data size received!" << std::endl;
     }
-
-
 }

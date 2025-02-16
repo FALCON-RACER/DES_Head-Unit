@@ -19,6 +19,8 @@
 #define BATTERY_INSTANCE_ID    0x3001
 #define BATTERY_EVENT_ID       0x8780
 
+// gear instance.
+#define GEAR_INSTANCE_ID 0x4001
 
 #define SAMPLE_INSTANCE_ID      0x5678
 #define SAMPLE_METHOD_ID        0x0421
