@@ -17,6 +17,8 @@ enum Gear {
 };
 
 Gear gear = PARKING;
+PiRacer racer;
+
 std::shared_ptr<vsomeip::application> app;
 std::mutex mutex;
 std::condition_variable condition;
@@ -96,7 +98,6 @@ int main() {
     }
 
     init_vSOMEIP();
-    PiRacer racer;
     ShanWanGamepad gamepad;
 
     float steering = 0;
