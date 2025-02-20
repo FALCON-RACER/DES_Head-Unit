@@ -12,7 +12,7 @@
 enum Gear {
     PARKING,
     REVERSE,
-    NEUTRAL,
+    NETURAL,
     DRIVE
 };
 
