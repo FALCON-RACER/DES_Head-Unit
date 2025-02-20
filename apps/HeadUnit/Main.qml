@@ -1,7 +1,7 @@
-import QtQuick 2.15
+import QtQuick 2
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-import QtQuick.Controls 2.12
+import QtQuick.Controls 2
 import QtMultimedia
 import HeadUnit 1.0
 
@@ -32,13 +32,13 @@ Window {
         mipmap: true
         z:0
 
-        ColorOverlay {
-            anchors.fill: backgroundLines
-            source: backgroundLines
-            color: myColor
-            opacity: 0.5
-            z:0
-        }
+    }
+    ColorOverlay {
+        anchors.fill: backgroundLines
+        source: backgroundLines
+        color: myColor
+        opacity: 0.5
+        z:0
     }
 
     ColumnLayout {
@@ -61,13 +61,13 @@ Window {
                 mipmap: true
                 z:1
 
-                ColorOverlay {
-                    anchors.fill: topLine
-                    source: topLine
-                    color: myColor
-                    smooth: true
-                    z:1
-                }
+            }
+            ColorOverlay {
+                anchors.fill: topLine
+                source: topLine
+                color: myColor
+                smooth: true
+                z:1
             }
 
             // Time
@@ -100,7 +100,7 @@ Window {
             z: 0
 
             ColumnLayout {
-                anchors.fill: parent
+                Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                 z:0
                 spacing: 0
 
@@ -126,46 +126,262 @@ Window {
                             anchors.centerIn: parent
                             spacing:0
 
-                            Button {
+                            Rectangle {
                                 Layout.preferredWidth: 110
                                 Layout.preferredHeight: 100
                                 Layout.alignment: Qt.AlignHCenter
-                                opacity: 0
-                                onClicked: {
-                                    console.log("D clicked");
-                                    // Your action here
+                                color: "transparent"
+                                Image {
+                                    id: drive
+                                    height: 40
+                                    x: 40
+                                    y: 20
+                                    source: "qrc:/shared/images/drive"
+                                    fillMode: Image.PreserveAspectFit
+                                    // anchors.centerIn: parent
+                                    smooth: true
+                                    mipmap: true
+
+                                }
+                                ColorOverlay {
+                                    anchors.fill: drive
+                                    source: drive
+                                    color: myColor
+                                    smooth: true
+                                }
+                                //Glowing Effect
+                                Glow {
+                                    id: glowEffectD
+                                    anchors.fill: drive
+                                    source: drive
+                                    color: myColor.lighter(1.1) // Slightly lighter color for a subtle glow
+                                    radius: 0 // Initially no glow
+                                    spread: 0 // Initially no spread
+                                    samples: 41 // High-quality blur for smooth edges
+                                    cached: true
+                                    opacity: 0 // Initially hidden
+                                }
+                                states: [
+                                    State {
+                                        name: "pressed"
+                                        when: mouseAreaD.pressed
+                                        PropertyChanges { target: glowEffectD; radius: 16; spread: 0.6; opacity: 0.5; visible: true }
+                                    },
+                                    State {
+                                        name: "default"
+                                        when: !mouseAreaD.containsMouse && !mouseAreaD.pressed
+                                        PropertyChanges { target: glowEffectD; radius: 0; spread: 0; opacity: 0; visible: false }
+                                    }
+                                ]
+                                transitions: [
+                                    Transition {
+                                        NumberAnimation {
+                                            properties: "radius, spread, opacity";
+                                            duration: 100; // Slower transition for smoother effect
+                                            easing.type: Easing.OutCubic
+                                        }
+                                    }
+                                ]
+                                MouseArea {
+                                    id: mouseAreaD
+                                    anchors.fill: parent
+                                    onClicked: {
+                                        console.log("D clicked")
+                                    }
                                 }
                             }
 
-                            Button {
+                            Rectangle {
                                 Layout.preferredWidth: 110
                                 Layout.preferredHeight: 100
                                 Layout.alignment: Qt.AlignHCenter
-                                opacity: 0
-                                onClicked: {
-                                    console.log("N clicked");
-                                    // Your action here
+                                color: "transparent"
+                                Image {
+                                    id: neutral
+                                    height: 40
+                                    x: 40
+                                    y: 20
+                                    source: "qrc:/shared/images/neutral"
+                                    fillMode: Image.PreserveAspectFit
+                                    // anchors.centerIn: parent
+                                    smooth: true
+                                    mipmap: true
+
+                                }
+                                ColorOverlay {
+                                    anchors.fill: neutral
+                                    source: neutral
+                                    color: myColor
+                                    smooth: true
+                                }
+                                //Glowing Effect
+                                Glow {
+                                    id: glowEffectN
+                                    anchors.fill: neutral
+                                    source: neutral
+                                    color: myColor.lighter(1.1) // Slightly lighter color for a subtle glow
+                                    radius: 0 // Initially no glow
+                                    spread: 0 // Initially no spread
+                                    samples: 41 // High-quality blur for smooth edges
+                                    cached: true
+                                    opacity: 0 // Initially hidden
+                                }
+                                states: [
+                                    State {
+                                        name: "pressed"
+                                        when: mouseAreaN.pressed
+                                        PropertyChanges { target: glowEffectN; radius: 16; spread: 0.6; opacity: 0.5; visible: true }
+                                    },
+                                    State {
+                                        name: "default"
+                                        when: !mouseAreaN.containsMouse && !mouseAreaN.pressed
+                                        PropertyChanges { target: glowEffectN; radius: 0; spread: 0; opacity: 0; visible: false }
+                                    }
+                                ]
+                                transitions: [
+                                    Transition {
+                                        NumberAnimation {
+                                            properties: "radius, spread, opacity";
+                                            duration: 100; // Slower transition for smoother effect
+                                            easing.type: Easing.OutCubic
+                                        }
+                                    }
+                                ]
+                                MouseArea {
+                                    id: mouseAreaN
+                                    anchors.fill: parent
+                                    onClicked: {
+                                        console.log("N clicked")
+                                    }
                                 }
                             }
 
-                            Button {
+                            Rectangle {
                                 Layout.preferredWidth: 110
                                 Layout.preferredHeight: 100
                                 Layout.alignment: Qt.AlignHCenter
-                                opacity: 0
-                                onClicked: {
-                                    console.log("R clicked");
-                                    // Your action here
+                                color: "transparent"
+                                Image {
+                                    id: reverse
+                                    height: 40
+                                    x: 40
+                                    y: 30
+                                    source: "qrc:/shared/images/reverse"
+                                    fillMode: Image.PreserveAspectFit
+                                    // anchors.centerIn: parent
+                                    smooth: true
+                                    mipmap: true
+
+                                }
+                                ColorOverlay {
+                                    anchors.fill: reverse
+                                    source: reverse
+                                    color: myColor
+                                    smooth: true
+                                }
+                                //Glowing Effect
+                                Glow {
+                                    id: glowEffectR
+                                    anchors.fill: reverse
+                                    source: reverse
+                                    color: myColor.lighter(1.1) // Slightly lighter color for a subtle glow
+                                    radius: 0 // Initially no glow
+                                    spread: 0 // Initially no spread
+                                    samples: 41 // High-quality blur for smooth edges
+                                    cached: true
+                                    opacity: 0 // Initially hidden
+                                }
+                                states: [
+                                    State {
+                                        name: "pressed"
+                                        when: mouseAreaR.pressed
+                                        PropertyChanges { target: glowEffectR; radius: 16; spread: 0.6; opacity: 0.5; visible: true }
+                                    },
+                                    State {
+                                        name: "default"
+                                        when: !mouseAreaR.containsMouse && !mouseAreaR.pressed
+                                        PropertyChanges { target: glowEffectR; radius: 0; spread: 0; opacity: 0; visible: false }
+                                    }
+                                ]
+                                transitions: [
+                                    Transition {
+                                        NumberAnimation {
+                                            properties: "radius, spread, opacity";
+                                            duration: 100; // Slower transition for smoother effect
+                                            easing.type: Easing.OutCubic
+                                        }
+                                    }
+                                ]
+                                MouseArea {
+                                    id: mouseAreaR
+                                    anchors.fill: parent
+                                    onClicked: {
+                                        console.log("R clicked")
+                                    }
                                 }
                             }
-                            Button {
+                            Rectangle {
                                 Layout.preferredWidth: 110
                                 Layout.preferredHeight: 100
                                 Layout.alignment: Qt.AlignHCenter
-                                opacity: 0
-                                onClicked: {
-                                    console.log("P clicked");
-                                    // Your action here
+                                color: "transparent"
+                                Image {
+                                    id: park
+                                    height: 40
+                                    x: 40
+                                    y: 35
+                                    source: "qrc:/shared/images/park"
+                                    fillMode: Image.PreserveAspectFit
+                                    // anchors.centerIn: parent
+                                    smooth: true
+                                    mipmap: true
+
+                                }
+                                ColorOverlay {
+                                    anchors.fill: park
+                                    source: park
+                                    color: myColor
+                                    smooth: true
+                                }
+                                //Glowing Effect
+                                Glow {
+                                    id: glowEffectP
+                                    anchors.fill: park
+                                    source: park
+                                    color: myColor.lighter(1.1) // Slightly lighter color for a subtle glow
+                                    radius: 0 // Initially no glow
+                                    spread: 0 // Initially no spread
+                                    samples: 41 // High-quality blur for smooth edges
+                                    cached: true
+                                    opacity: 0 // Initially hidden
+                                }
+                                states: [
+                                    State {
+                                        name: "pressed"
+                                        when: mouseAreaP.pressed
+                                        PropertyChanges { target: glowEffectP; radius: 16; spread: 0.6; opacity: 0.5; visible: true }
+                                    },
+                                    State {
+                                        name: "default"
+                                        when: !mouseAreaP.containsMouse && !mouseAreaP.pressed
+                                        PropertyChanges { target: glowEffectP; radius: 0; spread: 0; opacity: 0; visible: false }
+                                    }
+                                ]
+                                transitions: [
+                                    Transition {
+                                        NumberAnimation {
+                                            properties: "radius, spread, opacity";
+                                            duration: 100; // Slower transition for smoother effect
+                                            easing.type: Easing.OutCubic
+                                        }
+                                    }
+                                ]
+                                MouseArea {
+                                    id: mouseAreaP
+                                    anchors.fill: parent
+                                    onClicked: {
+                                        console.log("D clicked")
+                                    }
                                 }
                             }
                         }
@@ -188,20 +404,54 @@ Window {
                         anchors.centerIn: parent
                         smooth: true
                         mipmap: true
-
-                        MouseArea {
-                            anchors.fill: parent
-                            onClicked: {
-                                stackView.pop()
-                                stackView.push(menu)
+                    }
+                    ColorOverlay {
+                        anchors.fill: menuIcon
+                        source: menuIcon
+                        color: myColor
+                        smooth: true
+                    }
+                    Glow {
+                        id: glowEffect1
+                        anchors.fill: menuIcon
+                        source: menuIcon
+                        color: myColor.lighter(1.1) // Slightly lighter color for a subtle glow
+                        radius: 0 // Initially no glow
+                        spread: 0 // Initially no spread
+                        samples: 41 // High-quality blur for smooth edges
+                        cached: true
+                        opacity: 0 // Initially hidden
+                        smooth: true
+                        states: [
+                            State {
+                                name: "pressed"
+                                when: mouseArea1.pressed
+                                PropertyChanges { target: glowEffect1; radius: 15; spread: 0.5; opacity: 0.5; visible: true }
+                            },
+                            State {
+                                name: "default"
+                                when: !mouseArea1.containsMouse && !mouseArea1.pressed
+                                PropertyChanges { target: glowEffect1; radius: 0; spread: 0; opacity: 0; visible: false }
                             }
-                        }
+                        ]
+                        transitions: [
+                            Transition {
+                                NumberAnimation {
+                                    properties: "radius, spread, opacity";
+                                    duration: 50; // Slower transition for smoother effect
+                                    easing.type: Easing.OutCubic
+                                }
+                            }
+                        ]
+                    }
 
-                        ColorOverlay {
-                            anchors.fill: menuIcon
-                            source: menuIcon
-                            color: myColor
-                            smooth: true
+                    MouseArea {
+                        id: mouseArea1
+                        anchors.fill: parent
+                        onClicked: {
+                            console.log("menu clicked")
+                            stackView.pop()
+                            stackView.push(menu)
                         }
                     }
                 }
@@ -226,8 +476,13 @@ Window {
                             PropertyAnimation { property: "scale"; from: 1.2; to: 1; duration: 300; easing.type: Easing.OutBack }
                         }
                     }
-
                     pushExit: Transition {
+                        ParallelAnimation {
+                            PropertyAnimation { property: "opacity"; from: 1; to: 0; duration: 100; easing.type: Easing.InOutQuad }
+                            PropertyAnimation { property: "scale"; from: 1; to: 0.8; duration: 300; easing.type: Easing.InBack }
+                        }
+                    }
+                    popExit: Transition {
                         ParallelAnimation {
                             PropertyAnimation { property: "opacity"; from: 1; to: 0; duration: 100; easing.type: Easing.InOutQuad }
                             PropertyAnimation { property: "scale"; from: 1; to: 0.8; duration: 300; easing.type: Easing.InBack }
@@ -235,15 +490,14 @@ Window {
                     }
                 }
             }
-
         }
     }
 
     Image {
         id: gearHighlights
-        source: "qrc:/shared/images/gear_letters"
+        source: "qrc:/shared/images/gearlines"
         anchors.left: parent.left
-        y: 65
+        y: 50
         anchors.leftMargin: 5
         fillMode: Image.PreserveAspectFit
         width: 110
@@ -251,13 +505,13 @@ Window {
         mipmap: true
         z:2
 
-        ColorOverlay {
-            anchors.fill: gearHighlights
-            source: gearHighlights
-            color: myColor
-            smooth: true
-            z:2
-        }
+    }
+    ColorOverlay {
+        anchors.fill: gearHighlights
+        source: gearHighlights
+        color: myColor
+        smooth: true
+        z:2
     }
 
     Slider {
@@ -303,7 +557,6 @@ Window {
     Component{
         id:home
         Home {
-        // anchors.centerIn: parent.centerIn
         }
     }
     Component{
