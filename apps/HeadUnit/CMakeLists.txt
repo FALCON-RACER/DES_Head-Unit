@@ -13,6 +13,8 @@ qt_standard_project_setup(REQUIRES 6.5)
 qt_add_executable(head-unit
 
     main.cpp
+    HeadUnit.cpp
+    SpeedClient.cpp
     resources.qrc
 
     shared/utils/envmanager.h

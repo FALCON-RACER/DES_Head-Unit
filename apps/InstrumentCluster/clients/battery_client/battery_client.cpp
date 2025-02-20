@@ -1,20 +1,7 @@
-#include "./client-example.hpp"
-#include <iostream>
-#include <iomanip>
-#include <sstream>
-#include <cstring>
+#include "./batteryClient.hpp"
 
-
-// 내부 이식을 하게되면 배터리 연결체랑 속도 연결체가 나뉘게됨.
-// 파트가 나뉘어진다는거지.. 
-// 서버는 일단 켜지면 속도와 배터리 데이터를 받아오는 프로세스를 실행하게됨.
-// 서버에서는 notify 되는 부분에서 제공을 하니...
-
-
-// 이벤트 그룹도 속도 / 배터리로 분할.
-// 
-client_sample::client_sample(bool _use_tcp) :
-        app_(vsomeip::runtime::get()->create_application("battery")), use_tcp_(_use_tcp) {
+client_sample::client_sample() :
+        app_(vsomeip::runtime::get()->create_application("battery")){
 }
 
 bool client_sample::init() {
@@ -87,6 +74,7 @@ void client_sample::on_message(const std::shared_ptr<vsomeip::message>& _respons
     if (payload->get_length() >= sizeof(int)) {
         received_value = *reinterpret_cast<const int*>(payload->get_data());
         std::cout << "SERVER: Received int: " << received_value << std::endl;
+        this->batteryValue = received_value;
     } else {
         std::cerr << "SERVER: Invalid payload size!" << std::endl;
         return;
