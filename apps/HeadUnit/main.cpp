@@ -2,6 +2,7 @@
 #include <QQmlApplicationEngine>
 #include <QDebug>
 #include <QQmlContext>
+#include <QBluetoothLocalDevice>
 
 #include "modules/spotify/spotify.h"
 #include "shared/utils/envmanager.h"

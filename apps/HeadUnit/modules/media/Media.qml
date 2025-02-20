@@ -12,8 +12,8 @@ Item{
         width: 900
         height: 550
         color: "transparent"
-        anchors.bottom: parent.bottom
-        anchors.horizontalCenter: parent.horizontalCenter
+        x: (parent.width - width) / 2
+        y: parent.height - height
 
         Column {
             spacing: 10
@@ -65,6 +65,7 @@ Item{
                     height: 100
                     fillMode: Image.PreserveAspectFit
                     source: "qrc:/shared/images/backward"
+
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {

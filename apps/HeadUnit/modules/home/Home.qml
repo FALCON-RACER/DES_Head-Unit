@@ -6,7 +6,10 @@ import QtMultimedia
 
 Item{
     id:home
-    anchors.fill: parent
+    width: parent.width
+    height: parent.height
+    x: 0
+    y: 0
     clip: false
 
     Rectangle {
@@ -72,15 +75,19 @@ Item{
                 Layout.fillWidth: true
                 Layout.alignment: Qt.AlignHCenter
 
-                Image {
-                    id: batteryicon
-                    source: "qrc:/shared/images/battery"
+                Item {
                     Layout.preferredWidth: 40
                     Layout.preferredHeight: 60
                     Layout.rightMargin: 10
-                    fillMode: Image.PreserveAspectFit
-                    smooth: true
-                    mipmap: true
+
+                    Image {
+                        id: batteryicon
+                        source: "qrc:/shared/images/battery"
+                        anchors.fill: parent
+                        fillMode: Image.PreserveAspectFit
+                        smooth: true
+                        mipmap: true
+                    }
                     ColorOverlay {
                         anchors.fill: parent
                         source: batteryicon
@@ -181,12 +188,12 @@ Item{
                         console.log("backward");
                     }
                 }
-                ColorOverlay {
-                    anchors.fill: backward
-                    source: backward
-                    color: myColor
-                    smooth: true
-                }
+            }
+            ColorOverlay {
+                anchors.fill: backward
+                source: backward
+                color: myColor
+                smooth: true
             }
             Image {
                 id: play
@@ -206,12 +213,12 @@ Item{
                             mediaPlayer.play()
                     }
                 }
-                ColorOverlay {
-                    anchors.fill: play
-                    source: play
-                    color: myColor
-                    smooth: true
-                }
+            }
+            ColorOverlay {
+                anchors.fill: play
+                source: play
+                color: myColor
+                smooth: true
             }
             Image {
                 id: forward
@@ -228,12 +235,12 @@ Item{
                         console.log("forward");
                     }
                 }
-                ColorOverlay {
-                    anchors.fill: forward
-                    source: forward
-                    color: myColor
-                    smooth: true
-                }
+            }
+            ColorOverlay {
+                anchors.fill: forward
+                source: forward
+                color: myColor
+                smooth: true
             }
         }
     }

@@ -1,8 +1,9 @@
-import QtQuick 2.15
+import QtQuick 2
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-import QtQuick.Controls 2.12
+import QtQuick.Controls 2
 import QtMultimedia
+// import QtBluetooth
 
 Item{
     id:settings

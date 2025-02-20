@@ -35,5 +35,10 @@
         <file alias="pause">modules/media/images/pause.png</file>
         <file alias="forward">modules/media/images/forward.png</file>
         <file alias="backward">modules/media/images/backward.png</file>
+        <file alias="park">shared/images/P.png</file>
+        <file alias="reverse">shared/images/R.png</file>
+        <file alias="neutral">shared/images/N.png</file>
+        <file alias="drive">shared/images/D.png</file>
+        <file alias="gearlines">shared/images/gearlines.png</file>
     </qresource>
 </RCC>
