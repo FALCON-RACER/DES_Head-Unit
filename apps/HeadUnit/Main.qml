@@ -380,7 +380,7 @@ Window {
                                     id: mouseAreaP
                                     anchors.fill: parent
                                     onClicked: {
-                                        console.log("D clicked")
+                                        console.log("P clicked")
                                     }
                                 }
                             }
