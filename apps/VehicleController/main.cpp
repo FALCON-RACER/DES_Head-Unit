@@ -43,6 +43,22 @@ void send_gear_data(int data) {
     std::this_thread::sleep_for(std::chrono::seconds(1));
 }
 
+void set_gear(ShanWanGamepadInput input, int received_value) {
+    if (input.button_a || received_value == 3)
+        gear = DRIVE;
+    else if (input.button_b || received_value == 2)
+        gear = NETURAL;
+    else if (input.button_x || received_value == 1)
+        gear = REVERSE;
+    else if (input.button_y || received_value == 0)
+        gear = PARKING;
+
+    if (gear == PARKING || gear == NEUTRAL){
+        racer.setSteeringPercent(0);
+        racer.setThrottlePercent(0);
+    }
+}
+
 // When response come, print the payload from server.
 void on_message(const std::shared_ptr<vsomeip::message> &_response) {
     std::shared_ptr<vsomeip::payload> payload = _response->get_payload();
@@ -50,6 +66,7 @@ void on_message(const std::shared_ptr<vsomeip::message> &_response) {
 
     if (payload->get_length() >= sizeof(int)) {
         received_value = *reinterpret_cast<const int *>(payload->get_data());
+        set_gear(NULL, received_value);
         std::cout << "SERVER: Received int: " << received_value << std::endl;
     }
     else {
@@ -89,19 +106,7 @@ int main() {
         ShanWanGamepadInput input = gamepad.read_data();
 
         if (input.button) {
-            if (input.button_a)
-                gear = DRIVE;
-            else if (input.button_b)
-                gear = NEUTRAL;
-            else if (input.button_x)
-                gear = REVERSE;
-            else if (input.button_y)
-                gear = PARKING;
-
-            if (gear == PARKING || gear == NEUTRAL) {
-                racer.setSteeringPercent(0);
-                racer.setThrottlePercent(0);
-            }
+            set_gear(input, -1);
             send_gear_data(gear);
         }
         else {
