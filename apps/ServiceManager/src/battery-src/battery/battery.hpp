@@ -22,7 +22,15 @@ private :
   float speedData;
   uint8_t voltage;
 
-  void getBatteryVoltage();
+  int file;
+  const char *device = "/dev/i2c-1"; // I2C bus device
+  int addr = 0x41; // The I2C address of the battery monitoring device
+  char reg = 0x02;
+  bool initI2C();  // Method to initialize the I2C interface
+  uint16_t readRegister(); // Method to read a value from a register
+
+  // void getBatteryVoltage();
+  uint8_t getBatteryVoltage();
   void canDataReceive();
 
   std::shared_ptr<vsomeip::application> app_;

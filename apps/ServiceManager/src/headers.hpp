@@ -20,6 +20,9 @@
 #include <cstdint>
 #include <string>
 #include <memory>
+#include <fcntl.h>
+#include <linux/i2c-dev.h>
+
 
 
 #endif
