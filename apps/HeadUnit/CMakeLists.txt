@@ -44,11 +44,19 @@ qt_add_qml_module(head-unit
         modules/spotify/spotify.cpp
         shared/utils/envmanager.h
         shared/utils/envmanager.cpp
+    DEPENDENCIES
+        QtQuick
+        QtQml
+        QtBluetooth
+    PLUGIN_IMPORTS
+        QtBluetooth
 )
 
 
 find_package(Qt6 REQUIRED COMPONENTS Quick WebEngineWidgets Qml)
 target_link_libraries(head-unit PRIVATE  Qt6::Quick Qt6::WebEngineWidgets Qt6::Qml)
+find_package(Qt6 6.5 REQUIRED COMPONENTS Quick Qml Bluetooth)
+target_link_libraries(head-unit PRIVATE Qt6::Bluetooth)
 
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
