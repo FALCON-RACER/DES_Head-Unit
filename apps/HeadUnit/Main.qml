@@ -187,6 +187,7 @@ Window {
                                     anchors.fill: parent
                                     onClicked: {
                                         console.log("D clicked")
+                                        someIP.send_gear_data(3);
                                     }
                                 }
                             }
@@ -252,6 +253,7 @@ Window {
                                     anchors.fill: parent
                                     onClicked: {
                                         console.log("N clicked")
+                                        someIP.send_gear_data(2);
                                     }
                                 }
                             }
@@ -317,6 +319,7 @@ Window {
                                     anchors.fill: parent
                                     onClicked: {
                                         console.log("R clicked")
+                                        someIP.send_gear_data(1);
                                     }
                                 }
                             }
@@ -381,6 +384,7 @@ Window {
                                     anchors.fill: parent
                                     onClicked: {
                                         console.log("P clicked")
+                                        someIP.send_gear_data(0);
                                     }
                                 }
                             }
