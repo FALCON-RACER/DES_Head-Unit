@@ -58,7 +58,7 @@ void on_message(const std::shared_ptr<vsomeip::message> &_response) {
     }
 }
 
-void initVSOMEIP() {
+void init_vSOMEIP() {
     app = vsomeip::runtime::get()->create_application("gear");
     app->init();
     app->register_availability_handler(VEHICLE_SERVICE_ID, GEAR_INSTANCE_ID, on_availability);
@@ -78,7 +78,7 @@ int main() {
         return 1;
     }
 
-    initVSOMEIP();
+    init_vSOMEIP();
     PiRacer racer;
     ShanWanGamepad gamepad;
 
