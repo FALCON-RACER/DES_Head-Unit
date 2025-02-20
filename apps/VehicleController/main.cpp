@@ -2,6 +2,15 @@
 #include "Gamepad/ShanwanGamepad.hpp"
 #include "../ServiceManager/src/server.hpp"
 
+#include <vsomeip/vsomeip.hpp>
+#include <chrono>
+#include <condition_variable>
+#include <mutex>
+#include <set>
+#include <string>
+#include <thread>
+#include <csignal>
+
 /**
  * A : DRIVE
  * B : NEUTRAL

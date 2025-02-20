@@ -21,6 +21,8 @@ qt_add_executable(head-unit
     shared/utils/envmanager.cpp
     shared/utils/utils.h
     shared/utils/utils.cpp
+    shared/utils/someip.h
+    shared/utils/someip.cpp
 
     modules/spotify/spotify.h
     modules/spotify/spotify.cpp
