@@ -2,6 +2,10 @@
 #define INSTRUMENTCLUSTERCONTROLLER_H
 
 #include <QObject>
+#include "./clients/speed_client/speed_client.hpp"
+#include "./clients/battery_client/battery_client.hpp"
+#include "./clients/gear_data_receiving_client/gear_client.hpp"
+#include "./clients/ambient_receiver/al_receiver.hpp"
 
 class InstrumentClusterController : public QObject
 {
@@ -33,10 +37,12 @@ signals:
     void	speedChanged(int speed);
     void	batteryPercentageChanged(int batteryPercentage);
     void	chargingStateChanged(bool state);
-
-private:
+    
+    
+    private:
     QString	_currentGear = "P";
     QString	_ambientLighting = "#000000";
+
     int		_speed = 0;
     int		_batteryPercentage = 100;
     bool	_chargingState = false;
