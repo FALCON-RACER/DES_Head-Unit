@@ -1,15 +1,8 @@
 #ifndef CLIENT_SAMPLE_HPP
 #define CLIENT_SAMPLE_HPP
 
-#include <vsomeip/vsomeip.hpp>
-#include <chrono>
-#include <condition_variable>
-#include <mutex>
-#include <set>
-#include <string>
-#include <thread>
-#include <csignal>
-#include "server.hpp"
+#include "../../headers.hpp"
+#include "../../server.hpp"
 
 class client_sample {
 public:

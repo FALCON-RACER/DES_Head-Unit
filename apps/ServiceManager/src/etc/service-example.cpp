@@ -19,7 +19,6 @@ service_sample::service_sample(uint32_t _cycle, int _service) :
         if (_service == 2) { // 서비스 2일 경우
             battery_thread_ = std::thread(&service_sample::getBatteryVoltage, this);
             std::cout << "BATTERY THREAD CREATED" << std::endl;
-        }
     
 }
 

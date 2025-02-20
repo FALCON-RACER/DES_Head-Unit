@@ -1,11 +1,11 @@
-#include "client-example.hpp"
+#include "./client-example.hpp"
 #include <iostream>
 #include <iomanip>
 #include <sstream>
 #include <cstring>
 
 client_sample::client_sample(bool _use_tcp) :
-        app_(vsomeip::runtime::get()->create_application()), use_tcp_(_use_tcp) {
+        app_(vsomeip::runtime::get()->create_application("gear")), use_tcp_(_use_tcp) {
 }
 
 bool client_sample::init() {
@@ -22,24 +22,26 @@ bool client_sample::init() {
 
     // 메시지 핸들러 등록
     app_->register_message_handler(
-            vsomeip::ANY_SERVICE, SAMPLE_INSTANCE_ID, vsomeip::ANY_METHOD,
+            vsomeip::ANY_SERVICE, GEAR_INSTANCE_ID, vsomeip::ANY_METHOD,
             std::bind(&client_sample::on_message, this, std::placeholders::_1));
 
     // 가용성 핸들러 등록
-    app_->register_availability_handler(SAMPLE_SERVICE_ID, SAMPLE_INSTANCE_ID,
+    app_->register_availability_handler(VEHICLE_SERVICE_ID, GEAR_INSTANCE_ID,
             std::bind(&client_sample::on_availability, this,
                       std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
 
     // 이벤트 구독
     std::set<vsomeip::eventgroup_t> its_groups;
-    its_groups.insert(SAMPLE_EVENTGROUP_ID);
+    its_groups.insert(VEHICLE_EVENTGROUP_ID);
+    
     app_->request_event(
-            SAMPLE_SERVICE_ID,
-            SAMPLE_INSTANCE_ID,
-            SAMPLE_EVENT_ID,
+            VEHICLE_SERVICE_ID,
+            GEAR_INSTANCE_ID,
+            GEAR_EVENT_ID,
             its_groups,
             vsomeip::event_type_e::ET_FIELD);
-    app_->subscribe(SAMPLE_SERVICE_ID, SAMPLE_INSTANCE_ID, SAMPLE_EVENTGROUP_ID);
+    
+    app_->subscribe(VEHICLE_SERVICE_ID, GEAR_INSTANCE_ID, VEHICLE_EVENTGROUP_ID);
 
     return true;
 }
@@ -50,15 +52,15 @@ void client_sample::start() {
 
 void client_sample::stop() {
     app_->clear_all_handler();
-    app_->unsubscribe(SAMPLE_SERVICE_ID, SAMPLE_INSTANCE_ID, SAMPLE_EVENTGROUP_ID);
-    app_->release_event(SAMPLE_SERVICE_ID, SAMPLE_INSTANCE_ID, SAMPLE_EVENT_ID);
-    app_->release_service(SAMPLE_SERVICE_ID, SAMPLE_INSTANCE_ID);
+    app_->unsubscribe(VEHICLE_SERVICE_ID, GEAR_INSTANCE_ID, VEHICLE_EVENTGROUP_ID);
+    app_->release_event(VEHICLE_SERVICE_ID, GEAR_INSTANCE_ID, GEAR_EVENT_ID);
+    app_->release_service(VEHICLE_SERVICE_ID, GEAR_INSTANCE_ID);
     app_->stop();
 }
 
 void client_sample::on_state(vsomeip::state_type_e _state) {
     if (_state == vsomeip::state_type_e::ST_REGISTERED) {
-        app_->request_service(SAMPLE_SERVICE_ID, SAMPLE_INSTANCE_ID);
+        app_->request_service(VEHICLE_SERVICE_ID, GEAR_INSTANCE_ID);
     }
 }
 
@@ -69,21 +71,16 @@ void client_sample::on_availability(vsomeip::service_t _service, vsomeip::instan
               << (_is_available ? "available." : "NOT available.") << std::endl;
 }
 
-void client_sample::on_message(const std::shared_ptr<vsomeip::message>& _response) {
+void client_sample::on_message(const std::shared_ptr<vsomeip::message> &_request) {
+    std::shared_ptr<vsomeip::payload> payload = _request->get_payload();
+    int received_value = 0;
 
-    std::shared_ptr<vsomeip::payload> its_payload = _response->get_payload();
-    if (its_payload->get_length() == sizeof(float)) { // 페이로드 크기로 검증
-        float received_speed = 0.0f;
-
-        // 이터레이터로 시작 위치 가져오기
-        auto it = its_payload->get_data(); // 시작 위치의 이터레이터
-        std::copy(it, it + sizeof(float), reinterpret_cast<vsomeip::byte_t *>(&received_speed));
-
-        // 변환된 값 출력
-        std::cout << "Received data: " << received_speed << " m/s" << std::endl;
+    if (payload->get_length() >= sizeof(int)) {
+        received_value = *reinterpret_cast<const int*>(payload->get_data());
+        std::cout << "GEAR DATA RECEIVING CLIENT : Received int: " << received_value << std::endl;
     } else {
-        std::cerr << "Invalid data size received!" << std::endl;
+        std::cerr << "GEAR DATA RECEIVING CLIENT : Invalid payload size!" << std::endl;
+        return;
     }
-
-
+    // this->gearValue = received_value;
 }

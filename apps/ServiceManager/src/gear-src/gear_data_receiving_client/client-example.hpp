@@ -9,7 +9,7 @@
 #include <string>
 #include <thread>
 #include <csignal>
-#include "server.hpp"
+#include "../../server.hpp"
 
 class client_sample {
 public:

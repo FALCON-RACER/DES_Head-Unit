@@ -1,5 +1,5 @@
-#ifndef CLIENT_SAMPLE_HPP
-#define CLIENT_SAMPLE_HPP
+#ifndef GEAR_CLIENT_HPP
+# define GEAR_CLIENT_HPP
 
 #include <vsomeip/vsomeip.hpp>
 #include <chrono>
@@ -9,11 +9,11 @@
 #include <string>
 #include <thread>
 #include <csignal>
-#include "server.hpp"
+#include "../server.hpp"
 
-class client_sample {
+class gearClient {
 public:
-    client_sample(bool _use_tcp);
+    gearClient(bool _use_tcp);
 
     bool init();
     void start();
@@ -26,6 +26,9 @@ private:
 
     std::shared_ptr<vsomeip::application> app_;
     bool use_tcp_;
+
+  gearClient(void);
+  ~gearClient(void);
 };
 
-#endif // CLIENT_SAMPLE_HPP
+#endif

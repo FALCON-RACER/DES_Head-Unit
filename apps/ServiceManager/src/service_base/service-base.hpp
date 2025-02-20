@@ -2,17 +2,10 @@
 #ifndef SERVICE_SAMPLE_HPP
 #define SERVICE_SAMPLE_HPP
 
-#include <vsomeip/vsomeip.hpp>
-#include <chrono>
-#include <condition_variable>
-#include <iomanip>
-#include <iostream>
-#include <sstream>
-#include <thread>
-#include <mutex>
-#include <csignal>
-#include "../sample-ids.hpp"
-#include "../speed/canreceiver.hpp"
+
+#include "../headers.hpp"
+#include "../server.hpp"
+#include "../speed-src/speed/canreceiver.hpp"
 
 #define SPEED 1
 #define BATTERY 2
@@ -43,6 +36,7 @@ private:
 // int processInit(int _service);
 int speedProcessInit();
 int batteryProcessInit();
+int gearProcessInit();
 
 #endif // SERVICE_SAMPLE_HPP
 
