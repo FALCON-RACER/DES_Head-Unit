@@ -12,7 +12,7 @@
 enum Gear {
     PARKING,
     REVERSE,
-    NETURAL,
+    NEUTRAL,
     DRIVE
 };
 
@@ -49,7 +49,7 @@ void set_gear(ShanWanGamepadInput input, int received_value) {
     if (input.button_a || received_value == 3)
         gear = DRIVE;
     else if (input.button_b || received_value == 2)
-        gear = NETURAL;
+        gear = NEUTRAL;
     else if (input.button_x || received_value == 1)
         gear = REVERSE;
     else if (input.button_y || received_value == 0)
