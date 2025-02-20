@@ -126,33 +126,33 @@ void batteryObject::run() {
 
 }
 
-//TODO : change it into uint32_t type
+//TODO : change it into uint32_t type -> send as int type. reinterpret uint8_t to int type
 void batteryObject::notify() {
     while (running_) {
         std::unique_lock<std::mutex> its_lock(notify_mutex_);
         while (!is_offered_ && running_) 
             notify_condition_.wait(its_lock);
         while(is_offered_ && running_) {
-                    // {
-                    //     std::vector<vsomeip::byte_t> speed_data(
-                    //     reinterpret_cast<vsomeip::byte_t *>(&speedData),
-                    //     reinterpret_cast<vsomeip::byte_t *>(&speedData) + sizeof(speedData));
-                    //     {
-                    //         std::lock_guard<std::mutex> its_lock(payload_mutex_);
-                    //         payload_->set_data(speed_data);
-                    //         app_->notify(VEHICLE_SERVICE_ID, BATTERY_INSTANCE_ID, BATTERY_EVENT_ID, payload_);
-                    //     }
-                    // }
                     {
-                        std::vector<vsomeip::uint8_t> voltage_data(
-                        reinterpret_cast<vsomeip::uint8_t *>(&voltage),
-                        reinterpret_cast<vsomeip::uint8_t *>(&voltage) + sizeof(voltage));
+                        std::vector<vsomeip::byte_t> voltage_data(
+                        reinterpret_cast<vsomeip::byte_t *>(&voltage),
+                        reinterpret_cast<vsomeip::byte_t *>(&voltage) + sizeof(int));
                         {
                             std::lock_guard<std::mutex> its_lock(payload_mutex_);
                             payload_->set_data(voltage_data);
                             app_->notify(VEHICLE_SERVICE_ID, BATTERY_INSTANCE_ID, BATTERY_EVENT_ID, payload_);
                         }
                     }
+                    // {
+                    //     std::vector<vsomeip::uint8_t> voltage_data(
+                    //     reinterpret_cast<vsomeip::uint8_t *>(&voltage),
+                    //     reinterpret_cast<vsomeip::uint8_t *>(&voltage) + sizeof(voltage));
+                    //     {
+                    //         std::lock_guard<std::mutex> its_lock(payload_mutex_);
+                    //         payload_->set_data(voltage_data);
+                    //         app_->notify(VEHICLE_SERVICE_ID, BATTERY_INSTANCE_ID, BATTERY_EVENT_ID, payload_);
+                    //     }
+                    // }
                 std::this_thread::sleep_for(std::chrono::milliseconds(80));
         }
     }
@@ -263,11 +263,15 @@ uint16_t batteryObject::readRegister() {
     return readValue;
 }
 
-uint8_t batteryObject::getBatteryVoltage() {
+void batteryObject::getBatteryVoltage() {
     // The battery voltage is stored in register 0x02
     // uint16_t voltageRaw = readRegister();
-    int voltage = 11;
+    // int voltage = 11;
+    uint8_t u_voltage = 11;
+    
+    this->voltage = u_voltage;
+
     // uint8_t voltage = ((voltageRaw>>3)*4.0)/1000;
-    std::cout << "Battery Voltage: " << voltage << std::endl;
-    return voltage;
+    std::cout << "Battery Voltage: " << this->voltage << std::endl;
+    // return voltage;
 }

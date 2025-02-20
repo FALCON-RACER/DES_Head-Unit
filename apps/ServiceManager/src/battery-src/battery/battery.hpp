@@ -30,7 +30,7 @@ private :
   uint16_t readRegister(); // Method to read a value from a register
 
   // void getBatteryVoltage();
-  uint8_t getBatteryVoltage();
+  void getBatteryVoltage();
   void canDataReceive();
 
   std::shared_ptr<vsomeip::application> app_;
