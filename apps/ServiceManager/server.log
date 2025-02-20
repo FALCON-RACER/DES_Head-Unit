@@ -1,0 +1,224 @@
+2025-01-02 17:55:58.186036  [info] Parsed vsomeip configuration in 0ms
+2025-01-02 17:55:58.186387  [info] Configuration module loaded.
+2025-01-02 17:55:58.186412  [info] Security disabled!
+2025-01-02 17:55:58.186466  [info] Initializing vsomeip (3.5.3) application "World".
+2025-01-02 17:55:58.186543  [info] Instantiating routing manager [Proxy].
+2025-01-02 17:55:58.186699  [info] Client [ffff] is connecting to [0] at /tmp/vsomeip-0 endpoint > 0x6500f29a0290
+2025-01-02 17:55:58.186729  [info] Application(World, ffff) is initialized (11, 100).
+2025-01-02 17:55:58.186842  [info] Starting vsomeip application "World" (ffff) using 2 threads I/O nice 0
+2025-01-02 17:55:58.187477  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:55:58.187351  [info] main dispatch thread id from application: ffff (World) is: 707521400640 TID: 56948
+2025-01-02 17:55:58.187775  [info] io thread id from application: ffff (World) is: 7075220fab80 TID: 56947
+2025-01-02 17:55:58.187844  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:55:58.187918  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:55:58.187939  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:55:58.188533  [info] io thread id from application: ffff (World) is: 70751be00640 TID: 56950
+2025-01-02 17:55:58.188361  [info] shutdown thread id from application: ffff (World) is: 707520a00640 TID: 56949
+2025-01-02 17:55:58.188506  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:55:58.188706  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:55:58.188784  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:55:58.188803  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:55:58.189292  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:55:58.189614  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:55:58.189772  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:55:58.189823  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:55:58.190498  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:55:58.190869  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:55:58.190957  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:55:58.190986  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:55:59.191757  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:55:59.192186  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:55:59.192363  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:55:59.192422  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:56:01.198325  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:56:01.200009  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:56:01.200759  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:56:01.200910  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:56:02.203490  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:56:02.203871  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:56:02.203978  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:56:02.204005  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:56:04.207598  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:56:04.208378  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:56:04.208663  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:56:04.208741  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:56:06.213705  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:56:06.214396  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:56:06.214646  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:56:06.214727  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:56:07.220291  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:56:07.221313  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:56:07.221685  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:56:07.221770  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:56:09.227927  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:56:09.229189  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:56:09.229702  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:56:09.229872  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:56:10.235274  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:56:10.236747  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:56:10.237075  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:56:10.237146  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:56:12.239122  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:56:12.240014  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:56:12.240255  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:56:12.240527  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:56:14.242652  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:56:14.243131  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:56:14.243258  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:56:14.243294  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:56:14.243339  [error] local_client_endpoint::max_allowed_reconnects_reached: /tmp/vsomeip-0
+2025-01-02 17:56:14.243444  [info] Application/Client ffff: Reconnecting to routing manager.
+2025-01-02 17:56:14.243480  [warning] cei::shutdown_and_close_socket_unlocked: socket was not open  endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:56:14.243495  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:56:15.249815  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:56:15.251060  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:56:15.251529  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:56:15.251679  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:56:17.257298  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:56:17.258276  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:56:17.258606  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:56:17.258681  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:56:18.261913  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:56:18.263186  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:56:18.263673  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:56:18.263835  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:56:20.269367  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:56:20.270259  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:56:20.270534  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:56:20.270592  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:56:22.276767  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:56:22.278108  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:56:22.278608  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:56:22.278773  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:56:23.284643  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:56:23.285623  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:56:23.286328  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:56:23.286395  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:56:25.292618  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:56:25.293850  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:56:25.294319  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:56:25.294459  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:56:26.296425  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:56:26.296857  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:56:26.296959  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:56:26.297002  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:56:28.299119  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:56:28.299608  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:56:28.299853  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:56:28.299947  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:56:30.305065  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:56:30.306207  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:56:30.306461  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:56:30.306510  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:56:31.312507  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:56:31.313844  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:56:31.314330  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:56:31.314496  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:56:33.319303  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:56:33.319774  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:56:33.319935  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:56:33.319977  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:56:34.322887  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:56:34.324311  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:56:34.324714  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:56:34.324855  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:56:36.331018  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:56:36.331828  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:56:36.332036  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:56:36.332080  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:56:36.332133  [error] local_client_endpoint::max_allowed_reconnects_reached: /tmp/vsomeip-0
+2025-01-02 17:56:36.332188  [info] Application/Client ffff: Reconnecting to routing manager.
+2025-01-02 17:56:36.332227  [warning] cei::shutdown_and_close_socket_unlocked: socket was not open  endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:56:36.332243  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:56:38.337347  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:56:38.338632  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:56:38.339110  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:56:38.339260  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:56:39.344243  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:56:39.344987  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:56:39.345283  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:56:39.345358  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:56:41.351105  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:56:41.352411  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:56:41.352897  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:56:41.353055  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:56:42.354457  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:56:42.354895  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:56:42.355069  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:56:42.355127  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:56:44.355757  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:56:44.356005  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:56:44.356089  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:56:44.356183  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:56:46.356876  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:56:46.455143  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:56:46.455363  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:56:46.455434  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:56:47.460223  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:56:47.461132  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:56:47.461542  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:56:47.461676  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:56:49.467290  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:56:49.468278  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:56:49.468599  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:56:49.468675  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:56:50.471213  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:56:50.472021  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:56:50.472271  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:56:50.472361  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:56:52.478124  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:56:52.479171  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:56:52.479520  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:56:52.479599  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:56:54.483066  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:56:54.483979  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:56:54.484417  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:56:54.484571  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:56:55.488146  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:56:55.489111  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:56:55.489444  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:56:55.489741  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:56:57.491697  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:56:57.492496  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:56:57.492693  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:56:57.492764  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:56:58.494157  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:56:58.494509  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:56:58.494650  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:56:58.494696  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:56:58.494753  [error] local_client_endpoint::max_allowed_reconnects_reached: /tmp/vsomeip-0
+2025-01-02 17:56:58.494816  [info] Application/Client ffff: Reconnecting to routing manager.
+2025-01-02 17:56:58.494863  [warning] cei::shutdown_and_close_socket_unlocked: socket was not open  endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:56:58.494892  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:57:00.499224  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:57:00.500161  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:57:00.500441  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:57:00.500506  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:57:02.504959  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:57:02.506869  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:57:02.507405  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:57:02.507571  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:57:03.512765  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:57:03.513741  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:57:03.514075  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:57:03.514147  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:57:05.517414  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:57:05.518648  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:57:05.519083  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:57:05.519249  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:57:06.525235  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:57:06.526979  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:57:06.527330  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:57:06.527402  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:57:08.533288  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:57:08.534599  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:57:08.535017  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:57:08.535154  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:57:10.540847  [warning] local_client_endpoint::connect: Couldn't connect to: /tmp/vsomeip-0 (No such file or directory / 2)
+2025-01-02 17:57:10.541865  [warning] cei::connect_cbk: restarting socket due to(2):No such file or directory endpoint > 0x6500f29a0290 socket state > 1
+2025-01-02 17:57:10.542193  [warning] cei::shutdown_and_close_socket_unlocked: socket has been reset  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:57:10.542262  [info] routing_manager_client::on_disconnect: Client 0xffff calling host_->on_state with DEREGISTERED
+2025-01-02 17:57:11.490298  [info] Stopping vsomeip application "World" (ffff).
+2025-01-02 17:57:11.496701  [warning] cei::shutdown_and_close_socket_unlocked: socket was not open  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:57:11.497406  [info] cei::shutdown_and_close_socket_unlocked: not recreating socket  endpoint > 0x6500f29a0290 socket state > 0
+2025-01-02 17:57:11.497793  [error] routing_manager_proxy::stop unlink failed (/tmp/vsomeip-ffff): No such file or directory
