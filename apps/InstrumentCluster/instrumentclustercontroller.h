@@ -41,6 +41,7 @@ signals:
     
     private:
     QString	_currentGear = "P";
+    //TODO: Qstring to int.
     QString	_ambientLighting = "#000000";
 
     int		_speed = 0;
