@@ -1,5 +1,5 @@
-#include "../../headers.hpp"
-#include "../../server.hpp"
+#include "../headers.hpp"
+#include "../server.hpp"
 #include "./al_receiver.hpp"
 //받은 int값을 처리.
 std::shared_ptr<vsomeip::application> app;

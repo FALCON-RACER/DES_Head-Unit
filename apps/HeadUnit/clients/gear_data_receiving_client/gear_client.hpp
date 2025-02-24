@@ -1,8 +1,8 @@
 #ifndef GEAR_CLIENT_HPP
 #define GEAR_CLIENT_HPP
 
-#include "../../headers.hpp"
-#include "../../server.hpp"
+#include "../headers.hpp"
+#include "../server.hpp"
 
 class gearClient {
 public:

@@ -1,8 +1,8 @@
 #ifndef SPEED_CLIENT_HPP
 #define SPEED_CLIENT_HPP
 
-#include "../../headers.hpp"
-#include "../../server.hpp"
+#include "../headers.hpp"
+#include "../server.hpp"
 
 class speedClient{
 public:

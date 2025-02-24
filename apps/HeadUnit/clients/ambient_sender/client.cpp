@@ -1,5 +1,5 @@
-#include "../../headers.hpp"
-#include "../../server.hpp"
+#include "../headers.hpp"
+#include "../server.hpp"
 
 std::shared_ptr< vsomeip::application > app;
 std::mutex mutex;

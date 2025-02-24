@@ -1,8 +1,8 @@
 #ifndef BATTERY_CLIENTHPP
 #define BATTERY_CLIENTHPP
 
-#include "../../headers.hpp"
-#include "../../server.hpp"
+#include "../headers.hpp"
+#include "../server.hpp"
 
 class batteryClient {
 public:
