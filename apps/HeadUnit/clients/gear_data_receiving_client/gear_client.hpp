@@ -11,6 +11,7 @@ public:
     bool init();
     void start();
     void stop();
+    int gearValue;
 
 private:
     void on_state(vsomeip::state_type_e _state);
