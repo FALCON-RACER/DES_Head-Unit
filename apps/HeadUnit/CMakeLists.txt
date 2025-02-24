@@ -14,7 +14,7 @@ qt_add_executable(head-unit
 
     main.cpp
     HeadUnit.cpp
-    SpeedClient.cpp
+    # SpeedClient.cpp
     resources.qrc
 
     shared/utils/envmanager.h
@@ -44,6 +44,7 @@ qt_add_qml_module(head-unit
         modules/youtube/Youtube_main.qml
 
     SOURCES
+        HeadUnit.h
         modules/spotify/spotify.h
         modules/spotify/spotify.cpp
         shared/utils/envmanager.h

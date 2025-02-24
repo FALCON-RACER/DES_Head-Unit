@@ -7,9 +7,10 @@ import HeadUnit 1.0
 
 Window {
     id: window
+    visible: true
     width: 1024
     height: 600
-    visible: true
+    title: qsTr("HeadUnit")
     color: "black"
 
     property int colorValue: 180
@@ -123,8 +124,10 @@ Window {
                         z:1
 
                         ColumnLayout {
+                            id: gearColumn
                             anchors.centerIn: parent
                             spacing:0
+                            property string activeGear: "park"
 
                             Rectangle {
                                 Layout.preferredWidth: 110
@@ -135,18 +138,17 @@ Window {
                                     id: drive
                                     height: 40
                                     x: 40
-                                    y: 20
+                                    y: 15
                                     source: "qrc:/shared/images/drive"
                                     fillMode: Image.PreserveAspectFit
-                                    // anchors.centerIn: parent
                                     smooth: true
                                     mipmap: true
-
+                                    opacity: 0
                                 }
                                 ColorOverlay {
                                     anchors.fill: drive
                                     source: drive
-                                    color: myColor
+                                    color: gearColumn.activeGear === "drive" ? myColor : Qt.darker(myColor, 2.5)
                                     smooth: true
                                 }
                                 //Glowing Effect
@@ -188,6 +190,7 @@ Window {
                                     onClicked: {
                                         console.log("D clicked")
                                         someIP.send_gear_data(3);
+                                        gearColumn.activeGear = "drive"
                                     }
                                 }
                             }
@@ -200,19 +203,18 @@ Window {
                                 Image {
                                     id: neutral
                                     height: 40
-                                    x: 40
-                                    y: 20
+                                    x: 38
+                                    y: 22
                                     source: "qrc:/shared/images/neutral"
                                     fillMode: Image.PreserveAspectFit
-                                    // anchors.centerIn: parent
                                     smooth: true
                                     mipmap: true
-
+                                    opacity: 0
                                 }
                                 ColorOverlay {
                                     anchors.fill: neutral
                                     source: neutral
-                                    color: myColor
+                                    color: gearColumn.activeGear === "neutral" ? myColor : Qt.darker(myColor, 2.5)
                                     smooth: true
                                 }
                                 //Glowing Effect
@@ -254,6 +256,7 @@ Window {
                                     onClicked: {
                                         console.log("N clicked")
                                         someIP.send_gear_data(2);
+                                        gearColumn.activeGear = "neutral"
                                     }
                                 }
                             }
@@ -267,18 +270,17 @@ Window {
                                     id: reverse
                                     height: 40
                                     x: 40
-                                    y: 30
+                                    y: 35
                                     source: "qrc:/shared/images/reverse"
                                     fillMode: Image.PreserveAspectFit
-                                    // anchors.centerIn: parent
                                     smooth: true
                                     mipmap: true
-
+                                    opacity: 0
                                 }
                                 ColorOverlay {
                                     anchors.fill: reverse
                                     source: reverse
-                                    color: myColor
+                                    color: gearColumn.activeGear === "reverse" ? myColor : Qt.darker(myColor, 2.5)
                                     smooth: true
                                 }
                                 //Glowing Effect
@@ -320,6 +322,7 @@ Window {
                                     onClicked: {
                                         console.log("R clicked")
                                         someIP.send_gear_data(1);
+                                        gearColumn.activeGear = "reverse"
                                     }
                                 }
                             }
@@ -332,18 +335,17 @@ Window {
                                     id: park
                                     height: 40
                                     x: 40
-                                    y: 35
+                                    y: 43
                                     source: "qrc:/shared/images/park"
                                     fillMode: Image.PreserveAspectFit
-                                    // anchors.centerIn: parent
                                     smooth: true
                                     mipmap: true
-
+                                    opacity: 0
                                 }
                                 ColorOverlay {
                                     anchors.fill: park
                                     source: park
-                                    color: myColor
+                                    color: gearColumn.activeGear === "park" ? myColor : Qt.darker(myColor, 2.5)
                                     smooth: true
                                 }
                                 //Glowing Effect
@@ -385,6 +387,7 @@ Window {
                                     onClicked: {
                                         console.log("P clicked")
                                         someIP.send_gear_data(0);
+                                        gearColumn.activeGear = "park"
                                     }
                                 }
                             }
@@ -408,6 +411,7 @@ Window {
                         anchors.centerIn: parent
                         smooth: true
                         mipmap: true
+                        opacity: 0
                     }
                     ColorOverlay {
                         anchors.fill: menuIcon
@@ -496,26 +500,26 @@ Window {
             }
         }
     }
-
-    Image {
-        id: gearHighlights
-        source: "qrc:/shared/images/gearlines"
-        anchors.left: parent.left
-        y: 50
-        anchors.leftMargin: 5
-        fillMode: Image.PreserveAspectFit
-        width: 110
-        smooth: true
-        mipmap: true
-        z:2
-
-    }
-    ColorOverlay {
-        anchors.fill: gearHighlights
-        source: gearHighlights
-        color: myColor
-        smooth: true
-        z:2
+    ColumnLayout{
+        x: 25
+        y: 165
+        spacing: 110
+        opacity: 0.7
+        Rectangle{
+            width:70
+            height: 2
+            color: myColor
+        }
+        Rectangle{
+            width: 70
+            height: 2
+            color: myColor
+        }
+        Rectangle{
+            width: 70
+            height: 2
+            color: myColor
+        }
     }
 
     Slider {

@@ -3,24 +3,26 @@
 #include <QDebug>
 #include <QQmlContext>
 #include <QBluetoothLocalDevice>
-
 #include "modules/spotify/spotify.h"
-#include "shared/utils/envmanager.h"
-#include "HeadUnit.hpp"
+// #include "shared/utils/envmanager.h"
+#include "HeadUnit.h"
+
+#include <QTimer>
+
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_UseSoftwareOpenGL);
     QGuiApplication app(argc, argv);
+    QQmlApplicationEngine engine;
+
+    HeadUnit controller;
 
     // todo fix the location
-    EnvManager::instance().loadEnvFile("/home/wonjeong/head-unit/apps/HeadUnit/.env");
+    // EnvManager::instance().loadEnvFile("/home/wonjeong/head-unit/apps/HeadUnit/.env");
 
 
     // Register the Spotify class to be used in QML
     // qmlRegisterType<Spotify>("com.spotify", 1, 0, "Spotify");
-
-
-    QQmlApplicationEngine engine;
 
     Spotify spotify;
     engine.rootContext()->setContextProperty("spotify", &spotify);
@@ -71,6 +73,28 @@ int main(int argc, char *argv[])
     // engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
     engine.loadFromModule("HeadUnit", "Main");
 
+    // test code
+    QTimer *timer = new QTimer(&controller);
+    QObject::connect(timer, &QTimer::timeout, [&controller]() {
+        // static QStringList gears = {"P", "R", "N", "D"};
+        // static int gearIndex = 0;
+        // controller.setCurrentGear(gears[gearIndex]);
+        // gearIndex = (gearIndex + 1) % gears.size();
+
+        static int speed = 0;
+        speed = (speed + 10) % 310;
+        controller.setSpeed(speed);
+
+        static int batteryPercentage = 100;
+        batteryPercentage = (batteryPercentage - 10) < 0 ? 100 : batteryPercentage - 10;
+        controller.setBatteryPercentage(batteryPercentage);
+
+        static int chargingState = false;
+        chargingState = !chargingState;
+        controller.setChargingState(chargingState);
+
+    });
+    timer->start(1000);
 
     qDebug() << "Head Unit launched";
 
