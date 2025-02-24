@@ -1,10 +1,12 @@
 #ifndef SPEED_CLIENT_HPP
 #define SPEED_CLIENT_HPP
 
+#include <QObject>
+
 #include "../headers.hpp"
 #include "../server.hpp"
 
-class speedClient{
+class speedClient : public QObject {
 public:
     speedClient();
 
@@ -12,6 +14,7 @@ public:
     void start();
     void stop();
     float speedValue;
+
 signals:
     void speedReceived(int speed);
 

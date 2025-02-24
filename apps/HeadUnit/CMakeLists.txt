@@ -24,6 +24,10 @@ qt_add_executable(head-unit
 
     modules/spotify/spotify.h
     modules/spotify/spotify.cpp
+    HeadUnit.h
+    clients/speed_client/speed_client.cpp
+    clients/battery_client/battery_client.cpp
+    clients/gear_data_receiving_client/gear_client.cpp
 )
 
 qt_add_qml_module(head-unit
@@ -43,6 +47,9 @@ qt_add_qml_module(head-unit
 
     SOURCES
         HeadUnit.h
+        clients/speed_client/speed_client.hpp
+        clients/battery_client/battery_client.hpp
+        clients/gear_data_receiving_client/gear_client.hpp
         modules/spotify/spotify.h
         modules/spotify/spotify.cpp
         shared/utils/envmanager.h

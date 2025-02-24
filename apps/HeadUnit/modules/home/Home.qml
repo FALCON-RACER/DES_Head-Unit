@@ -46,7 +46,7 @@ Item{
 
                 Text {
                     id: speed
-                    text: "100"
+                    text: HeadUnit.speed
                     color: myColor
                     font {
                         family: "Inter"
@@ -95,7 +95,7 @@ Item{
 
                 Text {
                     id: battery
-                    text: "100"
+                    text: HeadUnit.batteryPercentage
                     color: myColor
                     Layout.rightMargin: -5
                     font {

@@ -10,8 +10,6 @@ bool gearClient::init() {
         return false;
     }
 
-    std::cout << "Client settings [protocol=" << (use_tcp_ ? "TCP" : "UDP") << "]" << std::endl;
-
     // 상태 핸들러 등록
     app_->register_state_handler(
             std::bind(&gearClient::on_state, this, std::placeholders::_1));

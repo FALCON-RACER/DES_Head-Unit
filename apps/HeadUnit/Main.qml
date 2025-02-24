@@ -13,9 +13,16 @@ Window {
     title: qsTr("HeadUnit")
     color: "black"
 
-    property int colorValue: 180
-    property color myColor: Qt.hsva(colorValue / 360, 1, 1, 1)
+    property int ambientLighting: HeadUnit.ambientLighting
+    property color myColor: Qt.hsva(ambientLighting / 360, 1, 1, 1)
 
+    Component.onCompleted: {
+        console.log("ambientLighting value:", ambientLighting)
+    }
+
+    onAmbientLightingChanged: {
+        console.log("ambientLighting changed to:", ambientLighting)
+    }
     MediaPlayer {
         id: mediaPlayer
         audioOutput: AudioOutput {id: audioOutput}
@@ -189,8 +196,8 @@ Window {
                                     anchors.fill: parent
                                     onClicked: {
                                         console.log("D clicked")
-                                        someIP.send_gear_data(3);
                                         gearColumn.activeGear = "drive"
+                                        someIP.send_gear_data(3);
                                     }
                                 }
                             }
@@ -255,8 +262,8 @@ Window {
                                     anchors.fill: parent
                                     onClicked: {
                                         console.log("N clicked")
-                                        someIP.send_gear_data(2);
                                         gearColumn.activeGear = "neutral"
+                                        someIP.send_gear_data(2);
                                     }
                                 }
                             }
@@ -321,8 +328,8 @@ Window {
                                     anchors.fill: parent
                                     onClicked: {
                                         console.log("R clicked")
-                                        someIP.send_gear_data(1);
                                         gearColumn.activeGear = "reverse"
+                                        someIP.send_gear_data(1);
                                     }
                                 }
                             }
@@ -386,8 +393,8 @@ Window {
                                     anchors.fill: parent
                                     onClicked: {
                                         console.log("P clicked")
-                                        someIP.send_gear_data(0);
                                         gearColumn.activeGear = "park"
+                                        someIP.send_gear_data(0);
                                     }
                                 }
                             }
@@ -581,7 +588,7 @@ Window {
         id: settings
         Settings {
             onColorValueChanged: (value) => {
-                colorValue = value
+                ambientLighting = value
                 // Use the value here
             }
         }

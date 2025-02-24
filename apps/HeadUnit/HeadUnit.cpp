@@ -9,6 +9,11 @@ const QString& HeadUnit::currentGear() const
     return _currentGear;
 }
 
+int HeadUnit::ambientLighting()
+{
+    return _ambientLighting;
+}
+
 int HeadUnit::speed() const
 {
     return _speed;
@@ -29,6 +34,14 @@ void HeadUnit::setCurrentGear(const QString& gear)
     if (_currentGear != gear) {
         _currentGear = gear;
         emit currentGearChanged(gear);
+    }
+}
+
+void HeadUnit::setAmbientLighting(int colorValue)
+{
+    if (_ambientLighting != colorValue) {
+        _ambientLighting = colorValue;
+        emit ambientLightingChanged(colorValue);
     }
 }
 

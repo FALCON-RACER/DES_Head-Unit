@@ -27,32 +27,32 @@ add_executable(server-draft
         )
 target_link_libraries(server-draft vsomeip3 ${Boost_LIBRARIES})
 
-# add_executable(service-example ../src/main.cpp ../src/service-main.cpp ../src/service-example.cpp ../src/canreceiver.cpp ${EXAMPLE_CONFIG_FILES})
-# target_link_libraries(service-example vsomeip3 ${Boost_LIBRARIES})
+# # add_executable(service-example ../src/main.cpp ../src/service-main.cpp ../src/service-example.cpp ../src/canreceiver.cpp ${EXAMPLE_CONFIG_FILES})
+# # target_link_libraries(service-example vsomeip3 ${Boost_LIBRARIES})
 
-# speed receiving client
-add_executable(speed_client ../src/speed-src/speed_client/client-main.cpp ../src/speed-src/speed_client/client-example.cpp ${EXAMPLE_CONFIG_FILES})
-target_link_libraries(speed_client vsomeip3 ${Boost_LIBRARIES})
+# # speed receiving client
+# add_executable(speed_client ../src/speed-src/speed_client/client-main.cpp ../src/speed-src/speed_client/client-example.cpp ${EXAMPLE_CONFIG_FILES})
+# target_link_libraries(speed_client vsomeip3 ${Boost_LIBRARIES})
 
-# battery receiving client
-add_executable(battery_client ../src/battery-src/battery_client/client-main.cpp ../src/battery-src/battery_client/client-example.cpp ${EXAMPLE_CONFIG_FILES})
-target_link_libraries(battery_client vsomeip3 ${Boost_LIBRARIES})
+# # battery receiving client
+# add_executable(battery_client ../src/battery-src/battery_client/client-main.cpp ../src/battery-src/battery_client/client-example.cpp ${EXAMPLE_CONFIG_FILES})
+# target_link_libraries(battery_client vsomeip3 ${Boost_LIBRARIES})
 
-# joystick input
-add_executable(joystick-gear-client ../src/gear-src/J_gear_client/gear_client.cpp ${EXAMPLE_CONFIG_FILES})
-target_link_libraries(joystick-gear-client vsomeip3 ${Boost_LIBRARIES})
+# # joystick input
+# add_executable(joystick-gear-client ../src/gear-src/J_gear_client/gear_client.cpp ${EXAMPLE_CONFIG_FILES})
+# target_link_libraries(joystick-gear-client vsomeip3 ${Boost_LIBRARIES})
 
-# HU input
-add_executable(HU-gear-client ../src/gear-src/HU_gear_client/gear_client.cpp ${EXAMPLE_CONFIG_FILES})
-target_link_libraries(HU-gear-client vsomeip3 ${Boost_LIBRARIES})
+# # HU input
+# add_executable(HU-gear-client ../src/gear-src/HU_gear_client/gear_client.cpp ${EXAMPLE_CONFIG_FILES})
+# target_link_libraries(HU-gear-client vsomeip3 ${Boost_LIBRARIES})
 
-# gear client
-add_executable(gear_client 
-        ../src/gear-src/gear_data_receiving_client/client-main.cpp 
-        ../src/gear-src/gear_data_receiving_client/client-example.cpp 
-        ${EXAMPLE_CONFIG_FILES}
-        )
-target_link_libraries(gear_client vsomeip3 ${Boost_LIBRARIES})
+# # gear client
+# add_executable(gear_client 
+#         ../src/gear-src/gear_data_receiving_client/client-main.cpp 
+#         ../src/gear-src/gear_data_receiving_client/client-example.cpp 
+#         ${EXAMPLE_CONFIG_FILES}
+#         )
+# target_link_libraries(gear_client vsomeip3 ${Boost_LIBRARIES})
 
 
 # Req/Res testing

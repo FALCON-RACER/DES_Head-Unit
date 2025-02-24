@@ -8,6 +8,7 @@
 #include "HeadUnit.h"
 
 #include <QTimer>
+#include <iostream>
 #include "./clients/speed_client/speed_client.hpp"
 #include "./clients/battery_client/battery_client.hpp"
 #include "./clients/gear_data_receiving_client/gear_client.hpp"
@@ -88,6 +89,8 @@ int main(int argc, char *argv[])
     // engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
     engine.loadFromModule("HeadUnit", "Main");
 
+    engine.rootContext()->setContextProperty("HeadUnit", &controller);
+
     // test code
     QTimer *timer = new QTimer(&controller);
     QObject::connect(timer, &QTimer::timeout, [&controller]() {
@@ -107,7 +110,14 @@ int main(int argc, char *argv[])
         static int chargingState = false;
         chargingState = !chargingState;
         controller.setChargingState(chargingState);
+        
+        QVector<int> colors = {20, 157, 100, 300, 200};
+        static int colorIndex = 0;
 
+        // colorIndex = alClient.alValue;
+        controller.setAmbientLighting(colors[colorIndex]);
+        colorIndex = (colorIndex + 1) % colors.size();
+        std::cout << controller.ambientLighting() << std::endl;
     });
     timer->start(1000);
 
