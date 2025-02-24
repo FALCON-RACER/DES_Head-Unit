@@ -3,16 +3,21 @@ cmake_minimum_required (VERSION 3.13)
 set (CMAKE_CXX_FLAGS "-g -std=c++0x")
 
 set(EXAMPLE_CONFIG_FILES
-    "../config/vsomeip.json"
+    "/home/frederik/Qt/Projects/DES_Head_Unit/apps/ServiceManager/config/vsomeip.json"
 )
 
 find_package (vsomeip3 3.4.10 REQUIRED)
 find_package( Boost 1.55 COMPONENTS system thread log REQUIRED )
 
+
 include_directories (
     ${Boost_INCLUDE_DIR}
     ${VSOMEIP_INCLUDE_DIRS}
 )
+
+message(STATUS "VSOMEIP_INCLUDE_DIRS: ${VSOMEIP_INCLUDE_DIRS}")
+message(STATUS "VSOMEIP_LIBRARIES: ${VSOMEIP_LIBRARIES}")
+
 
 # Server binary file
 add_executable(server-draft 
@@ -22,7 +27,8 @@ add_executable(server-draft
         ../src/speed-src/speed/speed.cpp 
         ../src/speed-src/speed/canreceiver.cpp 
         ../src/battery-src/battery/battery.cpp 
-        ../src/gear-src/gear/gear.cpp 
+        ../src/gear-src/gear/gear.cpp
+        ./config/vsomeip.json
         ${EXAMPLE_CONFIG_FILES}
         )
 target_link_libraries(server-draft vsomeip3 ${Boost_LIBRARIES})

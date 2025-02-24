@@ -13,9 +13,9 @@ batteryObject::batteryObject(uint32_t _cycle) :
     voltage(0),
     file(-1){
     battery_thread_ = std::thread(&batteryObject::getBatteryVoltage, this);
-    if (!initI2C()) {
-        std::cout << "Failed to initialize I2C interface.";
-    }
+    // if (!initI2C()) {
+    //     std::cout << "Failed to initialize I2C interface.";
+    // }
 
 }
 
@@ -27,7 +27,7 @@ bool batteryObject::init() {
         return false;
     }
     //서비스에 따라서 service id 변경.
-
+    std::cout << "SERVER : init" << std::endl;
     app_->register_state_handler(
             std::bind(&batteryObject::on_state, this, std::placeholders::_1));
 
@@ -193,7 +193,7 @@ void batteryObject::on_set(const std::shared_ptr<vsomeip::message> &_message) {
 }
 
 //TODO: change it into battery service code.
-/*
+
 void batteryObject::getBatteryVoltage() {
     float filtered_speed = 0.0f;
     float weight = 0.6;
@@ -209,69 +209,69 @@ void batteryObject::getBatteryVoltage() {
                     filtered_speed += 0.2;
                     this->speedData = filtered_speed;
                 }
-                std::this_thread::sleep_for(std::chrono::milliseconds(7));
+                std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
             }
     }
 
 }
-*/
+
 
 // Destructor: Cleans up the resources (closes the I2C file descriptor)
 
-bool batteryObject::initI2C() {
-    // Open the I2C bus
-    if ((file = open(device, O_RDWR)) < 0) {
-        std::cout << "Failed to open the I2C bus";
-        return false;
-    }
+// bool batteryObject::initI2C() {
+//     // Open the I2C bus
+//     if ((file = open(device, O_RDWR)) < 0) {
+//         std::cout << "Failed to open the I2C bus";
+//         return false;
+//     }
 
-    // Set the I2C address for the slave device
-    if (ioctl(file, I2C_SLAVE, addr) < 0) {
-        std::cout << "Failed to acquire bus access and/or talk to slave.";
-        close(file);
-        return false;
-    }
+//     // Set the I2C address for the slave device
+//     if (ioctl(file, I2C_SLAVE, addr) < 0) {
+//         std::cout << "Failed to acquire bus access and/or talk to slave.";
+//         close(file);
+//         return false;
+//     }
 
-    return true;
-}
+//     return true;
+// }
 
-uint16_t batteryObject::readRegister() {
-    char buf[2];
-    buf[0] = reg;
+// uint16_t batteryObject::readRegister() {
+//     char buf[2];
+//     buf[0] = reg;
 
-    if (file < 0) {
-        std::cout << "I2C file is not initialized.";
-        return -1;
-    }
+//     if (file < 0) {
+//         std::cout << "I2C file is not initialized.";
+//         return -1;
+//     }
 
-    // Write the register address to the I2C bus
-    if (write(file, buf, 1) != 1) {
-        std::cout << "Failed to write to the I2C bus.";
-        std::cout << "Error still exists";
-        return -1;
-    }
-    usleep(1000); // Time delay to read back from I2C
+//     // Write the register address to the I2C bus
+//     if (write(file, buf, 1) != 1) {
+//         std::cout << "Failed to write to the I2C bus.";
+//         std::cout << "Error still exists";
+//         return -1;
+//     }
+//     usleep(1000); // Time delay to read back from I2C
 
-    // Read the data from the I2C bus
-    if (read(file, buf, 2) != 2) {
-        std::cout << "Failed to read from the I2C bus.";
-        return -1;
-    }
+//     // Read the data from the I2C bus
+//     if (read(file, buf, 2) != 2) {
+//         std::cout << "Failed to read from the I2C bus.";
+//         return -1;
+//     }
 
-    uint16_t readValue = (buf[0] << 8) + buf[1];
-    return readValue;
-}
+//     uint16_t readValue = (buf[0] << 8) + buf[1];
+//     return readValue;
+// }
 
-void batteryObject::getBatteryVoltage() {
-    // The battery voltage is stored in register 0x02
-    // uint16_t voltageRaw = readRegister();
-    // int voltage = 11;
-    uint8_t u_voltage = 11;
+// void batteryObject::getBatteryVoltage() {
+//     // The battery voltage is stored in register 0x02
+//     // uint16_t voltageRaw = readRegister();
+//     // int voltage = 11;
+//     uint8_t u_voltage = 11;
     
-    this->voltage = u_voltage;
+//     this->voltage = u_voltage;
 
-    // uint8_t voltage = ((voltageRaw>>3)*4.0)/1000;
-    std::cout << "Battery Voltage: " << this->voltage << std::endl;
-    // return voltage;
-}
+//     // uint8_t voltage = ((voltageRaw>>3)*4.0)/1000;
+//     std::cout << "Battery Voltage: " << this->voltage << std::endl;
+//     // return voltage;
+// }

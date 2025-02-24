@@ -56,6 +56,7 @@ int batteryProcessInit() {
 #endif
 
     if (batteryInit.init()) {
+        std::cout << "Battery Process Started" << std::endl;
         batteryInit.start();
 #ifdef VSOMEIP_ENABLE_SIGNAL_HANDLING
         batteryInit.stop();
