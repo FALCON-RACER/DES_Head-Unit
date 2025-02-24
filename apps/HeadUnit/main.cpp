@@ -27,6 +27,17 @@ int main(int argc, char *argv[])
     Spotify spotify;
     engine.rootContext()->setContextProperty("spotify", &spotify);
 
+    speedClient speedClient();
+    batteryClient batteryClient();
+    gearClient gearClient();
+    alClient alClient();
+
+    if (speedClient.init())
+        speedClient.start();
+    if (batteryClient.init())
+        batteryClient.start();
+    if (gearClient.init())
+        gearClient.start();
     // QObject::connect(
     //     &engine,
     //     &QQmlApplicationEngine::objectCreationFailed,
