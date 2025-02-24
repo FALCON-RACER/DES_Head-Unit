@@ -1,5 +1,4 @@
-#ifndef INSTRUMENTCLUSTERCONTROLLER_H
-#define INSTRUMENTCLUSTERCONTROLLER_H
+#pragma once
 
 #include <QObject>
 #include "./clients/speed_client/speed_client.hpp"
@@ -7,7 +6,8 @@
 #include "./clients/gear_data_receiving_client/gear_client.hpp"
 #include "./clients/ambient_receiver/al_receiver.hpp"
 
-class InstrumentClusterController : public QObject
+
+class HeadUnit : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString currentGear READ currentGear WRITE setCurrentGear NOTIFY currentGearChanged)
@@ -17,7 +17,7 @@ class InstrumentClusterController : public QObject
     Q_PROPERTY(int chargingState READ chargingState WRITE setChargingState NOTIFY chargingStateChanged)
 
 public:
-    explicit InstrumentClusterController(QObject *parent = nullptr);
+    explicit HeadUnit(QObject *parent = nullptr);
 
     const QString&	currentGear() const;
     const QString&	ambientLighting() const;
@@ -37,16 +37,11 @@ signals:
     void	speedChanged(int speed);
     void	batteryPercentageChanged(int batteryPercentage);
     void	chargingStateChanged(bool state);
-    
-    
-    private:
-    QString	_currentGear = "P";
-    //TODO: Qstring to int.
-    QString	_ambientLighting = "#000000";
 
+private:
+    QString	_currentGear = "P";
+    int 	_ambientLighting = 180;
     int		_speed = 0;
     int		_batteryPercentage = 100;
     bool	_chargingState = false;
 };
-
-#endif // INSTRUMENTCLUSTERCONTROLLER_H

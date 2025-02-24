@@ -6,8 +6,6 @@ import QtMultimedia
 
 Item{
     id:home
-    width: parent.width
-    height: parent.height
     x: 0
     y: 0
     clip: false

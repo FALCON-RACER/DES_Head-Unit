@@ -13,12 +13,16 @@ qt_standard_project_setup(REQUIRES 6.5)
 qt_add_executable(head-unit
 
     main.cpp
+    HeadUnit.cpp
+    # SpeedClient.cpp
     resources.qrc
 
     shared/utils/envmanager.h
     shared/utils/envmanager.cpp
     shared/utils/utils.h
     shared/utils/utils.cpp
+    shared/utils/someip.h
+    shared/utils/someip.cpp
 
     modules/spotify/spotify.h
     modules/spotify/spotify.cpp
@@ -40,6 +44,7 @@ qt_add_qml_module(head-unit
         modules/youtube/Youtube_main.qml
 
     SOURCES
+        HeadUnit.h
         modules/spotify/spotify.h
         modules/spotify/spotify.cpp
         shared/utils/envmanager.h
