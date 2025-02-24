@@ -1,10 +1,7 @@
 #pragma once
 
 #include <QObject>
-#include "./clients/speed_client/speed_client.hpp"
-#include "./clients/battery_client/battery_client.hpp"
-#include "./clients/gear_data_receiving_client/gear_client.hpp"
-#include "./clients/ambient_receiver/al_receiver.hpp"
+
 
 class HeadUnit : public QObject
 {

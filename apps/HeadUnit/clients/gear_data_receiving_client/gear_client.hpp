@@ -12,7 +12,6 @@ public:
     void start();
     void stop();
     int gearValue;
-
 private:
     void on_state(vsomeip::state_type_e _state);
     void on_availability(vsomeip::service_t _service, vsomeip::instance_t _instance, bool _is_available);

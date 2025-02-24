@@ -8,6 +8,10 @@
 #include "HeadUnit.h"
 
 #include <QTimer>
+#include "./clients/speed_client/speed_client.hpp"
+#include "./clients/battery_client/battery_client.hpp"
+#include "./clients/gear_data_receiving_client/gear_client.hpp"
+
 
 int main(int argc, char *argv[])
 {
@@ -27,10 +31,10 @@ int main(int argc, char *argv[])
     Spotify spotify;
     engine.rootContext()->setContextProperty("spotify", &spotify);
 
-    speedClient speedClient();
-    batteryClient batteryClient();
-    gearClient gearClient();
-    alClient alClient();
+    speedClient speedClient;
+    batteryClient batteryClient;
+    gearClient gearClient;
+    // alClient alClient;
 
     if (speedClient.init())
         speedClient.start();
@@ -49,7 +53,7 @@ int main(int argc, char *argv[])
         &engine,
         &QQmlApplicationEngine::objectCreationFailed,
         &app,
-        []() { QCoreApplication::exit(-1); 
+        [&controller, &speedClient,&batteryClient,&gearClient]() { QCoreApplication::exit(-1);
             static int speed = 0;
             speed = speedClient.speedValue;
             controller.setSpeed(speed);
@@ -73,11 +77,11 @@ int main(int argc, char *argv[])
     
             //Ambient Light
             // static QStringList colors = {"#4deeea", "#74ee15", "#ffe700", "#f000ff", "#001eff"};
-            static int colorIndex = 0;
-            colorIndex = alClient.alValue; // <- set colorIndex to received value
+    //         static int colorIndex = 0;
+    //         colorIndex = alClient.alValue; // <- set colorIndex to received value
     
-            controller.setAmbientLighting(colors[colorIndex]);
-            colorIndex = (colorIndex + 1) % colors.size();
+    //         controller.setAmbientLighting(colors[colorIndex]);
+    //         colorIndex = (colorIndex + 1) % colors.size();
     },
         Qt::QueuedConnection);
     
