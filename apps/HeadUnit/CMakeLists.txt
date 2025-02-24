@@ -5,7 +5,7 @@ project(HeadUnit VERSION 0.1 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
-
+set(EXAMPLE_CONFIG_FILES "./vsomeip.json")
 find_package(Qt6 6.5 REQUIRED COMPONENTS Quick Qml)
 
 qt_standard_project_setup(REQUIRES 6.5)
@@ -21,8 +21,6 @@ qt_add_executable(head-unit
     shared/utils/envmanager.cpp
     shared/utils/utils.h
     shared/utils/utils.cpp
-    shared/utils/someip.h
-    shared/utils/someip.cpp
 
     modules/spotify/spotify.h
     modules/spotify/spotify.cpp
@@ -59,7 +57,21 @@ qt_add_qml_module(head-unit
 
 
 find_package(Qt6 REQUIRED COMPONENTS Quick WebEngineWidgets Qml)
-target_link_libraries(head-unit PRIVATE  Qt6::Quick Qt6::WebEngineWidgets Qt6::Qml)
+find_package(vsomeip3 3.4.10 REQUIRED)
+find_package( Boost 1.55 COMPONENTS system thread log REQUIRED)
+include_directories(
+    ${Boost_INCLUDE_DIR}
+    ${VSOMEIP_INCLUDE_DIR}
+    )
+
+target_link_libraries(head-unit
+    PRIVATE
+        vsomeip3
+        ${Boost_LIBRARIES}
+        Qt6::Quick
+        Qt6::WebEngineWidgets
+        Qt6::Qml
+)
 find_package(Qt6 6.5 REQUIRED COMPONENTS Quick Qml Bluetooth)
 target_link_libraries(head-unit PRIVATE Qt6::Bluetooth)
 
