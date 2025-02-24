@@ -8,10 +8,6 @@
   },
   "applications": [
     {
-      "name": "server",
-      "id": "0x1235"
-    },
-    {
       "name": "speed",
       "id": "0x4322",
       "services": [
@@ -30,6 +26,27 @@
           "service": "0x1234",
           "instance": "0x3001",
           "eventgroups": ["0x4465"]
+        }
+      ]
+    },
+    {
+      "name": "gear",
+      "id": "0x4324",
+      "services": [
+        {
+          "service": "0x1234",
+          "instance": "0x4001",
+          "eventgroups": ["0x4465"]
+        }
+      ]
+    },
+    {
+      "name": "ambient",
+      "id": "0x4325",
+      "services": [
+        {
+          "service": "0x1234",
+          "instance": "0x5001"
         }
       ]
     }
@@ -58,6 +75,24 @@
           "events": ["0x8780"]
         }
       ]
+    },
+    {
+      "service": "0x1234",
+      "instance": "0x4001",
+      "reliable": { "port": "30511", "enable-magic-cookies": "false" },
+      "unreliable": "31002",
+      "eventgroups": [
+        {
+          "eventgroup": "0x4465",
+          "events": ["0x8781"]
+        }
+      ]
+    },
+    {
+      "service": "0x1234",
+      "instance": "0x5001",
+      "reliable": { "port": "30512", "enable-magic-cookies": "false" },
+      "unreliable": "31003"
     }
   ],
   "routing": "service-example",
