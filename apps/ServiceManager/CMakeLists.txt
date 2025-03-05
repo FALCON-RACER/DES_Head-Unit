@@ -3,7 +3,8 @@ cmake_minimum_required (VERSION 3.13)
 set (CMAKE_CXX_FLAGS "-g -std=c++0x")
 
 set(EXAMPLE_CONFIG_FILES
-    "/home/frederik/Qt/Projects/DES_Head_Unit/apps/ServiceManager/config/vsomeip.json"
+    # "/home/frederik/Qt/Projects/DES_Head_Unit/apps/ServiceManager/config/vsomeip.json"
+    ./config/vsomeip.json
 )
 
 find_package (vsomeip3 3.4.10 REQUIRED)
