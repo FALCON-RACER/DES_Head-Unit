@@ -40,9 +40,19 @@ bool gearClient::init() {
     return true;
 }
 
+
 void gearClient::start() {
-    app_->start();
+    // 별도 스레드에서 실행
+    std::thread vsomeip_thread([this]() {
+        app_->start();
+    });
+    vsomeip_thread.detach(); // 백그라운드 실행
 }
+
+
+// void gearClient::start() {
+//     app_->start();
+// }
 
 void gearClient::stop() {
     app_->clear_all_handler();

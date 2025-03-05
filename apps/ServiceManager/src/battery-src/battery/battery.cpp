@@ -194,27 +194,27 @@ void batteryObject::on_set(const std::shared_ptr<vsomeip::message> &_message) {
 
 //TODO: change it into battery service code.
 
-void batteryObject::getBatteryVoltage() {
-    float filtered_speed = 0.0f;
-    float weight = 0.6;
+// void batteryObject::getBatteryVoltage() {
+//     float filtered_speed = 0.0f;
+//     float weight = 0.6;
 
-    std::cout << "running : " << running_ << std::endl;
-    while (running_) {
-        std::unique_lock<std::mutex> its_lock(can_mutex_);
-        while (!is_offered_ && running_) 
-            battery_condition_.wait(its_lock);
-        while (is_offered_ && running_) 
-            {
-                {
-                    filtered_speed += 0.2;
-                    this->speedData = filtered_speed;
-                }
-                std::this_thread::sleep_for(std::chrono::milliseconds(100));
+//     std::cout << "running : " << running_ << std::endl;
+//     while (running_) {
+//         std::unique_lock<std::mutex> its_lock(can_mutex_);
+//         while (!is_offered_ && running_) 
+//             battery_condition_.wait(its_lock);
+//         while (is_offered_ && running_) 
+//             {
+//                 {
+//                     filtered_speed += 0.2;
+//                     this->speedData = filtered_speed;
+//                 }
+//                 std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
-            }
-    }
+//             }
+//     }
 
-}
+// }
 
 
 // Destructor: Cleans up the resources (closes the I2C file descriptor)
@@ -263,15 +263,15 @@ void batteryObject::getBatteryVoltage() {
 //     return readValue;
 // }
 
-// void batteryObject::getBatteryVoltage() {
-//     // The battery voltage is stored in register 0x02
-//     // uint16_t voltageRaw = readRegister();
-//     // int voltage = 11;
-//     uint8_t u_voltage = 11;
+void batteryObject::getBatteryVoltage() {
+    // The battery voltage is stored in register 0x02
+    // uint16_t voltageRaw = readRegister();
+    // int voltage = 11;
+    uint8_t u_voltage = 11;
     
-//     this->voltage = u_voltage;
+    this->voltage = u_voltage;
 
-//     // uint8_t voltage = ((voltageRaw>>3)*4.0)/1000;
-//     std::cout << "Battery Voltage: " << this->voltage << std::endl;
-//     // return voltage;
-// }
+    // uint8_t voltage = ((voltageRaw>>3)*4.0)/1000;
+    std::cout << "Battery Voltage: " << this->voltage << std::endl;
+    // return voltage;
+}

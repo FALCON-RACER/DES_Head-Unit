@@ -37,10 +37,10 @@ int main(int argc, char *argv[])
     gearClient gearClient;
     // alClient alClient;
 
-    if (speedClient.init())
-        speedClient.start();
     if (batteryClient.init())
         batteryClient.start();
+    if (speedClient.init())
+        speedClient.start();
     if (gearClient.init())
         gearClient.start();
     // QObject::connect(

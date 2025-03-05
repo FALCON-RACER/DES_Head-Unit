@@ -10,7 +10,6 @@ bool batteryClient::init() {
         return false;
     }
 
-
     // 상태 핸들러 등록
     app_->register_state_handler(
             std::bind(&batteryClient::on_state, this, std::placeholders::_1));
@@ -42,8 +41,16 @@ bool batteryClient::init() {
 }
 
 void batteryClient::start() {
-    app_->start();
+    // 별도 스레드에서 실행
+    std::thread vsomeip_thread([this]() {
+        app_->start();
+    });
+    vsomeip_thread.detach(); // 백그라운드 실행
 }
+
+// void batteryClient::start() {
+//     app_->start();
+// }
 
 void batteryClient::stop() {
     app_->clear_all_handler();
