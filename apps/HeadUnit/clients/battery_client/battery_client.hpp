@@ -9,14 +9,16 @@
 class batteryClient : public QObejct
 {
     Q_OBJECT
+
 public:
     explicit batteryClient(QObject *parent = nullptr);
-
-    Q_INVOKABLE int getBatteryValue();
 
     bool init();
     void start();
     void stop();
+
+signals:
+    void batteryValueChanged(int newBatteryValue);
 
 private:
     int batteryValue;

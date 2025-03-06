@@ -95,7 +95,7 @@ Item{
 
                 Text {
                     id: battery
-                    text: batteryClient.getBatteryValue() + ""
+                    text: ""
                     color: myColor
                     Layout.rightMargin: -5
                     font {
@@ -104,6 +104,12 @@ Item{
                         bold: true
                     }
                     Layout.alignment: Qt.AlignVCenter
+                }
+                Connections {
+                    target: batteryClient
+                    onBatteryValueChanged: {
+                        battery.text = newBatteryValue + "";
+                    }
                 }
 
                 Text {

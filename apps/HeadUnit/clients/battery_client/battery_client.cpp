@@ -2,7 +2,8 @@
 
 batteryClient::batteryClient(QObject *parent)
     : QObject(parent),
-      app_(vsomeip::runtime::get()->create_application("battery"))
+      app_(vsomeip::runtime::get()->create_application("battery")),
+      batteryValue(0)
 {
 }
 
@@ -87,7 +88,11 @@ void batteryClient::on_message(const std::shared_ptr<vsomeip::message>& _respons
     if (payload->get_length() >= sizeof(int)) {
         received_value = *reinterpret_cast<const int*>(payload->get_data());
         std::cout << "SERVER: Received int: " << received_value << std::endl;
-        this->batteryValue = received_value;
+        if (this->batteryValue != received_value)
+        {
+            this->batteryValue = received_value;
+            emit batteryValueChanged(this->batteryValue);
+        }
     } else {
         std::cerr << "SERVER: Invalid payload size!" << std::endl;
         return;
