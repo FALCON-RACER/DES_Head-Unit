@@ -17,16 +17,16 @@ bool GearClient::init()
 
     // 상태 핸들러 등록
     app_->register_state_handler(
-        std::bind(&gearClient::on_state, this, std::placeholders::_1));
+        std::bind(&GearClient::on_state, this, std::placeholders::_1));
 
     // 메시지 핸들러 등록
     app_->register_message_handler(
         vsomeip::ANY_SERVICE, GEAR_INSTANCE_ID, vsomeip::ANY_METHOD,
-        std::bind(&gearClient::on_message, this, std::placeholders::_1));
+        std::bind(&GearClient::on_message, this, std::placeholders::_1));
 
     // 가용성 핸들러 등록
     app_->register_availability_handler(VEHICLE_SERVICE_ID, GEAR_INSTANCE_ID,
-                                        std::bind(&gearClient::on_availability, this,
+                                        std::bind(&GearClient::on_availability, this,
                                                   std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
 
     // 이벤트 구독

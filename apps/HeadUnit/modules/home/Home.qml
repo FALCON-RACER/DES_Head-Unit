@@ -57,7 +57,7 @@ Item{
                 }
                 Connections {
                     target: speedClient
-                    onspeedValueChanged: {
+                    onSpeedValueChanged: {
                         speed.text = newSpeedValue + "";
                     }
                 }

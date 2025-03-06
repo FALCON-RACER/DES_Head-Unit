@@ -7,11 +7,6 @@ BatteryClient::BatteryClient(QObject *parent)
 {
 }
 
-int BatteryClient::getBatteryValue()
-{
-    return batteryValue;
-}
-
 bool BatteryClient::init()
 {
     if (!app_->init()) {
@@ -21,16 +16,16 @@ bool BatteryClient::init()
 
     // 상태 핸들러 등록
     app_->register_state_handler(
-            std::bind(&batteryClient::on_state, this, std::placeholders::_1));
+            std::bind(&BatteryClient::on_state, this, std::placeholders::_1));
 
     // 메시지 핸들러 등록
     app_->register_message_handler(
             vsomeip::ANY_SERVICE, BATTERY_INSTANCE_ID, vsomeip::ANY_METHOD,
-            std::bind(&batteryClient::on_message, this, std::placeholders::_1));
+            std::bind(&BatteryClient::on_message, this, std::placeholders::_1));
 
     // 가용성 핸들러 등록
     app_->register_availability_handler(VEHICLE_SERVICE_ID, BATTERY_INSTANCE_ID,
-            std::bind(&batteryClient::on_availability, this,
+            std::bind(&BatteryClient::on_availability, this,
                       std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
 
     // 이벤트 구독
@@ -58,7 +53,7 @@ void BatteryClient::start()
     vsomeip_thread.detach(); // 백그라운드 실행
 }
 
-// void batteryClient::start() {
+// void BatteryClient::start() {
 //     app_->start();
 // }
 

@@ -16,16 +16,16 @@ bool SpeedClient::init()
 
     // 상태 핸들러 등록
     app_->register_state_handler(
-            std::bind(&speedClient::on_state, this, std::placeholders::_1));
+            std::bind(&SpeedClient::on_state, this, std::placeholders::_1));
 
     // 메시지 핸들러 등록
     app_->register_message_handler(
             vsomeip::ANY_SERVICE, SPEED_INSTANCE_ID, vsomeip::ANY_METHOD,
-            std::bind(&speedClient::on_message, this, std::placeholders::_1));
+            std::bind(&SpeedClient::on_message, this, std::placeholders::_1));
 
     // 가용성 핸들러 등록
     app_->register_availability_handler(VEHICLE_SERVICE_ID, SPEED_INSTANCE_ID,
-            std::bind(&speedClient::on_availability, this,
+            std::bind(&SpeedClient::on_availability, this,
                       std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
 
     // 이벤트 구독

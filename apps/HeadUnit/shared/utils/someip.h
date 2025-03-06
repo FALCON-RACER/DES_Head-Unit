@@ -1,6 +1,8 @@
 #ifndef SOMEIP_H
 #define SOMEIP_H
 
+#include "./server.hpp"
+
 #include <QObject>
 #include <QDebug>
 
@@ -12,7 +14,7 @@
 #include <string>
 #include <thread>
 #include <csignal>
-
+#include <iostream>
 class SomeIP : public QObject
 {
 	Q_OBJECT

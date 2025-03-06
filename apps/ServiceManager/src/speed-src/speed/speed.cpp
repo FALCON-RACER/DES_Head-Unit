@@ -178,11 +178,13 @@ void speedObject::canDataReceive() {
             CAN_condition_.wait(its_lock);
         while (is_offered_ && running_) 
             {
-                {
+                {   
+                    if (filtered_speed >= 100.0f)
+                        filtered_speed = 0.0f;
                     filtered_speed += 0.1;
                     this->speedData = filtered_speed;
                 }
-                std::this_thread::sleep_for(std::chrono::milliseconds(7));
+                std::this_thread::sleep_for(std::chrono::milliseconds(30));
 
             }
     }

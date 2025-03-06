@@ -1,5 +1,9 @@
 #include "./someip.h"
 
+std::shared_ptr< vsomeip::application > app;
+std::mutex mutex;
+std::condition_variable condition;
+
 void SomeIP::send_gear_data(int gear)
 {
 	std::unique_lock<std::mutex> its_lock(mutex);

@@ -54,6 +54,8 @@ qt_add_qml_module(head-unit
         modules/spotify/spotify.cpp
         shared/utils/envmanager.h
         shared/utils/envmanager.cpp
+        shared/utils/someip.cpp
+        shared/utils/someip.h
     DEPENDENCIES
         QtQuick
         QtQml
