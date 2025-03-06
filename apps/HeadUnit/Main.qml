@@ -185,7 +185,7 @@ Window {
                                 Connections {
                                     target: gearClient
                                     onGearValueChanged: {
-                                        if (gearClient.gearValue == 3) {
+                                        if (newGearValue == 3) {
                                             glowEffectD.radius = 16;
                                             glowEffectD.spread = 0.6;
                                             glowEffectD.opacity = 0.5;
@@ -268,7 +268,7 @@ Window {
                                 Connections {
                                     target: gearClient
                                     onGearValueChanged: {
-                                        if (gearClient.gearValue == 2) {
+                                        if (newGearValue == 2) {
                                             glowEffectN.radius = 16;
                                             glowEffectN.spread = 0.6;
                                             glowEffectN.opacity = 0.5;
@@ -350,7 +350,7 @@ Window {
                                 Connections {
                                     target: gearClient
                                     onGearValueChanged: {
-                                        if (gearClient.gearValue == 1) {
+                                        if (newGearValue == 1) {
                                             glowEffectR.radius = 16;
                                             glowEffectR.spread = 0.6;
                                             glowEffectR.opacity = 0.5;
@@ -431,7 +431,7 @@ Window {
                                 Connections {
                                     target: gearClient
                                     onGearValueChanged: {
-                                        if (gearClient.gearValue == 0) {
+                                        if (newGearValue == 0) {
                                             glowEffectP.radius = 16;
                                             glowEffectP.spread = 0.6;
                                             glowEffectP.opacity = 0.5;
