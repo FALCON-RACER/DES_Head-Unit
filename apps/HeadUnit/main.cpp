@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("gearClient", &gearClient);
 
     speedClient speedClient;
-    // alClient alClient;
+    engine.rootContext()->setContextProperty("speedClient", &speedClient);
 
     if (batteryClient.init())
         batteryClient.start();

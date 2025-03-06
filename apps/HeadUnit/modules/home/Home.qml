@@ -46,13 +46,19 @@ Item{
 
                 Text {
                     id: speed
-                    text: HeadUnit.speed
+                    text: "0"
                     color: myColor
                     font {
                         family: "Inter"
                         pixelSize: 50
                         bold: true
                         italic: true
+                    }
+                }
+                Connections {
+                    target: speedClient
+                    onspeedValueChanged: {
+                        speed.text = newSpeedValue + "";
                     }
                 }
 

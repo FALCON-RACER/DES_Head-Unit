@@ -1,7 +1,10 @@
 #include "./speed_client.hpp"
 
-speedClient::speedClient() :
-        app_(vsomeip::runtime::get()->create_application("speed")) {
+speedClient::speedClient(QObject *parent)
+    : QObject(parent),
+      speedValue(0.0),
+      app_(vsomeip::runtime::get()->create_application("speed"))
+{
 }
 
 bool speedClient::init() {
@@ -87,9 +90,8 @@ void speedClient::on_message(const std::shared_ptr<vsomeip::message>& _response)
         // 변환된 값 출력
         std::cout << "Received data: " << received_speed << " m/s" << std::endl;
         this->speedValue = received_speed;
+        emit speedValueChanged(received_speed);
     } else {
         std::cerr << "Invalid data size received!" << std::endl;
     }
-
-
 }
