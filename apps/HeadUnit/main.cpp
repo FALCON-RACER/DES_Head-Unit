@@ -4,6 +4,7 @@
 #include <QQmlContext>
 #include <QBluetoothLocalDevice>
 #include "modules/spotify/spotify.h"
+#include "shared/utils/someip.h"
 // #include "shared/utils/envmanager.h"
 #include "HeadUnit.h"
 
@@ -31,6 +32,9 @@ int main(int argc, char *argv[])
 
     Spotify spotify;
     engine.rootContext()->setContextProperty("spotify", &spotify);
+
+    SomeIP someIP;
+    engine.rootContext()->setContextProperty("someIP", &someIP);
 
     speedClient speedClient;
     batteryClient batteryClient;
