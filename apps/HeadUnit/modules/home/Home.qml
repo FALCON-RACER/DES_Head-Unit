@@ -46,13 +46,19 @@ Item{
 
                 Text {
                     id: speed
-                    text: HeadUnit.speed
+                    text: "0"
                     color: myColor
                     font {
                         family: "Inter"
                         pixelSize: 50
                         bold: true
                         italic: true
+                    }
+                }
+                Connections {
+                    target: speedClient
+                    onspeedValueChanged: {
+                        speed.text = newSpeedValue + "";
                     }
                 }
 
@@ -95,7 +101,7 @@ Item{
 
                 Text {
                     id: battery
-                    text: HeadUnit.batteryPercentage
+                    text: ""
                     color: myColor
                     Layout.rightMargin: -5
                     font {
@@ -104,6 +110,12 @@ Item{
                         bold: true
                     }
                     Layout.alignment: Qt.AlignVCenter
+                }
+                Connections {
+                    target: batteryClient
+                    onBatteryValueChanged: {
+                        battery.text = newBatteryValue + "";
+                    }
                 }
 
                 Text {

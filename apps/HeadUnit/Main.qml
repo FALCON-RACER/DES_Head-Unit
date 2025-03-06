@@ -182,6 +182,23 @@ Window {
                                         PropertyChanges { target: glowEffectD; radius: 0; spread: 0; opacity: 0; visible: false }
                                     }
                                 ]
+                                Connections {
+                                    target: gearClient
+                                    onGearValueChanged: {
+                                        if (newGearValue == 3) {
+                                            glowEffectD.radius = 16;
+                                            glowEffectD.spread = 0.6;
+                                            glowEffectD.opacity = 0.5;
+                                            glowEffectD.visible = true;
+                                        } else {
+                                            glowEffectD.radius = 0;
+                                            glowEffectD.spread = 0;
+                                            glowEffectD.opacity = 0;
+                                            glowEffectD.visible = false;
+                                        }
+                                    }
+                                }
+
                                 transitions: [
                                     Transition {
                                         NumberAnimation {
@@ -248,6 +265,22 @@ Window {
                                         PropertyChanges { target: glowEffectN; radius: 0; spread: 0; opacity: 0; visible: false }
                                     }
                                 ]
+                                Connections {
+                                    target: gearClient
+                                    onGearValueChanged: {
+                                        if (newGearValue == 2) {
+                                            glowEffectN.radius = 16;
+                                            glowEffectN.spread = 0.6;
+                                            glowEffectN.opacity = 0.5;
+                                            glowEffectN.visible = true;
+                                        } else {
+                                            glowEffectN.radius = 0;
+                                            glowEffectN.spread = 0;
+                                            glowEffectN.opacity = 0;
+                                            glowEffectN.visible = false;
+                                        }
+                                    }
+                                }
                                 transitions: [
                                     Transition {
                                         NumberAnimation {
@@ -314,6 +347,22 @@ Window {
                                         PropertyChanges { target: glowEffectR; radius: 0; spread: 0; opacity: 0; visible: false }
                                     }
                                 ]
+                                Connections {
+                                    target: gearClient
+                                    onGearValueChanged: {
+                                        if (newGearValue == 1) {
+                                            glowEffectR.radius = 16;
+                                            glowEffectR.spread = 0.6;
+                                            glowEffectR.opacity = 0.5;
+                                            glowEffectR.visible = true;
+                                        } else {
+                                            glowEffectR.radius = 0;
+                                            glowEffectR.spread = 0;
+                                            glowEffectR.opacity = 0;
+                                            glowEffectR.visible = false;
+                                        }
+                                    }
+                                }
                                 transitions: [
                                     Transition {
                                         NumberAnimation {
@@ -379,6 +428,22 @@ Window {
                                         PropertyChanges { target: glowEffectP; radius: 0; spread: 0; opacity: 0; visible: false }
                                     }
                                 ]
+                                Connections {
+                                    target: gearClient
+                                    onGearValueChanged: {
+                                        if (newGearValue == 0) {
+                                            glowEffectP.radius = 16;
+                                            glowEffectP.spread = 0.6;
+                                            glowEffectP.opacity = 0.5;
+                                            glowEffectP.visible = true;
+                                        } else {
+                                            glowEffectP.radius = 0;
+                                            glowEffectP.spread = 0;
+                                            glowEffectP.opacity = 0;
+                                            glowEffectP.visible = false;
+                                        }
+                                    }
+                                }
                                 transitions: [
                                     Transition {
                                         NumberAnimation {
