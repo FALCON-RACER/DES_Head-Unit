@@ -6,12 +6,12 @@
 #include "../headers.hpp"
 #include "../server.hpp"
 
-class batteryClient : public QObejct
+class BatteryClient : public QObejct
 {
     Q_OBJECT
 
 public:
-    explicit batteryClient(QObject *parent = nullptr);
+    explicit BatteryClient(QObject *parent = nullptr);
 
     bool init();
     void start();

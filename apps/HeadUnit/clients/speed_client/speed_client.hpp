@@ -6,11 +6,12 @@
 #include "../headers.hpp"
 #include "../server.hpp"
 
-class speedClient : public QObject {
+class SpeedClient : public QObject
+{
     Q_OBJECT
 
 public:
-    explicit speedClient(QObject *parent = nullptr);
+    explicit SpeedClient(QObject *parent = nullptr);
 
     bool init();
     void start();

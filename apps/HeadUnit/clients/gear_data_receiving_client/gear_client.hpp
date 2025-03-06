@@ -6,11 +6,11 @@
 #include "../headers.hpp"
 #include "../server.hpp"
 
-class gearClient : public QObejct
+class GearClient : public QObejct
 {
     Q_OBJECT
 public:
-    explicit gearClient(QObject *parent = nullptr);
+    explicit GearClient(QObject *parent = nullptr);
 
     bool init();
     void start();

@@ -1,13 +1,14 @@
 #include "./speed_client.hpp"
 
-speedClient::speedClient(QObject *parent)
+SpeedClient::SpeedClient(QObject *parent)
     : QObject(parent),
       speedValue(0.0),
       app_(vsomeip::runtime::get()->create_application("speed"))
 {
 }
 
-bool speedClient::init() {
+bool SpeedClient::init()
+{
     if (!app_->init()) {
         std::cerr << "Couldn't initialize application" << std::endl;
         return false;
@@ -41,22 +42,20 @@ bool speedClient::init() {
     return true;
 }
 
-
-void speedClient::start() {
+void SpeedClient::start()
+{
     // 별도 스레드에서 실행
-    std::thread vsomeip_thread([this]() {
-        app_->start();
-    });
+    std::thread vsomeip_thread([this]()
+                               { app_->start(); });
     vsomeip_thread.detach(); // 백그라운드 실행
 }
 
-
-
-// void speedClient::start() {
+// void SpeedClient::start() {
 //     app_->start();
 // }
 
-void speedClient::stop() {
+void SpeedClient::stop()
+{
     app_->clear_all_handler();
     app_->unsubscribe(VEHICLE_SERVICE_ID, SPEED_INSTANCE_ID, VEHICLE_EVENTGROUP_ID);
     app_->release_event(VEHICLE_SERVICE_ID, SPEED_INSTANCE_ID, SPEED_EVENT_ID);
@@ -64,20 +63,23 @@ void speedClient::stop() {
     app_->stop();
 }
 
-void speedClient::on_state(vsomeip::state_type_e _state) {
+void SpeedClient::on_state(vsomeip::state_type_e _state)
+{
     if (_state == vsomeip::state_type_e::ST_REGISTERED) {
         app_->request_service(VEHICLE_SERVICE_ID, SPEED_INSTANCE_ID);
     }
 }
 
-void speedClient::on_availability(vsomeip::service_t _service, vsomeip::instance_t _instance, bool _is_available) {
+void SpeedClient::on_availability(vsomeip::service_t _service, vsomeip::instance_t _instance, bool _is_available)
+{
     std::cout << "Service ["
               << std::hex << std::setfill('0') << std::setw(4) << _service << "."
               << std::setw(4) << _instance << "] is "
               << (_is_available ? "available." : "NOT available.") << std::endl;
 }
 
-void speedClient::on_message(const std::shared_ptr<vsomeip::message>& _response) {
+void SpeedClient::on_message(const std::shared_ptr<vsomeip::message> &_response)
+{
 
     std::shared_ptr<vsomeip::payload> its_payload = _response->get_payload();
     if (its_payload->get_length() == sizeof(float)) { // 페이로드 크기로 검증
