@@ -95,7 +95,7 @@ Item{
 
                 Text {
                     id: battery
-                    text: HeadUnit.batteryPercentage
+                    text: batteryClient.getBatteryValue() + ""
                     color: myColor
                     Layout.rightMargin: -5
                     font {

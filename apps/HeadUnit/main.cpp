@@ -36,8 +36,10 @@ int main(int argc, char *argv[])
     SomeIP someIP;
     engine.rootContext()->setContextProperty("someIP", &someIP);
 
-    speedClient speedClient;
     batteryClient batteryClient;
+    engine.rootContext()->setContextProperty("batteryClient", &batteryClient);
+
+    speedClient speedClient;
     gearClient gearClient;
     // alClient alClient;
 

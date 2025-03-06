@@ -1,7 +1,14 @@
 #include "./battery_client.hpp"
 
-batteryClient::batteryClient() :
-        app_(vsomeip::runtime::get()->create_application("battery")){
+batteryClient::batteryClient(QObject *parent)
+    : QObject(parent),
+      app_(vsomeip::runtime::get()->create_application("battery"))
+{
+}
+
+int batteryClient::getBatteryValue()
+{
+    return batteryValue;
 }
 
 bool batteryClient::init() {
