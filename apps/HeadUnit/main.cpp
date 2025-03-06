@@ -39,8 +39,10 @@ int main(int argc, char *argv[])
     batteryClient batteryClient;
     engine.rootContext()->setContextProperty("batteryClient", &batteryClient);
 
-    speedClient speedClient;
     gearClient gearClient;
+    engine.rootContext()->setContextProperty("gearClient", &gearClient);
+
+    speedClient speedClient;
     // alClient alClient;
 
     if (batteryClient.init())

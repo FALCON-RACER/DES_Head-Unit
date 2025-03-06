@@ -1,7 +1,10 @@
 #include "./gear_client.hpp"
 
-gearClient::gearClient() :
-        app_(vsomeip::runtime::get()->create_application("gear")) {
+gearClient::gearClient(QObject *parent)
+    : QObject(parent),
+      gearValue(0),
+      app_(vsomeip::runtime::get()->create_application("gear"))
+{
 }
 
 bool gearClient::init() {
@@ -83,6 +86,7 @@ void gearClient::on_message(const std::shared_ptr<vsomeip::message> &_request) {
         received_value = *reinterpret_cast<const int*>(payload->get_data());
         std::cout << "GEAR DATA RECEIVING CLIENT : Received int: " << received_value << std::endl;
         this->gearValue = received_value;
+        emit gearValueChanged(received_value);
     } else {
         std::cerr << "GEAR DATA RECEIVING CLIENT : Invalid payload size!" << std::endl;
         return;
