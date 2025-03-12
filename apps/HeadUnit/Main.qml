@@ -15,14 +15,6 @@ Window {
 
     property int ambientLighting: HeadUnit.ambientLighting
     property color myColor: Qt.hsva(ambientLighting / 360, 1, 1, 1)
-
-    Component.onCompleted: {
-        console.log("ambientLighting value:", ambientLighting)
-    }
-
-    onAmbientLightingChanged: {
-        console.log("ambientLighting changed to:", ambientLighting)
-    }
     MediaPlayer {
         id: mediaPlayer
         audioOutput: AudioOutput {id: audioOutput}
@@ -214,7 +206,7 @@ Window {
                                     onClicked: {
                                         console.log("D clicked")
                                         gearColumn.activeGear = "drive"
-                                        someIP.send_gear_data(3);
+                                        someIP.set_gear_data(3);
                                     }
                                 }
                             }
@@ -296,7 +288,7 @@ Window {
                                     onClicked: {
                                         console.log("N clicked")
                                         gearColumn.activeGear = "neutral"
-                                        someIP.send_gear_data(2);
+                                        someIP.set_gear_data(2);
                                     }
                                 }
                             }
@@ -378,7 +370,7 @@ Window {
                                     onClicked: {
                                         console.log("R clicked")
                                         gearColumn.activeGear = "reverse"
-                                        someIP.send_gear_data(1);
+                                        someIP.set_gear_data(1);
                                     }
                                 }
                             }
@@ -459,7 +451,7 @@ Window {
                                     onClicked: {
                                         console.log("P clicked")
                                         gearColumn.activeGear = "park"
-                                        someIP.send_gear_data(0);
+                                        someIP.set_gear_data(0);
                                     }
                                 }
                             }

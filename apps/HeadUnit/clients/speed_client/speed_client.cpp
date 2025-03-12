@@ -90,7 +90,7 @@ void SpeedClient::on_message(const std::shared_ptr<vsomeip::message> &_response)
         std::copy(it, it + sizeof(float), reinterpret_cast<vsomeip::byte_t *>(&received_speed));
 
         // 변환된 값 출력
-        std::cout << "Received data: " << received_speed << " m/s" << std::endl;
+        // std::cout << "Received data: " << received_speed << " m/s" << std::endl;
         this->speedValue = received_speed;
         emit speedValueChanged(received_speed);
     } else {

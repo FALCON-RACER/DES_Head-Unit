@@ -184,7 +184,7 @@ void speedObject::canDataReceive() {
                     filtered_speed += 0.1;
                     this->speedData = filtered_speed;
                 }
-                std::this_thread::sleep_for(std::chrono::milliseconds(30));
+                std::this_thread::sleep_for(std::chrono::milliseconds(300));
 
             }
     }

@@ -19,9 +19,20 @@ class SomeIP : public QObject
 {
 	Q_OBJECT
 public:
-	explicit SomeIP(QObject *parent = nullptr) : QObject(parent) {}
+	// SomeIP();
+	std::shared_ptr<vsomeip::application> app;
+	bool init();
+	void start();
+	void run();
+	
+	int newValue(int);
+	int value;
+	int preValue;
+	explicit SomeIP(QObject *parent = nullptr) : QObject(parent), app(vsomeip::runtime::get()->create_application("gear")), value(0), preValue(0){
+	}
+	Q_INVOKABLE void set_gear_data(int gearValue);	
+	// Q_INVOKABLE void send_gear_data(int);
 
-	Q_INVOKABLE void send_gear_data(int);
 };
 
 #endif // SOMEIP_H

@@ -46,20 +46,27 @@ target_link_libraries(server-draft vsomeip3 ${Boost_LIBRARIES})
 # target_link_libraries(battery_client vsomeip3 ${Boost_LIBRARIES})
 
 # # joystick input
-# add_executable(joystick-gear-client ../src/gear-src/J_gear_client/gear_client.cpp ${EXAMPLE_CONFIG_FILES})
-# target_link_libraries(joystick-gear-client vsomeip3 ${Boost_LIBRARIES})
+add_executable(joystick-gear-client ../src/gear-src/J_gear_client/gear_client.cpp ${EXAMPLE_CONFIG_FILES})
+target_link_libraries(joystick-gear-client vsomeip3 ${Boost_LIBRARIES})
 
 # # HU input
-# add_executable(HU-gear-client ../src/gear-src/HU_gear_client/gear_client.cpp ${EXAMPLE_CONFIG_FILES})
-# target_link_libraries(HU-gear-client vsomeip3 ${Boost_LIBRARIES})
+add_executable(HU-gear-client ../src/gear-src/HU_gear_client/gear_client.cpp ${EXAMPLE_CONFIG_FILES})
+target_link_libraries(HU-gear-client vsomeip3 ${Boost_LIBRARIES})
 
-# # gear client
-# add_executable(gear_client 
-#         ../src/gear-src/gear_data_receiving_client/client-main.cpp 
-#         ../src/gear-src/gear_data_receiving_client/client-example.cpp 
-#         ${EXAMPLE_CONFIG_FILES}
-#         )
-# target_link_libraries(gear_client vsomeip3 ${Boost_LIBRARIES})
+# gear client
+add_executable(gear_client 
+        ../src/gear-src/gear_data_receiving_client/client-main.cpp 
+        ../src/gear-src/gear_data_receiving_client/client-example.cpp 
+        ${EXAMPLE_CONFIG_FILES}
+        )
+target_link_libraries(gear_client vsomeip3 ${Boost_LIBRARIES})
+
+add_executable(single_gear_client 
+        ../src/gear-src/integerate_client/client-main.cpp
+        ../src/gear-src/integerate_client/client-example.cpp 
+        ${EXAMPLE_CONFIG_FILES}
+        )
+target_link_libraries(single_gear_client vsomeip3 ${Boost_LIBRARIES})
 
 
 # Req/Res testing

@@ -10,6 +10,7 @@
 
 #include <QTimer>
 #include <iostream>
+#include <vsomeip/vsomeip.hpp>
 #include "./clients/speed_client/speed_client.hpp"
 #include "./clients/battery_client/battery_client.hpp"
 #include "./clients/gear_data_receiving_client/gear_client.hpp"
@@ -33,9 +34,8 @@ int main(int argc, char *argv[])
     Spotify spotify;
     engine.rootContext()->setContextProperty("spotify", &spotify);
 
-    SomeIP someIP;
-    engine.rootContext()->setContextProperty("someIP", &someIP);
-
+    // someIP.app->request_service(VEHICLE_SERVICE_ID, GEAR_INSTANCE_ID);
+    // app.request_service(VEHICLE_SERVICE_ID, GEAR_INSTANCE_ID);
     BatteryClient batteryClient;
     engine.rootContext()->setContextProperty("batteryClient", &batteryClient);
 
@@ -51,6 +51,11 @@ int main(int argc, char *argv[])
         speedClient.start();
     if (gearClient.init())
         gearClient.start();
+
+    SomeIP someIP;
+    engine.rootContext()->setContextProperty("someIP", &someIP);
+    
+    someIP.init();
     // QObject::connect(
     //     &engine,
     //     &QQmlApplicationEngine::objectCreationFailed,
