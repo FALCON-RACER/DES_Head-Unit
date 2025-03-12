@@ -37,7 +37,7 @@ int main(int argc, char **argv) {
         speedProcessInit();
         exit(0); // speedProcessInit()이 종료되면, 자식 프로세스 종료
     }
-
+    sleep(2);
     if (speed_pid != 0)
         battery_pid = fork();
 
@@ -46,7 +46,7 @@ int main(int argc, char **argv) {
         batteryProcessInit();
         exit(0); // batteryProcessInit()이 종료되면, 자식 프로세스 종료
     }
-
+    sleep(2);
   if (speed_pid != 0 && battery_pid != 0) {
     gear_pid = fork();
     //gear 처리 프로세스 실행.

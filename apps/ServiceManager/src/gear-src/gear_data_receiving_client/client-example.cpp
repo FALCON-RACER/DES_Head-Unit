@@ -77,9 +77,9 @@ void client_sample::on_message(const std::shared_ptr<vsomeip::message> &_request
 
     if (payload->get_length() >= sizeof(int)) {
         received_value = *reinterpret_cast<const int*>(payload->get_data());
-        std::cout << "GEAR DATA RECEIVING CLIENT : Received int: " << received_value << std::endl;
+        std::cout << "@@@@GEAR DATA RECEIVING CLIENT : Received int: " << received_value << std::endl;
     } else {
-        std::cerr << "GEAR DATA RECEIVING CLIENT : Invalid payload size!" << std::endl;
+        std::cerr << "@@@@GEAR DATA RECEIVING CLIENT : Invalid payload size!" << std::endl;
         return;
     }
     // this->gearValue = received_value;

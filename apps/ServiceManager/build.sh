@@ -26,4 +26,4 @@ echo "CMake 빌드 완료!"
 # cmake -Bbuild -DCMAKE_INSTALL_PREFIX=../../install_folder -DCMAKE_PREFIX_PATH=../../install_folder .
 # cmake --build=build
 # LD_LIBRARY_PATH=../../install_folder/lib/:$PWD/build/ ./build/service-example
-# LD_LIBRARY_PATH=../../install_folder/lib/:$PWD/build/ ./build/client-example
+# LD_LIBRARY_PATH=../../install_folder/lib/:$PWD/build/ ./build/client-example__

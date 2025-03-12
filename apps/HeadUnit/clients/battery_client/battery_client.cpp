@@ -1,42 +1,31 @@
-#include "./client-example.hpp"
-#include <iostream>
-#include <iomanip>
-#include <sstream>
-#include <cstring>
+#include "./battery_client.hpp"
 
-
-// 내부 이식을 하게되면 배터리 연결체랑 속도 연결체가 나뉘게됨.
-// 파트가 나뉘어진다는거지.. 
-// 서버는 일단 켜지면 속도와 배터리 데이터를 받아오는 프로세스를 실행하게됨.
-// 서버에서는 notify 되는 부분에서 제공을 하니...
-
-
-// 이벤트 그룹도 속도 / 배터리로 분할.
-// 
-client_sample::client_sample(bool _use_tcp) :
-        app_(vsomeip::runtime::get()->create_application("battery")), use_tcp_(_use_tcp) {
+BatteryClient::BatteryClient(QObject *parent)
+    : QObject(parent),
+      batteryValue(0),
+      app_(vsomeip::runtime::get()->create_application("battery"))
+{
 }
 
-bool client_sample::init() {
+bool BatteryClient::init()
+{
     if (!app_->init()) {
         std::cerr << "Couldn't initialize application" << std::endl;
         return false;
     }
 
-    std::cout << "Client settings [protocol=" << (use_tcp_ ? "TCP" : "UDP") << "]" << std::endl;
-
     // 상태 핸들러 등록
     app_->register_state_handler(
-            std::bind(&client_sample::on_state, this, std::placeholders::_1));
+            std::bind(&BatteryClient::on_state, this, std::placeholders::_1));
 
     // 메시지 핸들러 등록
     app_->register_message_handler(
             vsomeip::ANY_SERVICE, BATTERY_INSTANCE_ID, vsomeip::ANY_METHOD,
-            std::bind(&client_sample::on_message, this, std::placeholders::_1));
+            std::bind(&BatteryClient::on_message, this, std::placeholders::_1));
 
     // 가용성 핸들러 등록
     app_->register_availability_handler(VEHICLE_SERVICE_ID, BATTERY_INSTANCE_ID,
-            std::bind(&client_sample::on_availability, this,
+            std::bind(&BatteryClient::on_availability, this,
                       std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
 
     // 이벤트 구독
@@ -55,11 +44,21 @@ bool client_sample::init() {
     return true;
 }
 
-void client_sample::start() {
-    app_->start();
+void BatteryClient::start()
+{
+    // 별도 스레드에서 실행
+    std::thread vsomeip_thread([this]() {
+        app_->start();
+    });
+    vsomeip_thread.detach(); // 백그라운드 실행
 }
 
-void client_sample::stop() {
+// void BatteryClient::start() {
+//     app_->start();
+// }
+
+void BatteryClient::stop()
+{
     app_->clear_all_handler();
     app_->unsubscribe(VEHICLE_SERVICE_ID, BATTERY_INSTANCE_ID, VEHICLE_EVENTGROUP_ID);
     app_->release_event(VEHICLE_SERVICE_ID, BATTERY_INSTANCE_ID, BATTERY_EVENT_ID);
@@ -67,29 +66,36 @@ void client_sample::stop() {
     app_->stop();
 }
 
-void client_sample::on_state(vsomeip::state_type_e _state) {
+void BatteryClient::on_state(vsomeip::state_type_e _state)
+{
     if (_state == vsomeip::state_type_e::ST_REGISTERED) {
         app_->request_service(VEHICLE_SERVICE_ID, BATTERY_INSTANCE_ID);
     }
 }
 
-void client_sample::on_availability(vsomeip::service_t _service, vsomeip::instance_t _instance, bool _is_available) {
+void BatteryClient::on_availability(vsomeip::service_t _service, vsomeip::instance_t _instance, bool _is_available)
+{
     std::cout << "Service ["
               << std::hex << std::setfill('0') << std::setw(4) << _service << "."
               << std::setw(4) << _instance << "] is "
               << (_is_available ? "available." : "NOT available.") << std::endl;
 }
 
-void client_sample::on_message(const std::shared_ptr<vsomeip::message>& _response) {
+void BatteryClient::on_message(const std::shared_ptr<vsomeip::message> &_response)
+{
     std::shared_ptr<vsomeip::payload> payload = _response->get_payload();
     int received_value = 0;
 
     if (payload->get_length() >= sizeof(int)) {
         received_value = *reinterpret_cast<const int*>(payload->get_data());
         std::cout << "SERVER: Received int: " << received_value << std::endl;
+        if (this->batteryValue != received_value)
+        {
+            this->batteryValue = received_value;
+            emit batteryValueChanged(received_value);
+        }
     } else {
         std::cerr << "SERVER: Invalid payload size!" << std::endl;
         return;
     }
-
 }

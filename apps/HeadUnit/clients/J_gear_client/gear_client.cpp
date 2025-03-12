@@ -6,8 +6,8 @@
 #include <thread>
 #include <vsomeip/vsomeip.hpp>
 
-#include "../../server.hpp"
-
+#include "../server.hpp"
+#include "./gear_client.hpp"
 std::shared_ptr< vsomeip::application > app;
 std::mutex mutex;
 std::condition_variable condition;
@@ -33,13 +33,15 @@ void run() {
 //sending actual data. changed into HU input value.
   int value=0; // <- real gear value should be on value variable
   while (1){
-    std::cout << "Input number" << std::endl;
-    std::cin >> value;
+    // std::cout << "Input number" << std::endl;
+    // std::cin >> value;
 
     std::shared_ptr< vsomeip::payload > its_payload = vsomeip::runtime::get()->create_payload();
     std::vector<vsomeip::byte_t> its_payload_data(
       reinterpret_cast<vsomeip::byte_t *>(&value),
       reinterpret_cast<vsomeip::byte_t *>(&value) + sizeof(int)
+      // reinterpret_cast<vsomeip::byte_t *>(&gearValue),
+      // reinterpret_cast<vsomeip::byte_t *>(&gearValue) + sizeof(int)
   );
   its_payload->set_data(its_payload_data);
   request->set_payload(its_payload);
