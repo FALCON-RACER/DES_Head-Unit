@@ -6,8 +6,8 @@
 #include <thread>
 #include <vsomeip/vsomeip.hpp>
 
-#include "../../server.hpp"
-
+#include "../server.hpp"
+#include "./gear_client.hpp"
 std::shared_ptr< vsomeip::application > app;
 std::mutex mutex;
 std::condition_variable condition;

@@ -1,16 +1,24 @@
 #ifndef GEAR_CLIENT_HPP
 #define GEAR_CLIENT_HPP
 
-#include "../../headers.hpp"
-#include "../../server.hpp"
+#include <QObject>
 
-class gearClient {
+#include "../headers.hpp"
+#include "../server.hpp"
+
+class GearClient : public QObject
+{
+    Q_OBJECT
 public:
-    gearClient();
+    explicit GearClient(QObject *parent = nullptr);
 
     bool init();
     void start();
     void stop();
+    int gearValue;
+
+signals:
+    void gearValueChanged(int newGearValue);
 
 private:
     void on_state(vsomeip::state_type_e _state);

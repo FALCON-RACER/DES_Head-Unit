@@ -1,8 +1,8 @@
-#include "../../headers.hpp"
-#include "../../server.hpp"
+#include "../headers.hpp"
+#include "../server.hpp"
 #include "./al_receiver.hpp"
 //받은 int값을 처리.
-std::shared_ptr<vsomeip::application> app;
+// std::shared_ptr<vsomeip::application> app;
 
 void alClient::on_message(const std::shared_ptr<vsomeip::message> &_request) {
   std::shared_ptr<vsomeip::payload> payload = _request->get_payload();
@@ -18,6 +18,30 @@ void alClient::on_message(const std::shared_ptr<vsomeip::message> &_request) {
   this->alValue = received_value;
 }
 
+void on_availability(vsomeip::service_t _service, vsomeip::instance_t _instance, bool _is_available) {
+  std::cout << (_is_available ? "AL receiver available." : "AL receiver NOT available.") << std::endl;
+}
+
+void alClient::start() {
+  std::thread al_thread([this](){
+      app->start();});
+  al_thread.detach();
+}
+
+bool alClient::init() {
+  if (!app->init())
+  {
+      std::cerr << "Couldn't initialize application" << std::endl;
+      return false;
+  }   
+  app->register_availability_handler(VEHICLE_SERVICE_ID, AL_INSTANCE_ID, on_availability);
+  std::this_thread::sleep_for(std::chrono::seconds(1));
+
+  app->request_service(VEHICLE_SERVICE_ID, AL_INSTANCE_ID);
+  this->start();
+  return true;
+}
+
 // int main() {
 //    app = vsomeip::runtime::get()->create_application("ambient");
 //    app->init();
@@ -26,11 +50,11 @@ void alClient::on_message(const std::shared_ptr<vsomeip::message> &_request) {
 //    app->offer_service(VEHICLE_SERVICE_ID, AL_INSTANCE_ID);
 //    app->start();
 // }
-void alClient::start() {
-  app = vsomeip::runtime::get()->create_application("ambient");
-  app->init();
-  std::this_thread::sleep_for(std::chrono::seconds(2));
-  app->register_message_handler(VEHICLE_SERVICE_ID, AL_INSTANCE_ID, AL_SET_METHOD_ID, on_message);
-  app->offer_service(VEHICLE_SERVICE_ID, AL_INSTANCE_ID);
-  app->start();
-}
+// void alClient::start() {
+//   app = vsomeip::runtime::get()->create_application("ambient");
+//   app->init();
+//   std::this_thread::sleep_for(std::chrono::seconds(2));
+//   app->register_message_handler(VEHICLE_SERVICE_ID, AL_INSTANCE_ID, AL_SET_METHOD_ID, on_message);
+//   app->offer_service(VEHICLE_SERVICE_ID, AL_INSTANCE_ID);
+//   app->start();
+// }

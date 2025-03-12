@@ -1,7 +1,7 @@
-#ifndef SOMEIP_H
-#define SOMEIP_H
+#ifndef ALSENDER_H
+#define ALSENDER_H
 
-#include "./server.hpp"
+#include "../server.hpp"
 
 #include <QObject>
 #include <QDebug>
@@ -15,18 +15,18 @@
 #include <thread>
 #include <csignal>
 #include <iostream>
-class SomeIP : public QObject
+class Alsender : public QObject
 {
 	Q_OBJECT
 public:
-	// SomeIP();
 	std::shared_ptr<vsomeip::application> app;
 	bool init();
 	void start();
 	
-    explicit SomeIP(QObject *parent = nullptr) : QObject(parent), app(vsomeip::runtime::get()->create_application("gear")){
+	explicit Alsender(QObject *parent = nullptr) : QObject(parent), app(vsomeip::runtime::get()->create_application("ambient")){
 	}
-	Q_INVOKABLE void set_gear_data(int gearValue);	
+	// Q_INVOKABLE void set_gear_data(int gearValue);	
+	Q_INVOKABLE void set_al_data(int);	
 	// Q_INVOKABLE void send_gear_data(int);
 
 };

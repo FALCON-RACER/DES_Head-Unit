@@ -14,6 +14,7 @@
 #include "./clients/speed_client/speed_client.hpp"
 #include "./clients/battery_client/battery_client.hpp"
 #include "./clients/gear_data_receiving_client/gear_client.hpp"
+#include "./clients/ambient_sender/alsender.hpp"
 
 
 int main(int argc, char *argv[])
@@ -34,8 +35,6 @@ int main(int argc, char *argv[])
     Spotify spotify;
     engine.rootContext()->setContextProperty("spotify", &spotify);
 
-    // someIP.app->request_service(VEHICLE_SERVICE_ID, GEAR_INSTANCE_ID);
-    // app.request_service(VEHICLE_SERVICE_ID, GEAR_INSTANCE_ID);
     BatteryClient batteryClient;
     engine.rootContext()->setContextProperty("batteryClient", &batteryClient);
 
@@ -54,14 +53,13 @@ int main(int argc, char *argv[])
 
     SomeIP someIP;
     engine.rootContext()->setContextProperty("someIP", &someIP);
-    
+ 
     someIP.init();
-    // QObject::connect(
-    //     &engine,
-    //     &QQmlApplicationEngine::objectCreationFailed,
-    //     &app,
-    //     []() { QCoreApplication::exit(-1); },
-    //     Qt::QueuedConnection);
+
+    Alsender alClient;
+    engine.rootContext()->setContextProperty("alClient", &alClient);
+    
+    alClient.init();
     
     QObject::connect(
         &engine,
@@ -89,13 +87,13 @@ int main(int argc, char *argv[])
             controller.setCurrentGear(gears[gearIndex]);
             gearIndex = (gearIndex + 1) % gears.size();
     
-            //Ambient Light
+            // Ambient Light
             // static QStringList colors = {"#4deeea", "#74ee15", "#ffe700", "#f000ff", "#001eff"};
-    //         static int colorIndex = 0;
-    //         colorIndex = alClient.alValue; // <- set colorIndex to received value
+            // static int colorIndex = 0;
+            // colorIndex = alClient.alValue; // <- set colorIndex to received value
     
-    //         controller.setAmbientLighting(colors[colorIndex]);
-    //         colorIndex = (colorIndex + 1) % colors.size();
+            // controller.setAmbientLighting(colors[colorIndex]);
+            // colorIndex = (colorIndex + 1) % colors.size();
     },
         Qt::QueuedConnection);
     

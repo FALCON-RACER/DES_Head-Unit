@@ -1,25 +1,23 @@
-#ifndef SPEED_CLIENT_HPP
-#define SPEED_CLIENT_HPP
+#ifndef GEAR_CLIENT_HPP
+# define GEAR_CLIENT_HPP
 
-#include <QObject>
-
-#include "../headers.hpp"
+#include <vsomeip/vsomeip.hpp>
+#include <chrono>
+#include <condition_variable>
+#include <mutex>
+#include <set>
+#include <string>
+#include <thread>
+#include <csignal>
 #include "../server.hpp"
 
-class SpeedClient : public QObject
-{
-    Q_OBJECT
-
+class gearClient {
 public:
-    explicit SpeedClient(QObject *parent = nullptr);
+    gearClient(bool _use_tcp);
 
     bool init();
     void start();
     void stop();
-    float speedValue;
-
-signals:
-    void speedValueChanged(float newSpeedValue);
 
 private:
     void on_state(vsomeip::state_type_e _state);
@@ -27,6 +25,10 @@ private:
     void on_message(const std::shared_ptr<vsomeip::message>& _response);
 
     std::shared_ptr<vsomeip::application> app_;
+    bool use_tcp_;
+
+  gearClient(void);
+  ~gearClient(void);
 };
 
-#endif // speedClient_HPP
+#endif

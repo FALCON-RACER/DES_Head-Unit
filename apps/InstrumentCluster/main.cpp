@@ -5,6 +5,13 @@
 
 // for test
 #include <QTimer>
+#include <iostream>
+#include <vsomeip/vsomeip.hpp>
+#include "./clients/speed_client/speed_client.hpp"
+#include "./clients/battery_client/battery_client.hpp"
+#include "./clients/gear_data_receiving_client/gear_client.hpp"
+#include "./clients/ambient_sender/alsender.hpp"
+
 
 #include "instrumentclustercontroller.h"
 //TODO: 2025-02-20. For ambient light, send/recive data type change required.
@@ -14,13 +21,23 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
 
     InstrumentClusterController controller;
-    
-    speedClient speedClient();
-    batteryClient batteryClient();
-    gearClient gearClient();
-    alClient alClient();
-
     engine.rootContext()->setContextProperty("instrumentClusterController", &controller);
+
+    BatteryClient batteryClient;
+    engine.rootContext()->setContextProperty("batteryClient", &batteryClient);
+
+    GearClient gearClient;
+    engine.rootContext()->setContextProperty("gearClient", &gearClient);
+
+    SpeedClient speedClient;
+    engine.rootContext()->setContextProperty("speedClient", &speedClient);
+
+    if (batteryClient.init())
+        batteryClient.start();
+    if (speedClient.init())
+        speedClient.start();
+    if (gearClient.init())
+        gearClient.start();
 
     QObject::connect(
         &engine,
@@ -31,19 +48,12 @@ int main(int argc, char *argv[])
     engine.loadFromModule("InstrumentCluster", "Main");
 
     qDebug() << "Instrument Cluster launched";
-
-    if (speedClient.init())
-        speedClient.start();
-    if (batteryClient.init())
-        batteryClient.start();
-    if (gearClient.init())
-        gearClient.start();
     
-    alClient.start();
+    // alClient.start();
 
     // test code
     QTimer *timer = new QTimer(&controller);
-    QObject::connect(timer, &QTimer::timeout, [&controller]() {
+    QObject::connect(timer, &QTimer::timeout, [&controller, &speedClient,&batteryClient,&gearClient]() {
         //Speed
         static int speed = 0;
         speed = speedClient.speedValue;
@@ -68,11 +78,11 @@ int main(int argc, char *argv[])
 
         //Ambient Light
         // static QStringList colors = {"#4deeea", "#74ee15", "#ffe700", "#f000ff", "#001eff"};
-        static int colorIndex = 0;
-        colorIndex = alClient.alValue; // <- set colorIndex to received value
+        // static int colorIndex = 0;
+        // colorIndex = alClient.alValue; // <- set colorIndex to received value
 
-        controller.setAmbientLighting(colors[colorIndex]);
-        colorIndex = (colorIndex + 1) % colors.size();
+        // controller.setAmbientLighting(colors[colorIndex]);
+        // colorIndex = (colorIndex + 1) % colors.size();
     });
     timer->start(1000);
 
