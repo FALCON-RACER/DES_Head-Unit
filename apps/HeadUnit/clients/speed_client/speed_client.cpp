@@ -10,7 +10,7 @@ SpeedClient::SpeedClient(QObject *parent)
 bool SpeedClient::init()
 {
     if (!app_->init()) {
-        std::cerr << "Couldn't initialize application" << std::endl;
+        std::cerr << "speedclient : Couldn't initialize application" << std::endl;
         return false;
     }
 
