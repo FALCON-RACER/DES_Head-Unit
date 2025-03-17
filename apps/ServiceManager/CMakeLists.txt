@@ -7,7 +7,7 @@ set(EXAMPLE_CONFIG_FILES
     ./config/vsomeip.json
 )
 
-find_package (vsomeip3 3.4.10 REQUIRED)
+find_package (vsomeip3 3.5.3 REQUIRED)
 find_package( Boost 1.55 COMPONENTS system thread log REQUIRED )
 
 
@@ -15,10 +15,6 @@ include_directories (
     ${Boost_INCLUDE_DIR}
     ${VSOMEIP_INCLUDE_DIRS}
 )
-
-message(STATUS "VSOMEIP_INCLUDE_DIRS: ${VSOMEIP_INCLUDE_DIRS}")
-message(STATUS "VSOMEIP_LIBRARIES: ${VSOMEIP_LIBRARIES}")
-
 
 # Server binary file
 add_executable(server
