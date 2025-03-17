@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(VSOMEIP_CONFIG_FILES "./vsomeip.json")
 
 find_package(Qt6 6.5 REQUIRED COMPONENTS Quick WebEngineWidgets Qml)
-find_package(vsomeip3 3.4.10 REQUIRED)
+find_package(vsomeip3 3.5.3 REQUIRED)
 find_package( Boost 1.55 COMPONENTS system thread log REQUIRED)
 
 
