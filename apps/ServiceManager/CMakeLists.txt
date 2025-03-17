@@ -22,13 +22,13 @@ message(STATUS "VSOMEIP_LIBRARIES: ${VSOMEIP_LIBRARIES}")
 
 # Server binary file
 add_executable(server
-        ../src/main.cpp 
-        ../src/service-main.cpp 
-        ../src/service_base/service-base.cpp 
-        ../src/speed-src/speed/speed.cpp 
-        ../src/speed-src/speed/canreceiver.cpp 
-        ../src/battery-src/battery/battery.cpp 
-        ../src/gear-src/gear/gear.cpp
+        ./src/main.cpp 
+        ./src/service-main.cpp 
+        ./src/service_base/service-base.cpp 
+        ./src/speed-src/speed/speed.cpp 
+        ./src/speed-src/speed/canreceiver.cpp 
+        ./src/battery-src/battery/battery.cpp 
+        ./src/gear-src/gear/gear.cpp
         ./config/vsomeip.json
         ${EXAMPLE_CONFIG_FILES}
         )
