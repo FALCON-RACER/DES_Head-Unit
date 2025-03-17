@@ -17,3 +17,5 @@ public:
 
     bool receive(float& speed);
 };
+
+#endif
