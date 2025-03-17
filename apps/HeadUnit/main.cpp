@@ -66,34 +66,7 @@ int main(int argc, char *argv[])
         &QQmlApplicationEngine::objectCreationFailed,
         &app,
         [&controller, &speedClient,&batteryClient,&gearClient]() { QCoreApplication::exit(-1);
-            static int speed = 0;
-            speed = speedClient.speedValue;
-            controller.setSpeed(speed);
-    
-            //Battery
-            static int batteryPercentage = 100;
-            batteryPercentage = batteryClient.batteryValue;
-            controller.setBatteryPercentage(batteryPercentage);
-    
-            static int chargingState = false;
-            chargingState = !chargingState;
-            controller.setChargingState(chargingState);
-    
-            //Gear
-            static QStringList gears = {"P", "R", "N", "D"};
-            static int gearIndex = 0;
-            gearIndex = gearClient.gearValue; // Drive = 3, NEUTRAL=2, REVERSE=1, PARKING=0
-    
-            controller.setCurrentGear(gears[gearIndex]);
-            gearIndex = (gearIndex + 1) % gears.size();
-    
-            // Ambient Light
-            // static QStringList colors = {"#4deeea", "#74ee15", "#ffe700", "#f000ff", "#001eff"};
-            // static int colorIndex = 0;
-            // colorIndex = alClient.alValue; // <- set colorIndex to received value
-    
-            // controller.setAmbientLighting(colors[colorIndex]);
-            // colorIndex = (colorIndex + 1) % colors.size();
+            
     },
         Qt::QueuedConnection);
     
@@ -102,35 +75,6 @@ int main(int argc, char *argv[])
 
     engine.rootContext()->setContextProperty("HeadUnit", &controller);
 
-    // // test code
-    // QTimer *timer = new QTimer(&controller);
-    // QObject::connect(timer, &QTimer::timeout, [&controller]() {
-    //     // static QStringList gears = {"P", "R", "N", "D"};
-    //     // static int gearIndex = 0;
-    //     // controller.setCurrentGear(gears[gearIndex]);
-    //     // gearIndex = (gearIndex + 1) % gears.size();
-
-    //     // static int speed = 0;
-    //     // speed = (speed + 10) % 310;
-    //     // controller.setSpeed(speed);
-
-    //     // static int batteryPercentage = 100;
-    //     // batteryPercentage = (batteryPercentage - 10) < 0 ? 100 : batteryPercentage - 10;
-    //     // controller.setBatteryPercentage(batteryPercentage);
-
-    //     // static int chargingState = false;
-    //     // chargingState = !chargingState;
-    //     // controller.setChargingState(chargingState);
-        
-    //     QVector<int> colors = {20, 157, 100, 300, 200};
-    //     static int colorIndex = 0;
-
-    //     // colorIndex = alClient.alValue;
-    //     controller.setAmbientLighting(colors[colorIndex]);
-    //     colorIndex = (colorIndex + 1) % colors.size();
-    //     std::cout << controller.ambientLighting() << std::endl;
-    // });
-    // timer->start(1000);
 
     qDebug() << "Head Unit launched";
 
