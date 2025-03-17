@@ -2,6 +2,7 @@
 # define SPEED_HPP
 
 #include "../../service_base/service-base.hpp"
+#include "./canreceiver.hpp"
 
 class speedObject : public service_sample
 {  

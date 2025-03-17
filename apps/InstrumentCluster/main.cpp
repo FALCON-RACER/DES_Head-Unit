@@ -5,12 +5,12 @@
 
 // for test
 #include <QTimer>
-#include <iostream>
+// #include <iostream>
 #include <vsomeip/vsomeip.hpp>
 #include "./clients/speed_client/speed_client.hpp"
 #include "./clients/battery_client/battery_client.hpp"
 #include "./clients/gear_data_receiving_client/gear_client.hpp"
-#include "./clients/ambient_sender/alsender.hpp"
+#include "./clients/ambient_receiver/al_receiver.hpp"
 
 
 #include "instrumentclustercontroller.h"
@@ -32,12 +32,17 @@ int main(int argc, char *argv[])
     SpeedClient speedClient;
     engine.rootContext()->setContextProperty("speedClient", &speedClient);
 
+    AlClient ambientClient;
+    engine.rootContext()->setContextProperty("ambientClient", &ambientClient);
+
     if (batteryClient.init())
         batteryClient.start();
     if (speedClient.init())
         speedClient.start();
     if (gearClient.init())
         gearClient.start();
+    if (ambientClient.init())
+        ambientClient.start();
 
     QObject::connect(
         &engine,
@@ -53,7 +58,7 @@ int main(int argc, char *argv[])
 
     // test code
     QTimer *timer = new QTimer(&controller);
-    QObject::connect(timer, &QTimer::timeout, [&controller, &speedClient,&batteryClient,&gearClient]() {
+    QObject::connect(timer, &QTimer::timeout, [&controller, &speedClient,&batteryClient,&gearClient, &ambientClient]() {
         //Speed
         static int speed = 0;
         speed = speedClient.speedValue;
@@ -76,13 +81,13 @@ int main(int argc, char *argv[])
         controller.setCurrentGear(gears[gearIndex]);
         gearIndex = (gearIndex + 1) % gears.size();
 
-        //Ambient Light
-        // static QStringList colors = {"#4deeea", "#74ee15", "#ffe700", "#f000ff", "#001eff"};
-        // static int colorIndex = 0;
-        // colorIndex = alClient.alValue; // <- set colorIndex to received value
+        // Ambient Light
+        static QStringList colors = {"#4deeea", "#74ee15", "#ffe700", "#f000ff", "#001eff"};
+        static int colorIndex = 0;
+        colorIndex = ambientClient.alValue; // <- set colorIndex to received value
 
-        // controller.setAmbientLighting(colors[colorIndex]);
-        // colorIndex = (colorIndex + 1) % colors.size();
+        controller.setAmbientLighting(colors[colorIndex]);
+        colorIndex = (colorIndex + 1) % colors.size();
     });
     timer->start(1000);
 

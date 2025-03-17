@@ -40,7 +40,7 @@ void run() {
   its_payload->set_data(its_payload_data);
   request->set_payload(its_payload);
   app->send(request);
-  std::this_thread::sleep_for(std::chrono::seconds(1));
+  std::this_thread::sleep_for(std::chrono::milliseconds(80));
 
   }
   std::cout << "CLIENT : DATA SENDED" << std::endl;

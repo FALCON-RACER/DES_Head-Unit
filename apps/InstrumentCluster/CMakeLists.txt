@@ -19,6 +19,7 @@ qt_standard_project_setup(REQUIRES 6.5)
 
 qt_add_executable(instrument-cluster
     main.cpp
+    clients/ambient_receiver/al_receiver.cpp
     clients/speed_client/speed_client.cpp
     clients/battery_client/battery_client.cpp
     clients/gear_data_receiving_client/gear_client.cpp
@@ -38,6 +39,7 @@ qt_add_qml_module(instrument-cluster
         SOURCES 
             instrumentclustercontroller.h 
             instrumentclustercontroller.cpp
+            clients/ambient_receiver/al_receiver.hpp    
             clients/speed_client/speed_client.hpp
             clients/battery_client/battery_client.hpp
             clients/gear_data_receiving_client/gear_client.hpp

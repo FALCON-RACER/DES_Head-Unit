@@ -4,7 +4,7 @@
 //받은 int값을 처리.
 // std::shared_ptr<vsomeip::application> app;
 
-void alClient::on_message(const std::shared_ptr<vsomeip::message> &_request) {
+void AlClient::on_message(const std::shared_ptr<vsomeip::message> &_request) {
   std::shared_ptr<vsomeip::payload> payload = _request->get_payload();
   int received_value = 0;
 
@@ -22,13 +22,13 @@ void on_availability(vsomeip::service_t _service, vsomeip::instance_t _instance,
   std::cout << (_is_available ? "AL receiver available." : "AL receiver NOT available.") << std::endl;
 }
 
-void alClient::start() {
+void AlClient::start() {
   std::thread al_thread([this](){
       app->start();});
   al_thread.detach();
 }
 
-bool alClient::init() {
+bool AlClient::init() {
   if (!app->init())
   {
       std::cerr << "Couldn't initialize application" << std::endl;
@@ -50,7 +50,7 @@ bool alClient::init() {
 //    app->offer_service(VEHICLE_SERVICE_ID, AL_INSTANCE_ID);
 //    app->start();
 // }
-// void alClient::start() {
+// void AlClient::start() {
 //   app = vsomeip::runtime::get()->create_application("ambient");
 //   app->init();
 //   std::this_thread::sleep_for(std::chrono::seconds(2));

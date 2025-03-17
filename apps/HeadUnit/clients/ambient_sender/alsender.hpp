@@ -1,6 +1,7 @@
 #ifndef ALSENDER_H
 #define ALSENDER_H
 
+#include "../headers.hpp"
 #include "../server.hpp"
 
 #include <QObject>
