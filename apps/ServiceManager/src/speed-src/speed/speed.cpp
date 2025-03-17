@@ -171,7 +171,7 @@ void speedObject::canDataReceive() {
     std::cout << "can Data Receive started" << std::endl;
     float filtered_speed = 0.0f;
     float weight = 0.6;
-    CANReceiver canData("can0");
+    CANReceiver receiver("can0");
 
     while (running_) {
         std::unique_lock<std::mutex> its_lock(can_mutex_);
@@ -180,8 +180,8 @@ void speedObject::canDataReceive() {
         while (is_offered_ && running_) 
             {
                 {   
-                    canData.canRead();
-                    filtered_speed = (1-weight)*filtered_speed + (weight)*canData.getSpeed();
+                    receiver.receive(filtered_speed);
+                    // filtered_speed = (1-weight)*filtered_speed + (weight)*canData.getSpeed();
                     this->speedData = filtered_speed;
                     std::cout << "Speed server : in can data receive loop : filtered_speed : " << filtered_speed << std::endl;
                     // if (filtered_speed >= 100.0f)
