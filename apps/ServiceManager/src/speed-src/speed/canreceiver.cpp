@@ -55,10 +55,10 @@ bool CANReceiver::receive(float& speed) {
     }
 
     // CAN ID 체크 (필요에 따라 특정 ID만 처리)
-    if (frame.can_id != 0x100) {
-        std::cerr << "Unknown CAN ID: " << frame.can_id << std::endl;
-        return false;
-    }
+    // if (frame.can_id != 0x100) {
+    //     std::cerr << "Unknown CAN ID: " << frame.can_id << std::endl;
+    //     return false;
+    // }
 
     // 데이터 복사 (float 형태로 정확히 처리)
     memcpy(&speed, frame.data, sizeof(float));
