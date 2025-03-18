@@ -74,6 +74,16 @@ int CANReceiver::get(void)
     struct ifreq ifr;
     struct can_frame frame;
 
+
+    const float wheelDiameter = 6.7; // cm
+    const float pi = 3.14159;
+    const float wheelCircumference = wheelDiameter * pi;
+    const unsigned int numSlots = 20; // number of slots of the disk used for the speedsensor
+    const unsigned int scaleFactor = 10000;
+    const unsigned long scaledDistancePerPulse = (unsigned long)(wheelCircumference / numSlots * scaleFactor);
+    const unsigned int convertToPerSecFactor = 10;
+    const unsigned int sizeOfUnsignedLong = sizeof(unsigned long);
+
     // CAN 소켓 생성
     if ((s = socket(PF_CAN, SOCK_RAW, CAN_RAW)) < 0) {
         perror("CAN socket");
@@ -118,9 +128,10 @@ int CANReceiver::get(void)
     std::cout << std::endl;
 
     // 데이터(int형)로 변환
-    int value = 0;
+    float value = 0;
+    int new_value = 0;
     if(frame.can_dlc >= 4) {
-        memcpy(&value, frame.data, sizeof(int));
+        memcpy(&value, frame.data, sizeof(float));
         std::cout << "수신한 int 값: " << value << std::endl;
     } else {
         std::cerr << "CAN 데이터 길이(DLC)가 4바이트 미만입니다." << std::endl;
