@@ -33,26 +33,26 @@ std::mutex mutex;
 std::condition_variable condition;
 
 // sending the actual data (will be gear data) to server.
-void send_gear_data(int data) {
-    std::unique_lock<std::mutex> its_lock(mutex);
-    condition.wait(its_lock);
+// void send_gear_data(int data) {
+//     std::unique_lock<std::mutex> its_lock(mutex);
+//     condition.wait(its_lock);
 
-    std::shared_ptr<vsomeip::message> request;
-    request = vsomeip::runtime::get()->create_request();
-    request->set_service(VEHICLE_SERVICE_ID);
-    request->set_instance(GEAR_INSTANCE_ID);
-    request->set_method(JOY_GEAR_SET_MID);
+//     std::shared_ptr<vsomeip::message> request;
+//     request = vsomeip::runtime::get()->create_request();
+//     request->set_service(VEHICLE_SERVICE_ID);
+//     request->set_instance(GEAR_INSTANCE_ID);
+//     request->set_method(JOY_GEAR_SET_MID);
 
-    std::shared_ptr<vsomeip::payload> its_payload = vsomeip::runtime::get()->create_payload();
-    std::vector<vsomeip::byte_t> its_payload_data(
-        reinterpret_cast<vsomeip::byte_t *>(&data),
-        reinterpret_cast<vsomeip::byte_t *>(&data) + sizeof(int));
-    its_payload->set_data(its_payload_data);
-    request->set_payload(its_payload);
-    app->send(request);
-    std::cout << "CLIENT : DATA SENDED" << std::endl;
-    std::this_thread::sleep_for(std::chrono::seconds(1));
-}
+//     std::shared_ptr<vsomeip::payload> its_payload = vsomeip::runtime::get()->create_payload();
+//     std::vector<vsomeip::byte_t> its_payload_data(
+//         reinterpret_cast<vsomeip::byte_t *>(&data),
+//         reinterpret_cast<vsomeip::byte_t *>(&data) + sizeof(int));
+//     its_payload->set_data(its_payload_data);
+//     request->set_payload(its_payload);
+//     app->send(request);
+//     std::cout << "CLIENT : DATA SENDED" << std::endl;
+//     std::this_thread::sleep_for(std::chrono::seconds(1));
+// }
 
 void set_gear(ShanWanGamepadInput input, int received_value) {
     if (input.button_a || received_value == 3)
@@ -117,7 +117,7 @@ int main() {
 
         if (input.button) {
             set_gear(input, -1);
-            send_gear_data(gear);
+            // send_gear_data(gear);
         }
         else {
             if (gear == PARKING || gear == NEUTRAL)
