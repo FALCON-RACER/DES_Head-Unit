@@ -1,5 +1,5 @@
-#include "PiRacer/PiRacer.hpp"
-#include "Gamepad/ShanwanGamepad.hpp"
+#include "./PiRacer/PiRacer.hpp"
+#include "./Gamepad/ShanwanGamepad.hpp"
 #include "../ServiceManager/src/server.hpp"
 
 #include <vsomeip/vsomeip.hpp>
@@ -77,7 +77,7 @@ void on_message(const std::shared_ptr<vsomeip::message> &_response) {
 
     if (payload->get_length() >= sizeof(int)) {
         received_value = *reinterpret_cast<const int *>(payload->get_data());
-        set_gear(NULL, received_value);
+        // set_gear(0, received_value);
         std::cout << "SERVER: Received int: " << received_value << std::endl;
     }
     else {
@@ -89,7 +89,7 @@ void on_message(const std::shared_ptr<vsomeip::message> &_response) {
 void init_vSOMEIP() {
     app = vsomeip::runtime::get()->create_application("gear");
     app->init();
-    app->register_availability_handler(VEHICLE_SERVICE_ID, GEAR_INSTANCE_ID, on_availability);
+    // app->register_availability_handler(VEHICLE_SERVICE_ID, GEAR_INSTANCE_ID, on_availability);
     std::this_thread::sleep_for(std::chrono::seconds(1));
     app->request_service(VEHICLE_SERVICE_ID, GEAR_INSTANCE_ID);
     std::this_thread::sleep_for(std::chrono::seconds(1));
