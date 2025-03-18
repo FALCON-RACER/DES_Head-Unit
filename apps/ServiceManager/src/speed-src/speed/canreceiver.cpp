@@ -55,25 +55,51 @@ bool CANReceiver::canRead() {
     int nbytes = read(socket_fd, &frame, sizeof(struct can_frame));
     std::cout << "nbytes : " << nbytes << std::endl;
     if (nbytes == sizeof(struct can_frame)) {
+        std::cout << "CAN ID: 0x" << std::hex << frame.can_id << std::dec << "\n";
+        std::cout << "DLC: " << static_cast<int>(frame.can_dlc) << "\n";
+    
+        std::cout << "CAN Data: ";
+        for (int i = 0; i < frame.can_dlc; i++)
+            printf("%02X ", frame.data[i]);
+        std::cout << std::endl;
+    
         if(frame.can_id == 0x7 && frame.can_dlc == 4) {
-            float rpm;
+            float rpm = 0.0f;
             memcpy(&rpm, frame.data, sizeof(float));
-            std::cout << "received RPM value : " << rpm << std::endl;
+            std::cout << "RPM: " << rpm << "\n";
+        } else {
+            std::cout << "Received frame with unexpected CAN ID or DLC.\n";
+            return false;
         }
+        return true;
+    } else if (nbytes < 0) {
+        perror("CAN read failed");
+        return false;
+    } else {
+        std::cerr << "Incomplete CAN frame received (size = " << nbytes << ")\n";
+        return false;
     }
     
-    if (nbytes < 0) {
-        if (errno == EAGAIN || errno == EWOULDBLOCK) {
-            return false;  // No data available, not an error
-        }
-        perror("Error reading CAN frame");
-        return false;
-    }
-    if (nbytes < sizeof(struct can_frame)) {
-        std::cerr << "Incomplete CAN frame" << std::endl;
-        return false;
-    }
-    return true;
+    // if (nbytes == sizeof(struct can_frame)) {
+    //     if(frame.can_id == 0x7 && frame.can_dlc == 4) {
+    //         float rpm;
+    //         memcpy(&rpm, frame.data, sizeof(float));
+    //         std::cout << "received RPM value : " << rpm << std::endl;
+    //     }
+    // }
+    
+    // if (nbytes < 0) {
+    //     if (errno == EAGAIN || errno == EWOULDBLOCK) {
+    //         return false;  // No data available, not an error
+    //     }
+    //     perror("Error reading CAN frame");
+    //     return false;
+    // }
+    // if (nbytes < sizeof(struct can_frame)) {
+    //     std::cerr << "Incomplete CAN frame" << std::endl;
+    //     return false;
+    // }
+    // return true;
 }
 
 // Extract speed from the received CAN frame
@@ -88,8 +114,8 @@ float CANReceiver::calculateSpeed(const struct can_frame* frame) {
     // memcpy (&speed, frame->data, sizeof(float));
     memcpy (&speed, frame->data, sizeof(float));
     // std::cout << "memcpy value : " <<speed << std::endl;
-    for (int i = 0; i < 16; i++)
-        std::cout << " 0 : "<<static_cast<int>(frame->data[i]) << std::endl;
+    // for (int i = 0; i < 16; i++)
+    //     std::cout << i  << " : "<<static_cast<int>(frame->data[i]) << std::endl;
 
     // float speed = static_cast<float>((frame->data[0] << 8) | frame->data[1]);
     // float speed = 120;
