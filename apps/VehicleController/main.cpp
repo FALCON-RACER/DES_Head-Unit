@@ -94,7 +94,7 @@ void init_vSOMEIP() {
     app->request_service(VEHICLE_SERVICE_ID, GEAR_INSTANCE_ID);
     std::this_thread::sleep_for(std::chrono::seconds(1));
     app->register_message_handler(VEHICLE_SERVICE_ID, GEAR_INSTANCE_ID, JOY_GEAR_SET_MID, on_message);
-    std::thread sender(run);
+    std::thread sender(send_gear_data);
     app->start();
 }
 
