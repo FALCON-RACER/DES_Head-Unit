@@ -48,7 +48,7 @@ public:
 
     bool canRead();
     float getSpeed() const;
-
+    int get();
 private:
     float calculateSpeed(const struct can_frame* frame) const;
     void openSocket(const std::string& interface_name);
