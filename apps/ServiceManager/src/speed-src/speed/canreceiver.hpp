@@ -44,6 +44,7 @@ private:
 
 public:
     CANReceiver(const std::string& interface_name);
+    CANReceiver();
     ~CANReceiver();
 
     bool canRead();
