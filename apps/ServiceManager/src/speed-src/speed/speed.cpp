@@ -184,7 +184,7 @@ void speedObject::canDataReceive() {
                     filtered_speed = receiver.getSpeed();
                     // filtered_speed = (1-weight)*filtered_speed + (weight)*canData.getSpeed();
                     this->speedData = filtered_speed;
-                    std::cout << "Speed server : in can data receive loop : filtered_speed : " << filtered_speed << std::endl;
+                    std::cout << "[Speed server] in can data receive loop : filtered_speed : " << filtered_speed << std::endl;
                     // if (filtered_speed >= 100.0f)
                     //     filtered_speed = 0.0f;
                     // filtered_speed += 0.1;

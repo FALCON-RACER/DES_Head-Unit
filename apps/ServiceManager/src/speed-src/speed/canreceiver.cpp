@@ -1,7 +1,7 @@
 #include "./canreceiver.hpp"
 #include "../../headers.hpp"
-// #include "mcp2515_can.h"
-// #include <SPI.h>
+
+#include "canreceiver.hpp"
 
 // Constructor: Opens and binds the CAN socket to the specified interface
 CANReceiver::CANReceiver(const std::string& interface_name) : socket_fd(-1) {
@@ -18,33 +18,32 @@ CANReceiver::~CANReceiver() {
 
 // Opens a CAN socket and binds it to the given interface
 void CANReceiver::openSocket(const std::string& interface_name) {
-    // Open the CAN_RAW socket
-    try {
-        socket_fd = socket(PF_CAN, SOCK_RAW, CAN_RAW);
-        if (socket_fd < 0) {
-            perror("Error while opening CAN socket");
-            throw std::runtime_error("Failed to open CAN socket");
-        }
+    socket_fd = socket(PF_CAN, SOCK_RAW, CAN_RAW);
+    if (socket_fd < 0) {
+        perror("Socket");
+        throw std::runtime_error("Failed to open CAN socket");
+    }
 
-        // Get the interface index for the specified CAN interface
-        std::strncpy(ifr.ifr_name, interface_name.c_str(), IFNAMSIZ - 1);
-        if (ioctl(socket_fd, SIOCGIFINDEX, &ifr) < 0) {
-            perror("Error finding CAN interface");
-            close(socket_fd);  // Ensure socket is closed before throwing
-            throw std::runtime_error("Failed to find CAN interface");
-        }
+    std::strncpy(ifr.ifr_name, interface_name.c_str(), IFNAMSIZ - 1);
+    if (ioctl(socket_fd, SIOCGIFINDEX, &ifr) < 0) {
+        perror("Ioctl");
+        close(socket_fd);
+        throw std::runtime_error("Failed to get CAN interface index");
+    }
 
-        addr.can_family = AF_CAN;
-        addr.can_ifindex = ifr.ifr_ifindex;
+    addr.can_family = AF_CAN;
+    addr.can_ifindex = ifr.ifr_ifindex;
 
-        // Bind the socket to the CAN interface
-        if (bind(socket_fd, (struct sockaddr*)&addr, sizeof(addr)) < 0) {
-            perror("Error in binding CAN socket");
-            close(socket_fd);  // Ensure socket is closed before throwing
-            throw std::runtime_error("Failed to bind CAN socket");
-        }
-    } catch (char &e) {
-        std::cout << e << std::endl;
+    // 필터 설정 (CAN ID = 0x7만 수신)
+    struct can_filter rfilter[1];
+    rfilter[0].can_id   = 0x7;
+    rfilter[0].can_mask = CAN_SFF_MASK;
+    setsockopt(socket_fd, SOL_CAN_RAW, CAN_RAW_FILTER, &rfilter, sizeof(rfilter));
+
+    if (bind(socket_fd, reinterpret_cast<struct sockaddr*>(&addr), sizeof(addr)) < 0) {
+        perror("Bind");
+        close(socket_fd);
+        throw std::runtime_error("Failed to bind CAN socket");
     }
 
     std::cout << "CAN socket bound to interface: " << interface_name << std::endl;
@@ -53,72 +52,159 @@ void CANReceiver::openSocket(const std::string& interface_name) {
 // Check if a CAN frame is available (read from socket)
 bool CANReceiver::canRead() {
     int nbytes = read(socket_fd, &frame, sizeof(struct can_frame));
-    std::cout << "nbytes : " << nbytes << std::endl;
-    if (nbytes == sizeof(struct can_frame)) {
-        std::cout << "CAN ID: 0x" << std::hex << frame.can_id << std::dec << "\n";
-        std::cout << "DLC: " << static_cast<int>(frame.can_dlc) << "\n";
-    
-        std::cout << "CAN Data: ";
-        for (int i = 0; i < frame.can_dlc; i++)
-            printf("%02X ", frame.data[i]);
-        std::cout << std::endl;
-    
-        if(frame.can_id == 0x7 && frame.can_dlc == 4) {
-            float rpm = 0.0f;
-            memcpy(&rpm, frame.data, sizeof(float));
-            std::cout << "RPM: " << rpm << "\n";
-        } else {
-            std::cout << "Received frame with unexpected CAN ID or DLC.\n";
-            return false;
-        }
-        return true;
-    } else if (nbytes < 0) {
+
+    if (nbytes < 0) {
         perror("CAN read failed");
         return false;
-    } else {
+    }
+
+    if (nbytes != sizeof(struct can_frame)) {
         std::cerr << "Incomplete CAN frame received (size = " << nbytes << ")\n";
         return false;
     }
-    
-    // if (nbytes == sizeof(struct can_frame)) {
-    //     if(frame.can_id == 0x7 && frame.can_dlc == 4) {
-    //         float rpm;
-    //         memcpy(&rpm, frame.data, sizeof(float));
-    //         std::cout << "received RPM value : " << rpm << std::endl;
-    //     }
-    // }
-    
-    // if (nbytes < 0) {
-    //     if (errno == EAGAIN || errno == EWOULDBLOCK) {
-    //         return false;  // No data available, not an error
-    //     }
-    //     perror("Error reading CAN frame");
-    //     return false;
-    // }
-    // if (nbytes < sizeof(struct can_frame)) {
-    //     std::cerr << "Incomplete CAN frame" << std::endl;
-    //     return false;
-    // }
-    // return true;
+
+    if(frame.can_id == 0x7 && frame.can_dlc == 4) {
+        float rpm = calculateSpeed(&frame);
+        std::cout << "Received RPM: " << rpm << std::endl;
+        return true;
+    } else {
+        std::cerr << "Received frame with unexpected CAN ID or DLC." << std::endl;
+        return false;
+    }
 }
 
-// Extract speed from the received CAN frame
-float CANReceiver::getSpeed() {
+// Return speed value from the received CAN frame
+float CANReceiver::getSpeed() const {
     return calculateSpeed(&frame);
 }
 
-// Calculate speed from the first two bytes of the CAN frame data
-float CANReceiver::calculateSpeed(const struct can_frame* frame) {
-    // Interpret speed as a signed 16-bit integer
-    float speed=0;
-    // memcpy (&speed, frame->data, sizeof(float));
-    memcpy (&speed, frame->data, sizeof(float));
-    // std::cout << "memcpy value : " <<speed << std::endl;
-    // for (int i = 0; i < 16; i++)
-    //     std::cout << i  << " : "<<static_cast<int>(frame->data[i]) << std::endl;
+// Calculate speed (RPM) from CAN frame data
+float CANReceiver::calculateSpeed(const struct can_frame* frame) const {
+    float rpm = 0.0f;
+    memcpy(&rpm, frame->data, sizeof(float));
+    return rpm;
+}
+//#################
 
-    // float speed = static_cast<float>((frame->data[0] << 8) | frame->data[1]);
-    // float speed = 120;
-    std::cout << "Speed: " << speed << std::endl << std::flush;
-    return speed;
-} 
+// // #include "mcp2515_can.h"
+// // #include <SPI.h>
+
+// // Constructor: Opens and binds the CAN socket to the specified interface
+// CANReceiver::CANReceiver(const std::string& interface_name) : socket_fd(-1) {
+//     openSocket(interface_name);
+// }
+
+// // Destructor: Closes the CAN socket
+// CANReceiver::~CANReceiver() {
+//     if (socket_fd != -1) {
+//         close(socket_fd);
+//         std::cout << "CAN socket closed." << std::endl;
+//     }
+// }
+
+// // Opens a CAN socket and binds it to the given interface
+// void CANReceiver::openSocket(const std::string& interface_name) {
+//     // Open the CAN_RAW socket
+//     try {
+//         socket_fd = socket(PF_CAN, SOCK_RAW, CAN_RAW);
+//         if (socket_fd < 0) {
+//             perror("Error while opening CAN socket");
+//             throw std::runtime_error("Failed to open CAN socket");
+//         }
+
+//         // Get the interface index for the specified CAN interface
+//         std::strncpy(ifr.ifr_name, interface_name.c_str(), IFNAMSIZ - 1);
+//         if (ioctl(socket_fd, SIOCGIFINDEX, &ifr) < 0) {
+//             perror("Error finding CAN interface");
+//             close(socket_fd);  // Ensure socket is closed before throwing
+//             throw std::runtime_error("Failed to find CAN interface");
+//         }
+
+//         addr.can_family = AF_CAN;
+//         addr.can_ifindex = ifr.ifr_ifindex;
+
+//         // Bind the socket to the CAN interface
+//         if (bind(socket_fd, (struct sockaddr*)&addr, sizeof(addr)) < 0) {
+//             perror("Error in binding CAN socket");
+//             close(socket_fd);  // Ensure socket is closed before throwing
+//             throw std::runtime_error("Failed to bind CAN socket");
+//         }
+//     } catch (char &e) {
+//         std::cout << e << std::endl;
+//     }
+
+//     std::cout << "CAN socket bound to interface: " << interface_name << std::endl;
+// }
+
+// // Check if a CAN frame is available (read from socket)
+// bool CANReceiver::canRead() {
+//     int nbytes = read(socket_fd, &frame, sizeof(struct can_frame));
+//     std::cout << "nbytes : " << nbytes << std::endl;
+//     if (nbytes == sizeof(struct can_frame)) {
+//         std::cout << "CAN ID: 0x" << std::hex << frame.can_id << std::dec << "\n";
+//         std::cout << "DLC: " << static_cast<int>(frame.can_dlc) << "\n";
+    
+//         std::cout << "CAN Data: ";
+//         for (int i = 0; i < frame.can_dlc; i++)
+//             printf("%02X ", frame.data[i]);
+//         std::cout << std::endl;
+    
+//         if(frame.can_id == 0x7 && frame.can_dlc == 4) {
+//             float rpm = 0.0f;
+//             memcpy(&rpm, frame.data, sizeof(float));
+//             std::cout << "RPM: " << rpm << "\n";
+//         } else {
+//             std::cout << "Received frame with unexpected CAN ID or DLC.\n";
+//             return false;
+//         }
+//         return true;
+//     } else if (nbytes < 0) {
+//         perror("CAN read failed");
+//         return false;
+//     } else {
+//         std::cerr << "Incomplete CAN frame received (size = " << nbytes << ")\n";
+//         return false;
+//     }
+    
+//     // if (nbytes == sizeof(struct can_frame)) {
+//     //     if(frame.can_id == 0x7 && frame.can_dlc == 4) {
+//     //         float rpm;
+//     //         memcpy(&rpm, frame.data, sizeof(float));
+//     //         std::cout << "received RPM value : " << rpm << std::endl;
+//     //     }
+//     // }
+    
+//     // if (nbytes < 0) {
+//     //     if (errno == EAGAIN || errno == EWOULDBLOCK) {
+//     //         return false;  // No data available, not an error
+//     //     }
+//     //     perror("Error reading CAN frame");
+//     //     return false;
+//     // }
+//     // if (nbytes < sizeof(struct can_frame)) {
+//     //     std::cerr << "Incomplete CAN frame" << std::endl;
+//     //     return false;
+//     // }
+//     // return true;
+// }
+
+// // Extract speed from the received CAN frame
+// float CANReceiver::getSpeed() {
+//     return calculateSpeed(&frame);
+// }
+
+// // Calculate speed from the first two bytes of the CAN frame data
+// float CANReceiver::calculateSpeed(const struct can_frame* frame) {
+//     // Interpret speed as a signed 16-bit integer
+//     float speed=0;
+//     // memcpy (&speed, frame->data, sizeof(float));
+//     memcpy (&speed, frame->data, sizeof(float));
+//     // std::cout << "memcpy value : " <<speed << std::endl;
+//     // for (int i = 0; i < 16; i++)
+//     //     std::cout << i  << " : "<<static_cast<int>(frame->data[i]) << std::endl;
+
+//     // float speed = static_cast<float>((frame->data[0] << 8) | frame->data[1]);
+//     // float speed = 120;
+//     std::cout << "Speed: " << speed << std::endl << std::flush;
+//     return speed;
+// } 
