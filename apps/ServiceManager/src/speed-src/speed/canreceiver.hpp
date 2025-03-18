@@ -43,16 +43,11 @@ private:
     struct can_frame frame;
 
 public:
-    CANReceiver(const std::string& interface_name);
+    
     CANReceiver();
     ~CANReceiver();
 
-    bool canRead();
-    float getSpeed() const;
     int get();
-private:
-    float calculateSpeed(const struct can_frame* frame) const;
-    void openSocket(const std::string& interface_name);
 };
 
 #endif // CANRECEIVER_HPP

@@ -181,7 +181,7 @@ void speedObject::canDataReceive() {
         while (is_offered_ && running_) 
             {
                 {   
-                    receiver.get();
+                    filtered_speed = receiver.get();
                     // receiver.canRead();
                     // filtered_speed = receiver.getSpeed();
                     // filtered_speed = (1-weight)*filtered_speed + (weight)*canData.getSpeed();
