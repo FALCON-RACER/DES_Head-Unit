@@ -1,5 +1,7 @@
 #include "./canreceiver.hpp"
 #include "../../headers.hpp"
+#include "mcp2515_can.h"
+#include <SPI.h>
 
 // Constructor: Opens and binds the CAN socket to the specified interface
 CANReceiver::CANReceiver(const std::string& interface_name) : socket_fd(-1) {
@@ -17,7 +19,6 @@ CANReceiver::~CANReceiver() {
 // Opens a CAN socket and binds it to the given interface
 void CANReceiver::openSocket(const std::string& interface_name) {
     // Open the CAN_RAW socket
-
     try {
         socket_fd = socket(PF_CAN, SOCK_RAW, CAN_RAW);
         if (socket_fd < 0) {
@@ -52,6 +53,15 @@ void CANReceiver::openSocket(const std::string& interface_name) {
 // Check if a CAN frame is available (read from socket)
 bool CANReceiver::canRead() {
     int nbytes = read(socket_fd, &frame, sizeof(struct can_frame));
+    std::cout << "nbytes : " << nbytes << std::endl;
+    if (nbytes == sizeof(struct can_frame)) {
+        if(frame.can_id == 0x7 && frame.can_dlc == 4) {
+            float rpm;
+            memcpy(&rpm, frame.data, sizeof(float));
+            std::cout << "received RPM value : " << rpm << std::endl;
+        }
+    }
+    
     if (nbytes < 0) {
         if (errno == EAGAIN || errno == EWOULDBLOCK) {
             return false;  // No data available, not an error
@@ -75,13 +85,14 @@ float CANReceiver::getSpeed() {
 float CANReceiver::calculateSpeed(const struct can_frame* frame) {
     // Interpret speed as a signed 16-bit integer
     float speed=0;
-    memcpy (&speed, frame->data, sizeof(float));
+    // memcpy (&speed, frame->data, sizeof(float));
+    memcpy (&speed, frame.data, sizeof(float));
     // std::cout << "memcpy value : " <<speed << std::endl;
 
-    std::cout << " 0 : "<<static_cast<int>(frame->data[0]) << std::endl;
-    std::cout << " 1 : "<<static_cast<int>(frame->data[1]) << std::endl;
-    std::cout << " 2 : "<<static_cast<int>(frame->data[2]) << std::endl;
-    std::cout << " 3 : "<<static_cast<int>(frame->data[3]) << std::endl;
+    // std::cout << " 0 : "<<static_cast<int>(frame->data[0]) << std::endl;
+    // std::cout << " 1 : "<<static_cast<int>(frame->data[1]) << std::endl;
+    // std::cout << " 2 : "<<static_cast<int>(frame->data[2]) << std::endl;
+    // std::cout << " 3 : "<<static_cast<int>(frame->data[3]) << std::endl;
 
     // float speed = static_cast<float>((frame->data[0] << 8) | frame->data[1]);
     // float speed = 120;
