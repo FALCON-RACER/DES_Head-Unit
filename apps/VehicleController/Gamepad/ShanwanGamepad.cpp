@@ -21,7 +21,7 @@ ShanWanGamepadInput ShanWanGamepad::read_data() {
 	if (0 <= button_number)
 		gamepad_input.button = true;
 	if (0 <= axis_number)
-		gamepad_input.analog_stick = ture;
+		gamepad_input.analog_stick = true;
 
 	// Joysticks
 	if (axis_number == 0)
