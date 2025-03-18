@@ -1,7 +1,7 @@
 #include "./canreceiver.hpp"
 #include "../../headers.hpp"
 // #include "mcp2515_can.h"
-#include <SPI.h>
+// #include <SPI.h>
 
 // Constructor: Opens and binds the CAN socket to the specified interface
 CANReceiver::CANReceiver(const std::string& interface_name) : socket_fd(-1) {
