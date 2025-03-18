@@ -88,11 +88,8 @@ float CANReceiver::calculateSpeed(const struct can_frame* frame) {
     // memcpy (&speed, frame->data, sizeof(float));
     memcpy (&speed, frame->data, sizeof(float));
     // std::cout << "memcpy value : " <<speed << std::endl;
-
-    // std::cout << " 0 : "<<static_cast<int>(frame->data[0]) << std::endl;
-    // std::cout << " 1 : "<<static_cast<int>(frame->data[1]) << std::endl;
-    // std::cout << " 2 : "<<static_cast<int>(frame->data[2]) << std::endl;
-    // std::cout << " 3 : "<<static_cast<int>(frame->data[3]) << std::endl;
+    for (int i = 0; i < 16; i++)
+        std::cout << " 0 : "<<static_cast<int>(frame->data[i]) << std::endl;
 
     // float speed = static_cast<float>((frame->data[0] << 8) | frame->data[1]);
     // float speed = 120;
