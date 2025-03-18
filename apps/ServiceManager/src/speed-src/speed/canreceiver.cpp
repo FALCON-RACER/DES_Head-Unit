@@ -4,6 +4,8 @@
 #include "canreceiver.hpp"
 
 // // Constructor: Opens and binds the CAN socket to the specified interface
+CANReceiver::CANReceiver(){}
+CANReceiver::~CANReceiver(){}
 
 // int CANReceiver::get(void)
 // {
