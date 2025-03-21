@@ -81,18 +81,15 @@ void client_sample::on_availability(vsomeip::service_t _service, vsomeip::instan
 }
 
 void client_sample::on_message(const std::shared_ptr<vsomeip::message>& _response) {
+    std::shared_ptr<vsomeip::payload> payload = _response->get_payload();
+    int received_value = 0;
 
-    std::shared_ptr<vsomeip::payload> its_payload = _response->get_payload();
-    if (its_payload->get_length() == sizeof(float)) { // 페이로드 크기로 검증
-        float received_speed = 0.0f;
-
-        // 이터레이터로 시작 위치 가져오기
-        auto it = its_payload->get_data(); // 시작 위치의 이터레이터
-        std::copy(it, it + sizeof(float), reinterpret_cast<vsomeip::byte_t *>(&received_speed));
-
-        // 변환된 값 출력
-        std::cout << "Received data: " << received_speed << " m/s" << std::endl;
+    if (payload->get_length() >= sizeof(int)) {
+        received_value = *reinterpret_cast<const int*>(payload->get_data());
+        std::cout << "SERVER: Received int: " << received_value << std::endl;
     } else {
-        std::cerr << "Invalid data size received!" << std::endl;
+        std::cerr << "SERVER: Invalid payload size!" << std::endl;
+        return;
     }
+
 }

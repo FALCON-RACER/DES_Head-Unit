@@ -12,7 +12,7 @@ batteryObject::batteryObject(uint32_t _cycle) :
     speedData(0),
     voltage(0),
     file(-1){
-    battery_thread_ = std::thread(&batteryObject::getBatteryVoltage, this);
+    battery_thread_ = std::thread(&batteryObject::getBatteryData, this);
     if (!initI2C()) {
         std::cout << "Failed to initialize I2C interface.";
     }
@@ -27,7 +27,7 @@ bool batteryObject::init() {
         return false;
     }
     //서비스에 따라서 service id 변경.
-
+    std::cout << "SERVER : init" << std::endl;
     app_->register_state_handler(
             std::bind(&batteryObject::on_state, this, std::placeholders::_1));
 
@@ -192,31 +192,6 @@ void batteryObject::on_set(const std::shared_ptr<vsomeip::message> &_message) {
 
 }
 
-//TODO: change it into battery service code.
-/*
-void batteryObject::getBatteryVoltage() {
-    float filtered_speed = 0.0f;
-    float weight = 0.6;
-
-    std::cout << "running : " << running_ << std::endl;
-    while (running_) {
-        std::unique_lock<std::mutex> its_lock(can_mutex_);
-        while (!is_offered_ && running_) 
-            battery_condition_.wait(its_lock);
-        while (is_offered_ && running_) 
-            {
-                {
-                    filtered_speed += 0.2;
-                    this->speedData = filtered_speed;
-                }
-                std::this_thread::sleep_for(std::chrono::milliseconds(7));
-
-            }
-    }
-
-}
-*/
-
 // Destructor: Cleans up the resources (closes the I2C file descriptor)
 
 bool batteryObject::initI2C() {
@@ -263,15 +238,48 @@ uint16_t batteryObject::readRegister() {
     return readValue;
 }
 
-void batteryObject::getBatteryVoltage() {
+uint8_t batteryObject::getBatteryVoltage() {
     // The battery voltage is stored in register 0x02
-    // uint16_t voltageRaw = readRegister();
+    uint16_t voltageRaw = readRegister();
     // int voltage = 11;
-    uint8_t u_voltage = 11;
+    // uint8_t u_voltage = 11;
     
-    this->voltage = u_voltage;
+    // this->voltage = u_voltage;
 
-    // uint8_t voltage = ((voltageRaw>>3)*4.0)/1000;
+    voltage = ((voltageRaw>>3)*4.0)/1000;
     std::cout << "Battery Voltage: " << this->voltage << std::endl;
-    // return voltage;
+    return voltage;
 }
+
+void batteryObject::getBatteryData() {
+    // The battery voltage is stored in register 0x02
+    uint8_t battery_percent = 0;
+    int lowVoltage = 9;
+    float diffVoltage = 3.45;
+    
+        
+    std::cout << "running : " << running_ << std::endl;
+    while (running_) {
+        std::unique_lock<std::mutex> its_lock(can_mutex_);
+        while (!is_offered_ && running_) 
+            battery_condition_.wait(its_lock);
+        while (is_offered_ && running_) 
+            {
+                {
+                    uint8_t voltage = this->getBatteryVoltage();
+                    float battery_percent = (((voltage - lowVoltage) / diffVoltage) * 100);
+                    if (battery_percent -100 > 0)
+                        battery_percent = 100;
+                    else if (battery_percent < 0)
+                        battery_percent = 0;
+                    this->voltage = battery_percent;
+                    // filtered_speed += 0.2;
+                    // this->speedData = filtered_speed;
+                }
+                std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
+            }
+    }
+
+}
+

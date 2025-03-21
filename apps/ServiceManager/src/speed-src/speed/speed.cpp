@@ -171,6 +171,8 @@ void speedObject::canDataReceive() {
     std::cout << "can Data Receive started" << std::endl;
     float filtered_speed = 0.0f;
     float weight = 0.6;
+    CANReceiver receiver;
+    // CANReceiver receiver("can0");
 
     while (running_) {
         std::unique_lock<std::mutex> its_lock(can_mutex_);
@@ -178,12 +180,37 @@ void speedObject::canDataReceive() {
             CAN_condition_.wait(its_lock);
         while (is_offered_ && running_) 
             {
-                {
-                    filtered_speed += 0.1;
+                {   
+                    filtered_speed = receiver.get();
+                    // receiver.canRead();
+                    // filtered_speed = receiver.getSpeed();
+                    // filtered_speed = (1-weight)*filtered_speed + (weight)*canData.getSpeed();
                     this->speedData = filtered_speed;
+                    std::cout << "[Speed server] in can data receive loop : filtered_speed : " << filtered_speed << std::endl;
+                    // if (filtered_speed >= 100.0f)
+                    //     filtered_speed = 0.0f;
+                    // filtered_speed += 0.1;
+                    // this->speedData = filtered_speed;
                 }
-                std::this_thread::sleep_for(std::chrono::milliseconds(7));
+                std::this_thread::sleep_for(std::chrono::milliseconds(200));
 
             }
     }
+    
+    // while (running_) {
+    //     std::unique_lock<std::mutex> its_lock(can_mutex_);
+    //     while (!is_offered_ && running_) 
+    //         CAN_condition_.wait(its_lock);
+    //     while (is_offered_ && running_) 
+    //         {
+    //             {   
+    //                 if (filtered_speed >= 100.0f)
+    //                     filtered_speed = 0.0f;
+    //                 filtered_speed += 0.1;
+    //                 this->speedData = filtered_speed;
+    //             }
+    //             std::this_thread::sleep_for(std::chrono::milliseconds(300));
+
+    //         }
+    // }
 }

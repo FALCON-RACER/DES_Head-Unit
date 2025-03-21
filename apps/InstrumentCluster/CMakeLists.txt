@@ -3,13 +3,27 @@ cmake_minimum_required(VERSION 3.16)
 project(InstrumentCluster VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(VSOMEIP_CONFIG_FILES "./vsomeip.json")
 
-find_package(Qt6 6.5 REQUIRED COMPONENTS Quick)
+find_package(Qt6 6.5 REQUIRED COMPONENTS Quick WebEngineWidgets Qml)
+find_package(vsomeip3 3.5.3 REQUIRED)
+find_package( Boost 1.55 COMPONENTS system thread log REQUIRED)
+
+
+include_directories(
+    ${Boost_INCLUDE_DIR}
+    ${VSOMEIP_INCLUDE_DIR}
+    )
 
 qt_standard_project_setup(REQUIRES 6.5)
 
 qt_add_executable(instrument-cluster
     main.cpp
+    clients/ambient_receiver/al_receiver.cpp
+    clients/speed_client/speed_client.cpp
+    clients/battery_client/battery_client.cpp
+    clients/gear_data_receiving_client/gear_client.cpp
+    ${VSOMEIP_CONFIG_FILES}
 )
 
 qt_add_qml_module(instrument-cluster
@@ -22,7 +36,15 @@ qt_add_qml_module(instrument-cluster
         QML_FILES Battery.qml
         QML_FILES Gear.qml
         QML_FILES
-        SOURCES instrumentclustercontroller.h instrumentclustercontroller.cpp
+        SOURCES 
+            instrumentclustercontroller.h 
+            instrumentclustercontroller.cpp
+            clients/ambient_receiver/al_receiver.hpp    
+            clients/speed_client/speed_client.hpp
+            clients/battery_client/battery_client.hpp
+            clients/gear_data_receiving_client/gear_client.hpp
+            clients/server.hpp
+    
 )
 
 qt_add_resources(instrument-cluster "resources"
@@ -44,7 +66,13 @@ set_target_properties(instrument-cluster PROPERTIES
 )
 
 target_link_libraries(instrument-cluster
-    PRIVATE Qt6::Quick
+    PRIVATE         
+        vsomeip3
+        ${Boost_LIBRARIES}
+        Qt6::Quick
+        Qt6::WebEngineWidgets
+        Qt6::Qml
+
 )
 
 include(GNUInstallDirs)

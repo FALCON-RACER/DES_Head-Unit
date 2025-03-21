@@ -5,14 +5,25 @@ project(HeadUnit VERSION 0.1 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
+set(VSOMEIP_CONFIG_FILES "./vsomeip.json")
 
 find_package(Qt6 6.5 REQUIRED COMPONENTS Quick Qml)
+find_package(Qt6 REQUIRED COMPONENTS Quick WebEngineWidgets Qml)
+find_package(vsomeip3 3.5.3 REQUIRED)
+find_package( Boost 1.55 COMPONENTS system thread log REQUIRED)
+
+include_directories(
+    ${Boost_INCLUDE_DIR}
+    ${VSOMEIP_INCLUDE_DIR}
+    )
 
 qt_standard_project_setup(REQUIRES 6.5)
 
 qt_add_executable(head-unit
 
     main.cpp
+    HeadUnit.cpp
+    # SpeedClient.cpp
     resources.qrc
 
     shared/utils/envmanager.h
@@ -22,6 +33,12 @@ qt_add_executable(head-unit
 
     modules/spotify/spotify.h
     modules/spotify/spotify.cpp
+    HeadUnit.h
+    clients/speed_client/speed_client.cpp
+    clients/battery_client/battery_client.cpp
+    clients/gear_data_receiving_client/gear_client.cpp
+    clients/ambient_sender/alsender.cpp
+    ${VSOMEIP_CONFIG_FILES}
 )
 
 qt_add_qml_module(head-unit
@@ -40,10 +57,18 @@ qt_add_qml_module(head-unit
         modules/youtube/Youtube_main.qml
 
     SOURCES
+        HeadUnit.h
+        clients/speed_client/speed_client.hpp
+        clients/battery_client/battery_client.hpp
+        clients/gear_data_receiving_client/gear_client.hpp
+        clients/ambient_sender/alsender.hpp
+        clients/server.hpp
         modules/spotify/spotify.h
         modules/spotify/spotify.cpp
         shared/utils/envmanager.h
         shared/utils/envmanager.cpp
+        shared/utils/someip.cpp
+        shared/utils/someip.h
     DEPENDENCIES
         QtQuick
         QtQml
@@ -53,8 +78,14 @@ qt_add_qml_module(head-unit
 )
 
 
-find_package(Qt6 REQUIRED COMPONENTS Quick WebEngineWidgets Qml)
-target_link_libraries(head-unit PRIVATE  Qt6::Quick Qt6::WebEngineWidgets Qt6::Qml)
+target_link_libraries(head-unit
+    PRIVATE
+        vsomeip3
+        ${Boost_LIBRARIES}
+        Qt6::Quick
+        Qt6::WebEngineWidgets
+        Qt6::Qml
+)
 find_package(Qt6 6.5 REQUIRED COMPONENTS Quick Qml Bluetooth)
 target_link_libraries(head-unit PRIVATE Qt6::Bluetooth)
 
